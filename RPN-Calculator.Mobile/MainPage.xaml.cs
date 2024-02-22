@@ -20,4 +20,11 @@ public partial class MainPage : ContentPage
 
         SemanticScreenReader.Announce(CounterBtn.Text);
     }
+
+    private async void OnDocumentationLinkClicked(object sender, EventArgs e)
+    {
+        // Navigate to the DocumentationPage
+        await Shell.Current.GoToAsync("///DocumentationPage");
+    }
+
 }
