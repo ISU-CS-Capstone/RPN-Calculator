@@ -1,0 +1,95 @@
+﻿@page "/calculator"
+@rendermode InteractiveServer
+
+<!-- Set the page title -->
+<PageTitle>RPN Calculator</PageTitle>
+
+<!-- Page heading -->
+<h1>RPN Calculator</h1>
+
+<!-- Calculator container -->
+<div class="calculator">
+    <!-- Display area for calculator input/output -->
+    <div class="display">
+        <input type="text" @bind="inputExpression" readonly />
+    </div>
+
+    <!-- Buttons container -->
+    <div class="buttons">
+        <!-- Row of buttons -->
+        <div class="row">
+            <button @onclick="Clear">CLR</button> <!-- Button to clear input -->
+            <button @onclick="AddNumber">7</button> <!-- Button to add number 7 -->
+            <button @onclick="AddNumber">4</button> <!-- Button to add number 4 -->
+            <button @onclick="AddNumber">1</button> <!-- Button to add number 1 -->
+        </div>
+
+        <!-- Repeat similar structure for other rows of buttons -->
+        <!-- Each button has an associated onclick event handler -->
+        <div class="row">
+            <button class="operator" @onclick="AddOperator">+/-</button>
+            <button @onclick="AddNumber">8</button>
+            <button @onclick="AddNumber">5</button>
+            <button @onclick="AddNumber">2</button>
+        </div>
+
+        <div class="row">
+            <button class="operator" @onclick="AddOperator">/</button>
+            <button @onclick="AddNumber">9</button>
+            <button @onclick="AddNumber">6</button>
+            <button @onclick="AddNumber">3</button>
+        </div>
+
+        <div class="row">
+            <button class="operator" @onclick="AddOperator">x</button>
+            <button class="operator" @onclick="AddOperator">-</button>
+            <button class="operator" @onclick="AddOperator">+</button>
+            <button class="operator" @onclick="AddOperator">.</button>
+        </div>
+
+        <div class="row">
+            <button @onclick="AddNumber">  </button> <!-- Empty button -->
+        </div>
+
+        <div class="row">
+            <button @onclick="AddNumber">0</button> <!-- Button for number 0 -->
+        </div>
+
+        <div class="row">
+            <button @onclick="AddNumber">  </button> <!-- Empty button -->
+        </div>
+
+        <div class="row">
+            <button class="enter" @onclick="Enter">Enter</button> <!-- Button to trigger calculation -->
+        </div>
+    </div>
+</div>
+
+@code {
+    // Define a variable to bind to the input field
+    private string inputExpression = "";
+
+    // Event handler to add a number to the input expression
+    private void AddNumber()
+    {
+
+    }
+
+    // Event handler to add an operator to the input expression
+    private void AddOperator()
+    {
+
+    }
+
+    // Event handler to perform calculation when Enter button is clicked
+    private void Enter()
+    {
+
+    }
+
+    // Event handler to clear the input expression
+    private void Clear()
+    {
+
+    }
+}
