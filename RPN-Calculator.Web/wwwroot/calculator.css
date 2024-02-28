@@ -24,16 +24,16 @@
     align-items: center; /* Center the input field vertically */
 }
 
-    /* Styling for the input field inside the display area */
-    .display input[type="text"] {
-        width: 100%; /* Take up 100% of the width of its container */
-        height: 100%; /* Take up 100% of the height of its container */
-        font-size: 24px;
-        padding: 25px;
-        border: none;
-        border-radius: 10px;
-        box-sizing: border-box;
-    }
+/* Styling for the input field inside the display area */
+.display input[type="text"] {
+    width: 100%; /* Take up 100% of the width of its container */
+    height: 100%; /* Take up 100% of the height of its container */
+    font-size: 24px;
+    padding: 25px;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+ }
 
 /* Styling for the buttons container */
 .buttons {
@@ -49,23 +49,29 @@ button {
     margin-bottom: 5px;
     border: none;
     cursor: pointer;
-    background-color: #e0e0e0;
+    background-color: #b0b0b0;
     border-radius: 5px;
 }
 
-    /* Styling when hovering over buttons */
-    button:hover {
-        background-color: #ccc;
-    }
+/* Styling when hovering over buttons */
+button:hover {
+    background-color: #ffb14c;
+ }
 
 /* Styling for operator buttons */
 .operator {
-    background-color: #f0f0f0;
+    background-color: #b0b0b0;
     color: #ff5722;
 }
 
 /* Styling for the clear button */
 .clear {
-    background-color: #ff5722;
-    color: white;
+    background-color: #b0b0b0;
+    color: #ff5722;
+}
+
+/* Styling for the enter button */
+.enter {
+    background-color: #b0b0b0;
+    color: #ff5722;
 }
