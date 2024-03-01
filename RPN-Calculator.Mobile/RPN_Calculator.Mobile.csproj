@@ -54,7 +54,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RPN-Calculator.Common\RPN-Calculator.Common.csproj" />
+      <ProjectReference Include="..\RPN_Calculator.Common\RPN_Calculator.Common.csproj" />
     </ItemGroup>
 
     <ItemGroup>

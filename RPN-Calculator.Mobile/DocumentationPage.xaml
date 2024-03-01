@@ -3,5 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RPN_Calculator.Mobile.DocumentationPage"
              Title="DocumentationPage">
-    <WebView x:Name="webView" />
+    <WebView x:Name="DocWebView" />
 </ContentPage>

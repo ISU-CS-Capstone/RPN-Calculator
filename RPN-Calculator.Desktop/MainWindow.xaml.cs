@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace RPN_Calculator.Desktop
@@ -79,6 +81,13 @@ namespace RPN_Calculator.Desktop
         {
             stack.Clear();
             Display.Clear();
+        }
+        
+        private void DocumentationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var docsPage = new DocumentationWindow();
+            docsPage.Show();
+            this.Close();
         }
     }
 }

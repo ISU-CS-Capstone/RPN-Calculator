@@ -8,18 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Class1.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="Models\" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Markdig" Version="0.35.0" />
     </ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Documentation.md">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</EmbeddedResource>
-		<None Remove="Documentation.txt" /> <!-- Allow markdown to be accessible in other projects -->
-	</ItemGroup>
 
 </Project>

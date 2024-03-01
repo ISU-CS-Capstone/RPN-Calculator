@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\school-work\\CS_4488\\RPN-Calculator\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{88A1F72B-265D-42CA-8E28-4CB78B71E565}|RPN-Calculator.Desktop\\RPN-Calculator.Desktop.csproj|d:\\school-work\\cs_4488\\rpn-calculator\\rpn-calculator.desktop\\documentationwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88A1F72B-265D-42CA-8E28-4CB78B71E565}|RPN-Calculator.Desktop\\RPN-Calculator.Desktop.csproj|solutionrelative:rpn-calculator.desktop\\documentationwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DocumentationWindow.xaml.cs",
+              "DocumentMoniker": "D:\\school-work\\CS_4488\\RPN-Calculator\\RPN-Calculator.Desktop\\DocumentationWindow.xaml.cs",
+              "RelativeDocumentMoniker": "RPN-Calculator.Desktop\\DocumentationWindow.xaml.cs",
+              "ToolTip": "D:\\school-work\\CS_4488\\RPN-Calculator\\RPN-Calculator.Desktop\\DocumentationWindow.xaml.cs",
+              "RelativeToolTip": "RPN-Calculator.Desktop\\DocumentationWindow.xaml.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAcwDUAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-01T04:58:05.597Z",
+              "EditorCaption": ""
             }
           ]
         }

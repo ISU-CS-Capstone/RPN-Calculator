@@ -10,11 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Markdig" Version="0.35.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\RPN-Calculator.Common\RPN-Calculator.Common.csproj" />
+      <ProjectReference Include="..\RPN_Calculator.Common\RPN_Calculator.Common.csproj" />
     </ItemGroup>
 
 </Project>

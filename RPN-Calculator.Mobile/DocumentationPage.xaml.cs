@@ -27,7 +27,7 @@ public partial class DocumentationPage : ContentPage
             var markdown = await reader.ReadToEndAsync();
             Console.WriteLine(markdown);
             var html = Markdown.ToHtml(markdown);
-            webView.Source = new HtmlWebViewSource { Html = html };
+            DocWebView.Source = new HtmlWebViewSource { Html = html };
         }
     }
 }
