@@ -1,12 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPN-Calculator.Web", "RPN-Calculator.Web\RPN-Calculator.Web.csproj", "{7256AF76-8D28-4413-A9A3-20AC3F6A3921}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPNCalculator.Web", "RPNCalculator.Web\RPNCalculator.Web.csproj", "{7256AF76-8D28-4413-A9A3-20AC3F6A3921}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPN-Calculator.Common", "RPN-Calculator.Common\RPN-Calculator.Common.csproj", "{D9E48D75-233E-4398-9B67-F61B43C4DFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPNCalculator.Common", "RPNCalculator.Common\RPNCalculator.Common.csproj", "{D9E48D75-233E-4398-9B67-F61B43C4DFCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPN-Calculator.Mobile", "RPN-Calculator.Mobile\RPN-Calculator.Mobile.csproj", "{E1CD3C29-459C-4D0D-BC5F-4D2B6DAEF54C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPNCalculator.Desktop", "RPNCalculator.Desktop\RPNCalculator.Desktop.csproj", "{88A1F72B-265D-42CA-8E28-4CB78B71E565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPN-Calculator.Desktop", "RPN-Calculator.Desktop\RPN-Calculator.Desktop.csproj", "{88A1F72B-265D-42CA-8E28-4CB78B71E565}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPNCalculator.Mobile", "RPNCalculator.Mobile\RPNCalculator.Mobile.csproj", "{4871B34F-30B9-4475-86FA-8BC40873883A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,13 +25,21 @@ Global
 		{D9E48D75-233E-4398-9B67-F61B43C4DFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9E48D75-233E-4398-9B67-F61B43C4DFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9E48D75-233E-4398-9B67-F61B43C4DFCD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1CD3C29-459C-4D0D-BC5F-4D2B6DAEF54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1CD3C29-459C-4D0D-BC5F-4D2B6DAEF54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1CD3C29-459C-4D0D-BC5F-4D2B6DAEF54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1CD3C29-459C-4D0D-BC5F-4D2B6DAEF54C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88A1F72B-265D-42CA-8E28-4CB78B71E565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88A1F72B-265D-42CA-8E28-4CB78B71E565}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88A1F72B-265D-42CA-8E28-4CB78B71E565}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88A1F72B-265D-42CA-8E28-4CB78B71E565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4871B34F-30B9-4475-86FA-8BC40873883A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4871B34F-30B9-4475-86FA-8BC40873883A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4871B34F-30B9-4475-86FA-8BC40873883A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4871B34F-30B9-4475-86FA-8BC40873883A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4871B34F-30B9-4475-86FA-8BC40873883A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4871B34F-30B9-4475-86FA-8BC40873883A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {101C29B9-CC4A-4F2D-B6DC-5FA8FF921FBD}
 	EndGlobalSection
 EndGlobal
