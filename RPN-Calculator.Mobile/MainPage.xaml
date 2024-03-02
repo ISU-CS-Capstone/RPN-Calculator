@@ -1,41 +1,206 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RPN_Calculator.Mobile.MainPage">
+<ContentPage
+    x:Class="RPN_Calculator.Mobile.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Padding="{OnPlatform iOS='0,20,0,0'}"
+    BackgroundColor="{DynamicResource SecondaryColor}">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <Grid
+        Padding="5,0"
+        ColumnSpacing="1"
+        RowSpacing="1">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+        <Label
+            x:Name="result"
+            Grid.Row="0"
+            Grid.ColumnSpan="4"
+            Padding="30"
+            BackgroundColor="White"
+            FontAttributes="Bold"
+            FontSize="48"
+            HorizontalTextAlignment="End"
+            LineBreakMode="NoWrap"
+            Text=""
+            TextColor="Black"
+            VerticalTextAlignment="Center" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+        
+        
+        <Button
+            Grid.Row="1"
+            Grid.ColumnSpan="1"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="CLR"
+            TextColor="Red" />
+
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="+/-"
+            TextColor="Red" />
+
+
+        <Button
+            Grid.Row="2"
+            Grid.Column="0"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="7"
+            TextColor="Black" />
+        <Button
+            Grid.Row="2"
+            Grid.Column="1"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="8"
+            TextColor="Black" />
+        <Button
+            Grid.Row="2"
+            Grid.Column="2"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="9"
+            TextColor="Black" />
+
+
+        <Button
+            Grid.Row="3"
+            Grid.Column="0"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="4"
+            TextColor="Black" />
+        <Button
+            Grid.Row="3"
+            Grid.Column="1"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="5"
+            TextColor="Black" />
+        <Button
+            Grid.Row="3"
+            Grid.Column="2"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="6"
+            TextColor="Black" />
+
+
+        <Button
+            Grid.Row="4"
+            Grid.Column="0"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="1"
+            TextColor="Black" />
+        <Button
+            Grid.Row="4"
+            Grid.Column="1"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="2"
+            TextColor="Black" />
+
+        <Button
+            Grid.Row="4"
+            Grid.Column="2"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="3"
+            TextColor="Black" />
+        <Button
+            Grid.Row="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="36"
+            Text="0"
+            TextColor="Black" />
+
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="2"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="/"
+            TextColor="Red" />
+        <Button
+            Grid.Row="1"
+            Grid.Column="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="x"
+            TextColor="Red" />
+        
+        <Button
+            Grid.Row="2"
+            Grid.Column="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="50"
+            Text="-"
+            TextColor="Red" />
+        <Button
+            Grid.Row="3"
+            Grid.Column="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="32"
+            Text="+"
+            TextColor="Red" />
+        <Button
+            Grid.Row="4"
+            Grid.Column="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="."
+            TextColor="Red" />
+        <Button
+            Grid.Row="5"
+            Grid.Column="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="Enter"
+            TextColor="Red" />
+    </Grid>
+
 
 </ContentPage>
