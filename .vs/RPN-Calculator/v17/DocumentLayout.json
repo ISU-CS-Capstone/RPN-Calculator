@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\school-work\\CS_4488\\RPN-Calculator\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7256AF76-8D28-4413-A9A3-20AC3F6A3921}|RPNCalculator.Web\\RPNCalculator.Web.csproj|d:\\school-work\\cs_4488\\rpn-calculator\\rpncalculator.web\\wwwroot\\rpncalculator-web.styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{7256AF76-8D28-4413-A9A3-20AC3F6A3921}|RPNCalculator.Web\\RPNCalculator.Web.csproj|solutionrelative:rpncalculator.web\\wwwroot\\rpncalculator-web.styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RPNCalculator-Web.styles.css",
+              "DocumentMoniker": "D:\\school-work\\CS_4488\\RPN-Calculator\\RPNCalculator.Web\\wwwroot\\RPNCalculator-Web.styles.css",
+              "RelativeDocumentMoniker": "RPNCalculator.Web\\wwwroot\\RPNCalculator-Web.styles.css",
+              "ToolTip": "D:\\school-work\\CS_4488\\RPN-Calculator\\RPNCalculator.Web\\wwwroot\\RPNCalculator-Web.styles.css",
+              "RelativeToolTip": "RPNCalculator.Web\\wwwroot\\RPNCalculator-Web.styles.css",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAswMsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-03-01T07:15:14.374Z",
+              "EditorCaption": ""
             }
           ]
         }
