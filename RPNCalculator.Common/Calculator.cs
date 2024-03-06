@@ -5,44 +5,45 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPN_Calculator.Common
+namespace RPNCalculator.Common
 {
-    internal class Calculator
+    public class Calculator
     {
         //This string will be accessed by the frontend and will contain what should be displayed
-        private string displayString;
+        public string DisplayString { get; private set; }
 
         //Stack to hold all of the numbers
         private NumStack nStack;
 
-        //this boolean keeps track of if enter has been pressed, to determine whether to update the displayString
+        //this boolean keeps track of if enter has been pressed, to determine whether to update the DisplayString
         bool enterPressed;
 
         //simple constructor
         public Calculator(){
-            displayString = "";
+            DisplayString = "";
             nStack = new NumStack();
             enterPressed = false;
         }
 
-        //This method will be called when a number is pressed, and will update the displayString
+        //This method will be called when a number is pressed, and will update the DisplayString
         public string pressNumber(char number) { 
             if (enterPressed)
             {
-                displayString = "" + number;
+                DisplayString = "" + number;
                 enterPressed = false;
             }
             else
             {
-                displayString += number;
+                DisplayString += number;
             }
-            return displayString;
+            return DisplayString;
         }
 
         //This method will be called when enter is pressed, pushing the current value onto the stack display string won't be updated because the number wasn't modified.
         public void pressEnter()
         {
-            nStack.Push(displayString);
+            nStack.Push(DisplayString);
+            DisplayString = "";
             enterPressed = true;
         }
 
@@ -51,32 +52,26 @@ namespace RPN_Calculator.Common
         {
             //can't perform the operation if there isn't at least 1 value on the stack to add
             //if there isn't, do nothing
-            if ( nStack.Count() ==  0 ) { return displayString; }
+            if ( nStack.Count() ==  0 ) { return DisplayString; }
             switch (op)
             {
                 case '+':
-                    displayString = (double.Parse(displayString) + nStack.Pop()).ToString();
+                    DisplayString = (double.Parse(DisplayString) + nStack.Pop()).ToString();
                     break;
                 case '-':
-                    displayString = (double.Parse(displayString) - nStack.Pop()).ToString();
+                    DisplayString = (double.Parse(DisplayString) - nStack.Pop()).ToString();
                     break;
                 case '*':
-                    displayString = (double.Parse(displayString) * nStack.Pop()).ToString();
+                    DisplayString = (double.Parse(DisplayString) * nStack.Pop()).ToString();
                     break;
                 case '/':
-                    displayString = (double.Parse(displayString) / nStack.Pop()).ToString();
+                    DisplayString = (double.Parse(DisplayString) / nStack.Pop()).ToString();
                     break;
             }
 
-            //setting enterPressed, so the next type on the calculator changes the displayString.
+            //setting enterPressed, so the next type on the calculator changes the DisplayString.
             enterPressed = true;
-            return displayString;
-        }
-
-        //Simple getter for displayString, used to update display after changes have been made
-        public string getDisplayString()
-        {
-            return displayString;
+            return DisplayString;
         }
     }
 
