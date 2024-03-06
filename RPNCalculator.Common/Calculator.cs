@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RPN_Calculator.Common
 {
-    internal class Calculator
+    public class Calculator
     {
         //This string will be accessed by the frontend and will contain what should be displayed
         private string displayString;

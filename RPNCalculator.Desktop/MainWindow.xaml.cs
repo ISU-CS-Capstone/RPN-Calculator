@@ -1,86 +1,61 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using RPN_Calculator.Common;
 
 namespace RPNCalculator.Desktop
 {
     
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    // inherit from INotifyPropertyChanged to bind text output to other class
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private Stack<double> stack;
+        private Calculator calculator = new Calculator();
+
+        public event PropertyChangedEventHandler PropertyChanged; // handles page changes
+
+        public string DisplayText
+        {
+            get { return calculator.getDisplayString(); }
+        }
         public MainWindow()
         {
             InitializeComponent();
-            stack = new Stack<double>();
+            DataContext = this;
         }
+
+        // change text box to be new content as the class updates the display string
+        private void UpdateDisplay()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayText)));
+        }
+
         private void DigitButton_Click(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
-            string digit = button.Content.ToString();
-            Display.Text += digit;
-           
+            var button = sender as Button;
+            if (button != null)
+            {
+                calculator.pressNumber(Convert.ToChar(button.Content)); // add number to calculator
+                UpdateDisplay();
+            }
         }
 
         private void OperatorButton_Click(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
-            string operation = button.Content.ToString();
-
-            if (stack.Count >= 2)
+            var button = sender as Button;
+            if (button != null)
             {
-                double operand2 = stack.Pop();
-                double operand1 = stack.Pop();
-                double result = 0;
-
-                switch (operation)
-                {
-                    case "+":
-                        result = operand1 + operand2;
-                        break;
-                    case "-":
-                        result = operand1 - operand2;
-                        break;
-                    case "*":
-                        result = operand1 * operand2;
-                        break;
-                    case "/":
-                        if (operand2 != 0)
-                            result = operand1 / operand2;
-                        else
-                            MessageBox.Show("Error: Division by zero");
-                        break;
-                    default:
-                        MessageBox.Show("Invalid operation");
-                        return;
-                }
-
-                stack.Push(result);
-                Display.Text = result.ToString();
-            }
-            else
-            {
-                MessageBox.Show("Insufficient operands");
+                calculator.pressOperator(Convert.ToChar(button.Content)); // add operator to calc
+                UpdateDisplay();
             }
         }
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(Display.Text))
-            {
-                double value = double.Parse(Display.Text);
-                stack.Push(value);
-                Display.Clear();
-            }
-        }
-
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
-        {
-            stack.Clear();
-            Display.Clear();
+            calculator.pressEnter();
+            UpdateDisplay();
         }
         
         private void DocumentationButton_Click(object sender, RoutedEventArgs e)
@@ -88,6 +63,40 @@ namespace RPNCalculator.Desktop
             var docsPage = new DocumentationWindow();
             docsPage.Show();
             this.Close();
+        }
+        
+        // Handle input of operators, numpad, enter, etc...
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if (e.Key >= Key.D0 && e.Key <= Key.D9) // Numbers
+            {
+                calculator.pressNumber((char)('0' + e.Key - Key.D0));
+            }
+            else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) // Numpad Numbers
+            {
+                calculator.pressNumber((char)('0' + e.Key - Key.NumPad0));
+            }
+            else switch (e.Key) // Operators and Enter
+            {
+                case Key.Add:
+                    calculator.pressOperator('+');
+                    break;
+                case Key.Subtract:
+                    calculator.pressOperator('-');
+                    break;
+                case Key.Multiply:
+                    calculator.pressOperator('*');
+                    break;
+                case Key.Divide:
+                    calculator.pressOperator('/');
+                    break;
+                case Key.Enter:
+                    calculator.pressEnter();
+                    break;
+                // Handle other keys or operators as needed
+            }
+            UpdateDisplay();
         }
     }
 }

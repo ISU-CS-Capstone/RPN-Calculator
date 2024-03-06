@@ -19,12 +19,13 @@
         <TextBlock Grid.Row="0" Text="RPN Calculator" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,20,0,0"/>
         <Button Grid.Row="0" x:Name="DocumentationButton" Content="?" Click="DocumentationButton_Click" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip="Open Documentation"/>
         <!-- Display -->
-        <TextBox x:Name="Display" Grid.Row="1" Margin="25" TextAlignment="Right" IsReadOnly="True"/>
+        <TextBox x:Name="Display" Grid.Row="1" Margin="25" TextAlignment="Right" IsReadOnly="True"
+                 Text="{Binding DisplayText, Mode=OneWay}"/>
 
         <!-- Buttons: UniformGrid is used to evenly distribute buttons -->
         <UniformGrid Grid.Row="2" Rows="5" Columns="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <!-- Row 1 -->
-            <Button Content="CLR" Click="ClearButton_Click" /> <!-- Just for design currrently -->
+            <Button Content="" /> <!-- Just for design currrently -->
             <Button Content="+/-" /> <!-- Just for design currrently -->
             <Button Content="/" Click="OperatorButton_Click" />
             <Button Content="x" Click="OperatorButton_Click" />
