@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using RPN_Calculator.Common;
+using RPNCalculator.Common;
 
 namespace RPNCalculator.Desktop
 {
@@ -18,7 +18,7 @@ namespace RPNCalculator.Desktop
 
         public string DisplayText
         {
-            get { return calculator.getDisplayString(); }
+            get { return calculator.DisplayString; }
         }
         public MainWindow()
         {
@@ -69,32 +69,60 @@ namespace RPNCalculator.Desktop
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            if (e.Key >= Key.D0 && e.Key <= Key.D9) // Numbers
+            bool shiftPressed = e.KeyboardDevice.IsKeyDown(Key.LeftShift) || e.KeyboardDevice.IsKeyDown(Key.RightShift); // capture shift input to allow operators on main keyboard base
+
+            // Handle Numbers
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 && !shiftPressed) // Main keyboard numbers, no shift pressed
             {
                 calculator.pressNumber((char)('0' + e.Key - Key.D0));
             }
-            else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) // Numpad Numbers
+            else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) // Numpad numbers
             {
                 calculator.pressNumber((char)('0' + e.Key - Key.NumPad0));
             }
-            else switch (e.Key) // Operators and Enter
+            // Handle + and -
+            else if (shiftPressed)
             {
-                case Key.Add:
-                    calculator.pressOperator('+');
-                    break;
-                case Key.Subtract:
-                    calculator.pressOperator('-');
-                    break;
-                case Key.Multiply:
-                    calculator.pressOperator('*');
-                    break;
-                case Key.Divide:
-                    calculator.pressOperator('/');
-                    break;
-                case Key.Enter:
-                    calculator.pressEnter();
-                    break;
-                // Handle other keys or operators as needed
+                switch (e.Key)
+                {
+                    case Key.OemPlus:
+                    case Key.Add:
+                        calculator.pressOperator('+');
+                        break;
+                    case Key.OemMinus:
+                    case Key.Subtract:
+                        calculator.pressOperator('-');
+                        break;
+                }
+            }
+            else // handle * / and enter
+            {
+                switch (e.Key)
+                {
+                    case Key.Multiply:
+                        calculator.pressOperator('*');
+                        break;
+                    case Key.Divide:
+                    case Key.OemQuestion:
+                        calculator.pressOperator('/');
+                        break;
+                    case Key.Enter:
+                        calculator.pressEnter();
+                        break;
+                }
+            }
+            // Handling Shift + Key combinations
+            if (shiftPressed)
+            {
+                switch (e.Key)
+                {
+                    case Key.D8: // shift + 8
+                        calculator.pressOperator('*');
+                        break;
+                    case Key.OemPlus: // shift + =
+                        calculator.pressOperator('+');
+                        break;
+                }
             }
             UpdateDisplay();
         }
