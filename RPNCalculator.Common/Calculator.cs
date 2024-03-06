@@ -42,9 +42,11 @@ namespace RPNCalculator.Common
         //This method will be called when enter is pressed, pushing the current value onto the stack display string won't be updated because the number wasn't modified.
         public void pressEnter()
         {
-            nStack.Push(DisplayString);
-            DisplayString = "";
-            enterPressed = true;
+            if (!enterPressed)
+            {
+                nStack.Push(DisplayString);
+                enterPressed = true;
+            }
         }
 
         //The way the operator works on the app he wants us to model is weird, I tried to imitate it with this goofy code
@@ -68,10 +70,16 @@ namespace RPNCalculator.Common
                     DisplayString = (double.Parse(DisplayString) / nStack.Pop()).ToString();
                     break;
             }
-
+            pressEnter();
             //setting enterPressed, so the next type on the calculator changes the DisplayString.
             enterPressed = true;
             return DisplayString;
+        }
+
+        //This method will be called when clear is pressed -- deletes the current display string
+        public void pressClear()
+        {
+            DisplayString = "";
         }
     }
 
