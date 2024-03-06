@@ -11,7 +11,7 @@
 <div class="calculator">
     <!-- Display area for calculator input/output -->
     <div class="display">
-        <input type="text" @bind="inputExpression" readonly />
+        <input type="text" @bind="displayValue" readonly />
     </div>
 
     <!-- Buttons container -->
@@ -19,44 +19,44 @@
         <!-- Row of buttons -->
         <div class="row">
             <button class="clear" @onclick="Clear">CLR</button> <!-- Button to clear input -->
-            <button @onclick="AddNumber">7</button> <!-- Button to add number 7 -->
-            <button @onclick="AddNumber">4</button> <!-- Button to add number 4 -->
-            <button @onclick="AddNumber">1</button> <!-- Button to add number 1 -->
+            <button @onclick="@(() => AddNumber("7"))">7</button> <!-- Button to add number 7 -->
+            <button @onclick="@(() => AddNumber("4"))">4</button> <!-- Button to add number 4 -->
+            <button @onclick="@(() => AddNumber("1"))">1</button> <!-- Button to add number 1 -->
         </div>
 
         <!-- Repeat similar structure for other rows of buttons -->
         <!-- Each button has an associated onclick event handler -->
         <div class="row">
-            <button class="operator" @onclick="AddOperator">+/-</button>
-            <button @onclick="AddNumber">8</button>
-            <button @onclick="AddNumber">5</button>
-            <button @onclick="AddNumber">2</button>
+            <button class="operator" @onclick="@(() => AddOperator(null))">+/-</button>
+            <button @onclick="@(() => AddNumber("8"))">8</button>
+            <button @onclick="@(() => AddNumber("5"))">5</button>
+            <button @onclick="@(() => AddNumber("2"))">2</button>
         </div>
 
         <div class="row">
-            <button class="operator" @onclick="AddOperator">/</button>
-            <button @onclick="AddNumber">9</button>
-            <button @onclick="AddNumber">6</button>
-            <button @onclick="AddNumber">3</button>
+            <button class="operator" @onclick="@(() => AddOperator("/"))">/ </button>
+            <button @onclick="@(() => AddNumber("9"))">9</button>
+            <button @onclick="@(() => AddNumber("6"))">6</button>
+            <button @onclick="@(() => AddNumber("3"))">3</button>
         </div>
 
         <div class="row">
-            <button class="operator" @onclick="AddOperator">x</button>
-            <button class="operator" @onclick="AddOperator">-</button>
-            <button class="operator" @onclick="AddOperator">+</button>
-            <button class="operator" @onclick="AddOperator">.</button>
+            <button class="operator" @onclick="@(() => AddOperator("*"))">x</button>
+            <button class="operator" @onclick="@(() => AddOperator("-"))">-</button>
+            <button class="operator" @onclick="@(() => AddOperator("+"))">+</button>
+            <button class="operator" @onclick="@(() => AddOperator("."))">.</button>
         </div>
 
         <div class="row">
-            <button @onclick="AddNumber">  </button> <!-- Empty button -->
+            <button @onclick="@(() => AddNumber(" "))"> </button> <!-- Empty button -->
         </div>
 
         <div class="row">
-            <button @onclick="AddNumber">0</button> <!-- Button for number 0 -->
+            <button @onclick="@(() => AddNumber("0"))">0</button> <!-- Button for number 0 -->
         </div>
 
         <div class="row">
-            <button @onclick="AddNumber">  </button> <!-- Empty button -->
+            <button @onclick="@(() => AddNumber(" "))"> </button> <!-- Empty button -->
         </div>
 
         <div class="row">
@@ -66,30 +66,70 @@
 </div>
 
 @code {
-    // Define a variable to bind to the input field
-    private string inputExpression = "";
+    private CalculatorWeb calculator = new CalculatorWeb();
+    private string displayValue = string.Empty;
+    private string currentInput = string.Empty;
+    private bool isOperator = false;
 
-    // Event handler to add a number to the input expression
-    private void AddNumber()
+    private void AddNumber(string value)
     {
-
+        if (value != " ")
+        {
+            currentInput += value;
+            displayValue += value;
+            isOperator = false;
+        }
     }
 
-    // Event handler to add an operator to the input expression
-    private void AddOperator()
+    private void AddOperator(string op = null)
     {
+        if (!isOperator)
+        {
+            if (!string.IsNullOrEmpty(currentInput))
+            {
+                calculator.Push(decimal.Parse(currentInput));
+                currentInput = string.Empty;
+            }
 
+            if (op != null)
+            {
+                switch (op)
+                {
+                    case "+":
+                        calculator.Add();
+                        break;
+                    case "-":
+                        calculator.Subtract();
+                        break;
+                    case "*":
+                        calculator.Multiply();
+                        break;
+                    case "/":
+                        calculator.Divide();
+                        break;
+                }
+            }
+
+            displayValue = calculator.GetStackContent();
+            isOperator = true;
+        }
     }
 
-    // Event handler to perform calculation when Enter button is clicked
     private void Enter()
     {
+        if (!string.IsNullOrEmpty(currentInput))
+        {
+            calculator.Push(decimal.Parse(currentInput));
+            currentInput = string.Empty;
+        }
 
+        displayValue = calculator.GetStackContent();
     }
 
-    // Event handler to clear the input expression
     private void Clear()
     {
-
+        calculator.Clear();
+        displayValue = string.Empty;
+        currentInput = string.Empty;
     }
 }
