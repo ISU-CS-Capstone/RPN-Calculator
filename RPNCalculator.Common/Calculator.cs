@@ -38,7 +38,6 @@ namespace RPNCalculator.Common
         // Get the top two operators of the stack and perform the operation, set display string and push value onto stack
         public string PressOperator(char op)
         {
-            Console.WriteLine(_rpnStack.Count());
             // Ensure there are at least two values on the stack for the operation
             if (_rpnStack.Count() < 2)
             {
