@@ -31,39 +31,41 @@ namespace RPNCalculator.Desktop
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayText)));
         }
-
         private void DigitButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             if (button != null)
             {
-                calculator.pressNumber(Convert.ToChar(button.Content)); // add number to calculator
+                calculator.PressNumber(Convert.ToChar(button.Content)); // add number to calculator
                 UpdateDisplay();
             }
         }
-
         private void OperatorButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             if (button != null)
             {
-                calculator.pressOperator(Convert.ToChar(button.Content)); // add operator to calc
+                calculator.PressOperator(Convert.ToChar(button.Content)); // add operator to calc
                 UpdateDisplay();
             }
         }
-
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            calculator.pressEnter();
+            calculator.PressEnter();
             UpdateDisplay();
         }
-        
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            calculator.Clear();
+            UpdateDisplay();
+        }
         private void DocumentationButton_Click(object sender, RoutedEventArgs e)
         {
             var docsPage = new DocumentationWindow();
             docsPage.Show();
             this.Close();
         }
+
         
         // Handle input of operators, numpad, enter, etc...
         protected override void OnKeyDown(KeyEventArgs e)
@@ -74,11 +76,11 @@ namespace RPNCalculator.Desktop
             // Handle Numbers
             if (e.Key >= Key.D0 && e.Key <= Key.D9 && !shiftPressed) // Main keyboard numbers, no shift pressed
             {
-                calculator.pressNumber((char)('0' + e.Key - Key.D0));
+                calculator.PressNumber((char)('0' + e.Key - Key.D0));
             }
             else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) // Numpad numbers
             {
-                calculator.pressNumber((char)('0' + e.Key - Key.NumPad0));
+                calculator.PressNumber((char)('0' + e.Key - Key.NumPad0));
             }
             // Handle + and -
             else if (shiftPressed)
@@ -87,11 +89,11 @@ namespace RPNCalculator.Desktop
                 {
                     case Key.OemPlus:
                     case Key.Add:
-                        calculator.pressOperator('+');
+                        calculator.PressOperator('+');
                         break;
                     case Key.OemMinus:
                     case Key.Subtract:
-                        calculator.pressOperator('-');
+                        calculator.PressOperator('-');
                         break;
                 }
             }
@@ -100,14 +102,14 @@ namespace RPNCalculator.Desktop
                 switch (e.Key)
                 {
                     case Key.Multiply:
-                        calculator.pressOperator('*');
+                        calculator.PressOperator('*');
                         break;
                     case Key.Divide:
                     case Key.OemQuestion:
-                        calculator.pressOperator('/');
+                        calculator.PressOperator('/');
                         break;
                     case Key.Enter:
-                        calculator.pressEnter();
+                        calculator.PressEnter();
                         break;
                 }
             }
@@ -117,10 +119,10 @@ namespace RPNCalculator.Desktop
                 switch (e.Key)
                 {
                     case Key.D8: // shift + 8
-                        calculator.pressOperator('*');
+                        calculator.PressOperator('*');
                         break;
                     case Key.OemPlus: // shift + =
-                        calculator.pressOperator('+');
+                        calculator.PressOperator('+');
                         break;
                 }
             }

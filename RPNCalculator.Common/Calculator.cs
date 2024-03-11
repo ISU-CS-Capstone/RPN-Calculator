@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculator.Common.Models;
 
 namespace RPNCalculator.Common
 {
@@ -12,90 +13,80 @@ namespace RPNCalculator.Common
         //This string will be accessed by the frontend and will contain what should be displayed
         public string DisplayString { get; private set; }
 
-        //Stack to hold all of the numbers
-        private NumStack nStack;
+        // Stack to hold numbers and results
+        private RpnStack _rpnStack;
 
-        //this boolean keeps track of if enter has been pressed, to determine whether to update the DisplayString
-        bool enterPressed;
-
-        //simple constructor
-        public Calculator(){
+        // constructor
+        public Calculator() {
             DisplayString = "";
-            nStack = new NumStack();
-            enterPressed = false;
+            _rpnStack = new RpnStack();
         }
 
         //This method will be called when a number is pressed, and will update the DisplayString
-        public string pressNumber(char number) { 
-            if (enterPressed)
-            {
-                DisplayString = "" + number;
-                enterPressed = false;
-            }
-            else
-            {
-                DisplayString += number;
-            }
+        public string PressNumber(char number) { 
+            DisplayString += number;
             return DisplayString;
         }
 
         //This method will be called when enter is pressed, pushing the current value onto the stack display string won't be updated because the number wasn't modified.
-        public void pressEnter()
+        public void PressEnter()
         {
-            nStack.Push(DisplayString);
+            _rpnStack.Push(Double.Parse(DisplayString));
             DisplayString = "";
-            enterPressed = true;
         }
 
-        //The way the operator works on the app he wants us to model is weird, I tried to imitate it with this goofy code
-        public string pressOperator(char op)
+        // Get the top two operators of the stack and perform the operation, set display string and push value onto stack
+        public string PressOperator(char op)
         {
-            //can't perform the operation if there isn't at least 1 value on the stack to add
-            //if there isn't, do nothing
-            if ( nStack.Count() ==  0 ) { return DisplayString; }
+            // Ensure there are at least two values on the stack for the operation
+            if (_rpnStack.Count() < 2)
+            {
+                DisplayString = "Error: Insufficient values";
+                return DisplayString;
+            }
+
+            double operand2 = _rpnStack.Pop(); // Pop the top two operands
+            double operand1 = _rpnStack.Pop();
+            double result = 0;
+
             switch (op)
             {
                 case '+':
-                    DisplayString = (double.Parse(DisplayString) + nStack.Pop()).ToString();
+                    result = operand1 + operand2;
                     break;
                 case '-':
-                    DisplayString = (double.Parse(DisplayString) - nStack.Pop()).ToString();
+                    result = operand1 - operand2;
                     break;
                 case '*':
-                    DisplayString = (double.Parse(DisplayString) * nStack.Pop()).ToString();
+                    result = operand1 * operand2;
                     break;
                 case '/':
-                    DisplayString = (double.Parse(DisplayString) / nStack.Pop()).ToString();
+                    if (operand2 == 0) // Check for division by zero
+                    {
+                        DisplayString = "Error: Divide by zero";
+                        return DisplayString;
+                    }
+                    result = operand1 / operand2;
                     break;
+                default:
+                    DisplayString = "Error: Invalid operator";
+                    return DisplayString;
             }
 
-            //setting enterPressed, so the next type on the calculator changes the DisplayString.
-            enterPressed = true;
+            DisplayString = result.ToString();
+            _rpnStack.Push(result); // Push the result back onto the stack
+            
             return DisplayString;
         }
-    }
 
-    internal class NumStack
-    {
-        private Stack<double> stack;
-        public NumStack()
+        // erase all stack and display string
+        public void Clear()
         {
-            stack = new Stack<double>();
-        }
-
-        public void Push(string numString)
-        {
-            stack.Push(double.Parse(numString));
-        }
-
-        public double Pop()
-        {
-            return stack.Pop();
-        }
-
-        public int Count()
-        {
-            return stack.Count;
+            DisplayString = "";
+            while (_rpnStack.Count() > 0)
+            {
+                _rpnStack.Pop();
+            }
         }
     }
 }
