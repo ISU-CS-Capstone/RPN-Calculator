@@ -16,7 +16,7 @@ public partial class DocumentationWindow : Window
 
     private void LoadDocumentation()
     {
-        var assembly = Assembly.GetAssembly(typeof(RPNCalculator.Common.RpnCalculator));
+        var assembly = Assembly.GetAssembly(typeof(RPNCalculator.Common.Calculator));
         Stream stream = assembly.GetManifestResourceStream("RPNCalculator.Common.Documentation.md");
         using (var reader = new StreamReader(stream))
         {
