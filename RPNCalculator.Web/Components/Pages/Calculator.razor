@@ -7,41 +7,87 @@
 <!-- Page heading -->
 <h1>RPN Calculator</h1>
 
-<!-- Calculator container -->
+<!-- History container -->
+<div class="history">
+    <!-- Display area for calculator history (not implemented yet but designed) -->
+    <button @onclick="@(() => history(" "))">History</button> <!-- History button -->
+</div>
+
+    <!-- Calculator container -->
 <div class="calculator">
     <!-- Display area for calculator input/output -->
     <div class="display">
+        <!-- Stack view-->
+        <div class="stack-view">
+            <h2>Stack</h2>
+            <div class="stack-container">
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Input text -->
         <input type="text" @bind="displayValue" readonly />
     </div>
 
     <!-- Buttons container -->
     <div class="buttons">
-        <!-- Row of buttons -->
+        <!-- column of buttons -->
         <div class="row">
             <button class="clear" @onclick="Clear">CLR</button> <!-- Button to clear input -->
+            <button class="operator" @onclick="@(() => AddOperator("sin()"))">sin()</button>
+            <button class="operator" @onclick="@(() => AddOperator("arcsin()"))">arcsin()</button>
+            <button class="operator" @onclick="@(() => AddOperator("pi"))">π</button>
+        </div>
+
+        <!-- Repeat similar structure for other column of buttons -->
+        <!-- Each button has an associated onclick event handler -->
+        <div class="row">
+            <button class="operator" @onclick="@(() => AddOperator(null))">+/-</button>
+            <button class="operator" @onclick="@(() => AddOperator("cos()"))">cos()</button>
+            <button class="operator" @onclick="@(() => AddOperator("arccos()"))">arccos()</button>
+            <button class="operator" @onclick="@(() => AddOperator("x!"))">x!</button>
+        </div>
+
+        <div class="row">
+            <button class="operator" @onclick="@(() => AddOperator("/"))">/ </button>
+            <button class="operator" @onclick="@(() => AddOperator("tan()"))">tan()</button>
+            <button class="operator" @onclick="@(() => AddOperator("arctan()"))">arctan()</button>
+            <button class="operator" @onclick="@(() => AddOperator("x^y"))">x^y</button>
+        </div>
+
+        <div class="row">
+            <button class="operator" @onclick="@(() => AddOperator("*"))">x</button>
+            <button class="operator" @onclick="@(() => AddOperator("ln"))">ln</button>
+            <button class="operator" @onclick="@(() => AddOperator("e^x"))">e^x</button>
+            <button class="operator" @onclick="@(() => AddOperator("x^2"))">x^2</button>
+        </div>
+
+        <div class="row">
+            <button class="operator" @onclick="@(() => AddOperator("log"))">log</button>
             <button @onclick="@(() => AddNumber("7"))">7</button> <!-- Button to add number 7 -->
             <button @onclick="@(() => AddNumber("4"))">4</button> <!-- Button to add number 4 -->
             <button @onclick="@(() => AddNumber("1"))">1</button> <!-- Button to add number 1 -->
         </div>
 
-        <!-- Repeat similar structure for other rows of buttons -->
-        <!-- Each button has an associated onclick event handler -->
         <div class="row">
-            <button class="operator" @onclick="@(() => AddOperator(null))">+/-</button>
+            <button class="operator" @onclick="@(() => AddOperator("√ x"))">√ x</button>
             <button @onclick="@(() => AddNumber("8"))">8</button>
             <button @onclick="@(() => AddNumber("5"))">5</button>
             <button @onclick="@(() => AddNumber("2"))">2</button>
         </div>
 
         <div class="row">
-            <button class="operator" @onclick="@(() => AddOperator("/"))">/ </button>
+            <button class="operator" @onclick="@(() => AddOperator("y√ x"))">y√ x</button>
             <button @onclick="@(() => AddNumber("9"))">9</button>
             <button @onclick="@(() => AddNumber("6"))">6</button>
             <button @onclick="@(() => AddNumber("3"))">3</button>
         </div>
 
         <div class="row">
-            <button class="operator" @onclick="@(() => AddOperator("*"))">x</button>
+            <button class="operator" @onclick="@(() => AddOperator("e"))">e</button>
             <button class="operator" @onclick="@(() => AddOperator("-"))">-</button>
             <button class="operator" @onclick="@(() => AddOperator("+"))">+</button>
             <button class="operator" @onclick="@(() => AddOperator("."))">.</button>
@@ -67,9 +113,14 @@
 
 @code {
     private CalculatorWeb calculator = new CalculatorWeb();
+    private const int items = 5;
     private string displayValue = string.Empty;
     private string currentInput = string.Empty;
     private bool isOperator = false;
+
+    private void history(string value)
+    {
+    }
 
     private void AddNumber(string value)
     {
@@ -132,4 +183,5 @@
         displayValue = string.Empty;
         currentInput = string.Empty;
     }
+    
 }
