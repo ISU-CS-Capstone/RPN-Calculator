@@ -11,10 +11,7 @@
 }
 
 .history {
-    margin-left: 10px;
-    background-color: #c3bfbf;
-    display: flex;
-    justify-content: left;
+    margin-right: 10px; 
 }
 
 /* Styling for the stack area */
@@ -23,24 +20,15 @@
     border: none;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 24px; 
+    font-size: 24px; /* Adjust font size */
 }
 
 .stack-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 24px;
+    font-size: 24px; /* Adjust font size */
 }
-
-/* Styling for the list items */
-.stack-container li {
-    padding: 10px; 
-    margin-bottom: 5px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-}
-
 
 /* Styling for the display area */
 .display {
@@ -48,12 +36,14 @@
     border: none; /* Increase border width for consistency */
     border-radius: 10px;
     padding: 25px;
-    margin-bottom: 10px;
+    margin-top: 150px;
+    margin-bottom: 20px;
     width: 100%; /* Ensure the display area fills its container */
     height: 100%;
     box-sizing: border-box;
     display: flex; /* Use flexbox to align items */
     align-items: center; /* Center the input field vertically */
+    justify-content: space-between; /* Add space between elements */
 }
 
 /* Styling for the input field inside the display area */
@@ -81,7 +71,8 @@ button {
     margin-bottom: 5px;
     border: none;
     cursor: pointer;
-    background-color: #b0b0b0;
+    background-color: #808080;
+    color: antiquewhite;
     border-radius: 5px;
 }
 
@@ -92,18 +83,18 @@ button:hover {
 
 /* Styling for operator buttons */
 .operator {
-    background-color: #b0b0b0;
-    color: #bb4500;
+    background-color: black;
+    color: antiquewhite;
 }
 
 /* Styling for the clear button */
 .clear {
-    background-color: #b0b0b0;
-    color: #bb4500;
+    background-color: black;
+    color: antiquewhite;
 }
 
 /* Styling for the enter button */
 .enter {
-    background-color: #b0b0b0;
-    color: #bb4500;
+    background-color: black;
+    color: antiquewhite;
 }
