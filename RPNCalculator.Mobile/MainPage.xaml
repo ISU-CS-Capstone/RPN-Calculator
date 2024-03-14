@@ -50,7 +50,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="CLR"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="ClearButton_Clicked"/>
 
 
         <Button
@@ -70,7 +71,9 @@
             CornerRadius="0"
             FontSize="36"
             Text="7"
-            TextColor="Black" />
+            TextColor="Black"
+            Clicked="NumberButton_Clicked"/>
+        
         <Button
             Grid.Row="2"
             Grid.Column="1"
@@ -78,7 +81,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="8"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="2"
             Grid.Column="2"
@@ -86,7 +90,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="9"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
 
 
         <Button
@@ -96,7 +101,10 @@
             CornerRadius="0"
             FontSize="36"
             Text="4"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
+        
+        
         <Button
             Grid.Row="3"
             Grid.Column="1"
@@ -104,7 +112,10 @@
             CornerRadius="0"
             FontSize="36"
             Text="5"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
+        
+        
         <Button
             Grid.Row="3"
             Grid.Column="2"
@@ -112,7 +123,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="6"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
 
 
         <Button
@@ -122,7 +134,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="1"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="4"
             Grid.Column="1"
@@ -130,7 +143,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="2"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
 
         <Button
             Grid.Row="4"
@@ -139,7 +153,9 @@
             CornerRadius="0"
             FontSize="36"
             Text="3"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
+        
         <Button
             Grid.Row="5"
             Grid.Column="0"
@@ -148,7 +164,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="0"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
 
 
         <Button
@@ -158,15 +175,17 @@
             CornerRadius="0"
             FontSize="27"
             Text="/"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             Grid.Row="1"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="27"
-            Text="x"
-            TextColor="Red" />
+            Text="*"
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
 
         <Button
             Grid.Row="2"
@@ -175,7 +194,8 @@
             CornerRadius="0"
             FontSize="50"
             Text="-"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             Grid.Row="3"
             Grid.Column="3"
@@ -183,7 +203,8 @@
             CornerRadius="0"
             FontSize="32"
             Text="+"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             Grid.Row="4"
             Grid.Column="3"
@@ -191,7 +212,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="."
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="5"
             Grid.Column="3"
@@ -199,7 +221,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="Enter"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="EnterButton_Clicked"/>
     </Grid>
 
 
