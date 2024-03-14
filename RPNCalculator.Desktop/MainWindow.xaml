@@ -25,7 +25,7 @@
         <!-- Buttons: UniformGrid is used to evenly distribute buttons -->
         <UniformGrid Grid.Row="2" Rows="5" Columns="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <!-- Row 1 -->
-            <Button Content="" /> <!-- Just for design currrently -->
+            <Button Content="CLR" Click="ClearButton_Click" /> <!-- Just for design currrently -->
             <Button Content="+/-" /> <!-- Just for design currrently -->
             <Button Content="/" Click="OperatorButton_Click" />
             <Button Content="x" Click="OperatorButton_Click" />

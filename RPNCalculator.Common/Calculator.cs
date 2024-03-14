@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using RPNCalculator.Common.Models;
 
 namespace RPNCalculator.Common
 {
@@ -12,17 +13,13 @@ namespace RPNCalculator.Common
         //This string will be accessed by the frontend and will contain what should be displayed
         public string DisplayString { get; private set; }
 
-        //Stack to hold all of the numbers
-        private NumStack nStack;
+        // Stack to hold numbers and results
+        private RpnStack _rpnStack;
 
-        //this boolean keeps track of if enter has been pressed, to determine whether to update the DisplayString
-        bool enterPressed;
-
-        //simple constructor
-        public Calculator(){
+        // constructor
+        public Calculator() {
             DisplayString = "";
-            nStack = new NumStack();
-            enterPressed = false;
+            _rpnStack = new RpnStack();
         }
 
         //this method updates the displayString to the top value of the string stack
@@ -35,24 +32,17 @@ namespace RPNCalculator.Common
         public void pressNumber(char number)
         {
             //if enter was pressed, update the string on top by overwriting it
-            if (enterPressed)
-            {
-                nStack.updateTop(number.ToString(), true);
-            }
-            //if enter wasn't pressed, update the string on top of the stack without overwriting it
-            else
-            {
-                nStack.updateTop(number.ToString(), false);
-            }
+            nStack.updateTop(number.ToString(), enterPressed);
+            enterPressed = false;
             updateDisplayString();
         }
 
         //This method will be called when enter is pressed, pushing the current value onto the stack display string won't be updated because the number wasn't modified.
-        public void pressEnter()
+        public void PressEnter()
         {
             if (!enterPressed)
             {
-                nStack.Push(DisplayString);
+                nStack.Push(nStack.Peek());
                 enterPressed = true;
             }
         }
@@ -65,6 +55,7 @@ namespace RPNCalculator.Common
             if (op == 'p')
             {
                 nStack.Push(Math.PI.ToString());
+                return;
             }
             double operand1 = double.Parse(nStack.Pop());
             /*
