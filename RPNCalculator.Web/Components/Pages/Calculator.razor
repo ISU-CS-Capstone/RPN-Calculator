@@ -13,6 +13,12 @@
     <button @onclick="@(() => history(" "))">History</button> <!-- History button -->
 </div>
 
+<!-- Undo container -->
+<div class="undo">
+    <!-- Display area for calculator undo (not implemented yet but designed) -->
+    <button @onclick="@(() => undo(" "))">Undo</button> <!-- History button -->
+</div>
+
     <!-- Calculator container -->
 <div class="calculator">
     <!-- Display area for calculator input/output -->
@@ -119,6 +125,10 @@
     private bool isOperator = false;
 
     private void history(string value)
+    {
+    }
+
+    private void undo(string value)
     {
     }
 

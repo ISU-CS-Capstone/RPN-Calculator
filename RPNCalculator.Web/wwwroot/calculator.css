@@ -6,13 +6,19 @@
     width: 100%; /* Set width to 100% of the viewport width */
     justify-content: center; /* Center the calculator vertically */
     align-items: center; /* Center the calculator horizontally */
-    padding: 20px; /* Add padding for better appearance */
+    padding: 5px; /* Add padding for better appearance */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .history {
     margin-right: 10px; 
 }
+
+.undo {
+    margin-right: 10px;
+    margin-left: auto; /* Push the history button to the right */
+}
+
 
 /* Styling for the stack area */
 .stack-view {
@@ -34,10 +40,10 @@
 .display {
     background-color: #f0f0f0;
     border: none; /* Increase border width for consistency */
-    border-radius: 10px;
-    padding: 25px;
-    margin-top: 150px;
-    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 100%; /* Ensure the display area fills its container */
     height: 100%;
     box-sizing: border-box;
@@ -61,19 +67,19 @@
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 columns */
-    grid-gap: 5px; /* Gap between grid items */
+    grid-gap: 2px; /* Gap between grid items */
 }
 
 /* Styling for the buttons */
 button {
-    padding: 10px;
+    padding: 2px;
     font-size: 28px;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     border: none;
     cursor: pointer;
     background-color: #808080;
     color: antiquewhite;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 /* Styling when hovering over buttons */
