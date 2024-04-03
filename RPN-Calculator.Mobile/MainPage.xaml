@@ -276,16 +276,25 @@
             />
         <Button
             Grid.Row="1"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="1"
+            Grid.Column="2"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="25"
+            Text="Undo"
+            TextColor="red"
+            />
+         <Button
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
-            FontSize="27"
+            FontSize="25"
             Text="Shift"
             Clicked="ShiftButtonClick"
             TextColor="Blue"
             />
-
     </Grid>
 
 
