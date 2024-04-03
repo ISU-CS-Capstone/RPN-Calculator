@@ -22,71 +22,145 @@ namespace RPNCalculator.Common
             _rpnStack = new RpnStack();
         }
 
+        //this method updates the displayString to the top value of the string stack
+        public void updateDisplayString()
+        {
+            DisplayString = nStack.Peek();
+        }
+
         //This method will be called when a number is pressed, and will update the DisplayString
-        public string PressNumber(char number) { 
-            DisplayString += number;
-            return DisplayString;
+        public void pressNumber(char number)
+        {
+            //if enter was pressed, update the string on top by overwriting it
+            nStack.updateTop(number.ToString(), enterPressed);
+            enterPressed = false;
+            updateDisplayString();
         }
 
         //This method will be called when enter is pressed, pushing the current value onto the stack display string won't be updated because the number wasn't modified.
         public void PressEnter()
         {
-            _rpnStack.Push(Double.Parse(DisplayString));
-            DisplayString = "";
+            if (!enterPressed)
+            {
+                nStack.Push(nStack.Peek());
+                enterPressed = true;
+            }
         }
 
-        // Get the top two operators of the stack and perform the operation, set display string and push value onto stack
-        public string PressOperator(char op)
+        //The way the operator works on the app he wants us to model is weird, I tried to imitate it with this goofy code
+        public void pressOperator(char op)
         {
-            // Ensure there are at least two values on the stack for the operation
-            if (_rpnStack.Count() < 2)
+            //can't perform the operation if there isn't at least 1 value on the stack to add
+            //if there isn't, do nothing
+            if (op == 'p')
             {
-                DisplayString = "Error: Insufficient values";
-                return DisplayString;
+                nStack.Push(Math.PI.ToString());
+                return;
             }
-
-            double operand2 = _rpnStack.Pop(); // Pop the top two operands
-            double operand1 = _rpnStack.Pop();
-            double result = 0;
-
-            switch (op)
+            double operand1 = double.Parse(nStack.Pop());
+            /*
+             * 's' == sin()
+             * 'c' == cos()
+             * 't' == tan()
+             * 'S' == arcsin()
+             * 'C' == arccos()
+             * 'T' == arctan()
+             * '!' == x!
+             * 'r' == sqrt(x)
+             * 'R' == y root x
+             * 'l' == log
+             * 'L' == ln
+             * 'p' == pi
+             * 'e' == e^x
+             * 'E' == x^y
+             * 
+             */
+            if (op == '+' || op == '-' || op == '*' || op == '/' || op == 'E' || op == 'R')
             {
-                case '+':
-                    result = operand1 + operand2;
-                    break;
-                case '-':
-                    result = operand1 - operand2;
-                    break;
-                case '*':
-                    result = operand1 * operand2;
-                    break;
-                case '/':
-                    if (operand2 == 0) // Check for division by zero
-                    {
-                        DisplayString = "Error: Divide by zero";
-                        return DisplayString;
-                    }
-                    result = operand1 / operand2;
-                    break;
-                default:
-                    DisplayString = "Error: Invalid operator";
-                    return DisplayString;
+                double operand2 = double.Parse(nStack.Pop());
+                switch (op)
+                {
+                    case '+':
+                        nStack.Push((operand1 + operand2).ToString());
+                        break;
+                    case '-':
+                        nStack.Push((operand1 - operand2).ToString());
+                        break;
+                    case '*':
+                        nStack.Push((operand1 * operand2).ToString());
+                        break;
+                    case '/':
+                        nStack.Push((operand1 / operand2).ToString());
+                        break;
+                    case 'E':
+                        nStack.Push((Math.Pow(operand1,operand2)).ToString());
+                        break;
+                    case 'R':
+                        nStack.Push(Math.Pow(operand1, 1.0 / operand2).ToString());
+                        break;
+                }
             }
-
-            DisplayString = result.ToString();
-            _rpnStack.Push(result); // Push the result back onto the stack
-            
-            return DisplayString;
+            //otherwise, the operation only takes one operand
+            else
+            {
+                switch (op)
+                {
+                    case 's':
+                        nStack.Push(Math.Sin(operand1).ToString());
+                        break;
+                    case 'c':
+                        nStack.Push(Math.Cos(operand1).ToString());
+                        break;
+                    case 't':
+                        nStack.Push(Math.Tan(operand1).ToString());
+                        break;
+                    case 'S':
+                        nStack.Push(Math.Asin(operand1).ToString());
+                        break;
+                    case 'C':
+                        nStack.Push(Math.Acos(operand1).ToString());
+                        break;
+                    case 'T':
+                        nStack.Push(Math.Atan(operand1).ToString());
+                        break;
+                    case '!':
+                        //we're only gonna do factorial on integers
+                        if (operand1 % 1 == 0)
+                        {
+                            nStack.Push(Factorial((int)operand1).ToString());
+                        }
+                        break;
+                    case 'r':
+                        nStack.Push(Math.Sqrt(operand1).ToString());
+                        break;
+                    case 'l':
+                        nStack.Push(Math.Log10(operand1).ToString());
+                        break;
+                    case 'L':
+                        nStack.Push(Math.Log(operand1).ToString());
+                        break;
+                    case 'e':
+                        nStack.Push(Math.Exp(operand1).ToString());
+                        break;
+                }
+            }
+            updateDisplayString();
+            //setting enterPressed, so the next type on the calculator doesn't add to the current display, but creates a new value on the stack
+            enterPressed = true;
         }
 
-        // erase all stack and display string
-        public void Clear()
+        //This method will be called when clear is pressed -- deletes the current display string
+        public void pressClear()
         {
             DisplayString = "";
-            while (_rpnStack.Count() > 0)
-            {
-                _rpnStack.Pop();
-            }
+        }
+        
+        public int Factorial(int f)
+        {
+                if (f == 0)
+                    return 1;
+                else
+                    return f * Factorial(f - 1);
         }
     }
 }
