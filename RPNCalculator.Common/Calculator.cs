@@ -14,12 +14,16 @@ namespace RPNCalculator.Common
         public string DisplayString { get; private set; }
 
         // Stack to hold numbers and results
-        private RpnStack _rpnStack;
+        private NumStack nStack;
+        private CalcHistory hist;
+        bool enterPressed;
 
         // constructor
         public Calculator() {
             DisplayString = "";
-            _rpnStack = new RpnStack();
+            enterPressed = false;
+            nStack = new NumStack();
+            hist = new CalcHistory();
         }
 
         //this method updates the displayString to the top value of the string stack
@@ -31,7 +35,9 @@ namespace RPNCalculator.Common
         //This method will be called when a number is pressed, and will update the DisplayString
         public void pressNumber(char number)
         {
-          
+            //before pressing a Number, update the history
+            hist.updateHistory(new CalcStatus(nStack, enterPressed));
+
             nStack.updateTop(number.ToString(), enterPressed);
             enterPressed = false;
             updateDisplayString();
@@ -43,6 +49,9 @@ namespace RPNCalculator.Common
         {
             if (!enterPressed)
             {
+                //before pushing enter, update the history
+                hist.updateHistory(new CalcStatus(nStack, enterPressed));
+
                 nStack.Push(nStack.Peek());
                 enterPressed = true;
             }
@@ -55,93 +64,109 @@ namespace RPNCalculator.Common
             //if there isn't, do nothing
             if (op == 'p')
             {
+                hist.updateHistory(new CalcStatus(nStack, enterPressed));
                 nStack.Push(Math.PI.ToString());
                 return;
             }
-            double operand1 = double.Parse(nStack.Pop());
-            /*
-             * 's' == sin()
-             * 'c' == cos()
-             * 't' == tan()
-             * 'S' == arcsin()
-             * 'C' == arccos()
-             * 'T' == arctan()
-             * '!' == x!
-             * 'r' == sqrt(x)
-             * 'R' == y root x
-             * 'l' == log
-             * 'L' == ln
-             * 'p' == pi
-             * 'e' == e^x
-             * 'E' == x^y
-             */
-            if (op == '+' || op == '-' || op == '*' || op == '/' || op == 'E' || op == 'R')
+            //call undo
+            else if (op == 'u')
             {
-                double operand2 = double.Parse(nStack.Pop());
-                switch (op)
+                CalcStatus history = hist.getHistory();
+                if (history != null)
                 {
-                    case '+':
-                        nStack.Push((operand1 + operand2).ToString());
-                        break;
-                    case '-':
-                        nStack.Push((operand1 - operand2).ToString());
-                        break;
-                    case '*':
-                        nStack.Push((operand1 * operand2).ToString());
-                        break;
-                    case '/':
-                        nStack.Push((operand1 / operand2).ToString());
-                        break;
-                    case 'E':
-                        nStack.Push((Math.Pow(operand1,operand2)).ToString());
-                        break;
-                    case 'R':
-                        nStack.Push(Math.Pow(operand1, 1.0 / operand2).ToString());
-                        break;
+                    nStack = history.calcStack;
+                    enterPressed = history.enterPressed;
                 }
+                return;
             }
-            //otherwise, the operation only takes one operand
-            else
+            else if (nStack.Count() > 0)
             {
-                switch (op)
+                hist.updateHistory(new CalcStatus(nStack, enterPressed));
+                double operand1 = double.Parse(nStack.Pop());
+                /*
+                 * 's' == sin()
+                 * 'c' == cos()
+                 * 't' == tan()
+                 * 'S' == arcsin()
+                 * 'C' == arccos()
+                 * 'T' == arctan()
+                 * '!' == x!
+                 * 'r' == sqrt(x)
+                 * 'R' == y root x
+                 * 'l' == log
+                 * 'L' == ln
+                 * 'p' == pi
+                 * 'e' == e^x
+                 * 'E' == x^y
+                 */
+                if ((op == '+' || op == '-' || op == '*' || op == '/' || op == 'E' || op == 'R') && nStack.Count() > 0)
                 {
-                    case 's':
-                        nStack.Push(Math.Sin(operand1).ToString());
-                        break;
-                    case 'c':
-                        nStack.Push(Math.Cos(operand1).ToString());
-                        break;
-                    case 't':
-                        nStack.Push(Math.Tan(operand1).ToString());
-                        break;
-                    case 'S':
-                        nStack.Push(Math.Asin(operand1).ToString());
-                        break;
-                    case 'C':
-                        nStack.Push(Math.Acos(operand1).ToString());
-                        break;
-                    case 'T':
-                        nStack.Push(Math.Atan(operand1).ToString());
-                        break;
-                    case '!':
-                        //we're only gonna do factorial on integers
-                        if (operand1 % 1 == 0)
-                        {
-                            nStack.Push(Factorial((int)operand1).ToString());
-                        }
-                        break;
-                    case 'r':
-                        nStack.Push(Math.Sqrt(operand1).ToString());
-                        break;
-                    case 'l':
-                        nStack.Push(Math.Log10(operand1).ToString());
-                        break;
-                    case 'L':
-                        nStack.Push(Math.Log(operand1).ToString());
-                        break;
-                    case 'e':
-                        nStack.Push(Math.Exp(operand1).ToString());
-                        break;
+                    double operand2 = double.Parse(nStack.Pop());
+                    switch (op)
+                    {
+                        case '+':
+                            nStack.Push((operand1 + operand2).ToString());
+                            break;
+                        case '-':
+                            nStack.Push((operand1 - operand2).ToString());
+                            break;
+                        case '*':
+                            nStack.Push((operand1 * operand2).ToString());
+                            break;
+                        case '/':
+                            nStack.Push((operand1 / operand2).ToString());
+                            break;
+                        case 'E':
+                            nStack.Push((Math.Pow(operand1, operand2)).ToString());
+                            break;
+                        case 'R':
+                            nStack.Push(Math.Pow(operand1, 1.0 / operand2).ToString());
+                            break;
+                    }
+                }
+                //otherwise, the operation only takes one operand
+                else
+                {
+                    switch (op)
+                    {
+                        case 's':
+                            nStack.Push(Math.Sin(operand1).ToString());
+                            break;
+                        case 'c':
+                            nStack.Push(Math.Cos(operand1).ToString());
+                            break;
+                        case 't':
+                            nStack.Push(Math.Tan(operand1).ToString());
+                            break;
+                        case 'S':
+                            nStack.Push(Math.Asin(operand1).ToString());
+                            break;
+                        case 'C':
+                            nStack.Push(Math.Acos(operand1).ToString());
+                            break;
+                        case 'T':
+                            nStack.Push(Math.Atan(operand1).ToString());
+                            break;
+                        case '!':
+                            //we're only gonna do factorial on integers
+                            if (operand1 % 1 == 0)
+                            {
+                                nStack.Push(Factorial((int)operand1).ToString());
+                            }
+                            break;
+                        case 'r':
+                            nStack.Push(Math.Sqrt(operand1).ToString());
+                            break;
+                        case 'l':
+                            nStack.Push(Math.Log10(operand1).ToString());
+                            break;
+                        case 'L':
+                            nStack.Push(Math.Log(operand1).ToString());
+                            break;
+                        case 'e':
+                            nStack.Push(Math.Exp(operand1).ToString());
+                            break;
+                    }
                 }
             }
             updateDisplayString();
@@ -152,7 +177,11 @@ namespace RPNCalculator.Common
         //This method will be called when clear is pressed -- deletes the current display string
         public void pressClear()
         {
+            //update everything to default values
             DisplayString = "";
+            hist = new CalcHistory();
+            nStack = new NumStack();
+            enterPressed = false;
         }
         
         public int Factorial(int f)
