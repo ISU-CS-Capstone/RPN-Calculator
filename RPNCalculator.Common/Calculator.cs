@@ -34,16 +34,8 @@ namespace RPNCalculator.Common
         //This method will be called when a number is pressed, and will update the DisplayString
         public void pressNumber(char number)
         {
-            //if enter was pressed, update the string on top by overwriting it
-            if (enterPressed)
-            {
-                nStack.updateTop(number.ToString(), true);
-            }
-            //if enter wasn't pressed, update the string on top of the stack without overwriting it
-            else
-            {
-                nStack.updateTop(number.ToString(), false);
-            }
+            nStack.updateTop(number.ToString(), enterPressed);
+            enterPressed = false;
             updateDisplayString();
         }
 
@@ -82,7 +74,6 @@ namespace RPNCalculator.Common
              * 'p' == pi
              * 'e' == e^x
              * 'E' == x^y
-             * 
              */
             if (op == '+' || op == '-' || op == '*' || op == '/' || op == 'E' || op == 'R')
             {
