@@ -14,7 +14,7 @@ public partial class DocumentationPage : ContentPage
 
     private async void LoadMarkdownContent()
     {
-        var assembly = Assembly.GetAssembly(typeof(RPNCalculator.Common.RpnCalculator));
+        var assembly = Assembly.GetAssembly(typeof(RPNCalculator.Common.Calculator));
         Stream stream = assembly.GetManifestResourceStream("RPNCalculator.Common.Documentation.md");
         if (stream == null)
         {

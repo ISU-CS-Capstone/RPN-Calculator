@@ -17,6 +17,11 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+
+
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -24,6 +29,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+
         </Grid.ColumnDefinitions>
 
 
@@ -37,26 +43,61 @@
             FontSize="48"
             HorizontalTextAlignment="End"
             LineBreakMode="NoWrap"
-            Text=""
+            Text=" "
             TextColor="Black"
-            VerticalTextAlignment="Center" />
-
+            VerticalTextAlignment="Center"/>
 
 
         <Button
-            Grid.Row="1"
+            Grid.Row="2"
+            Grid.Column="0"
             Grid.ColumnSpan="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="27"
-            Text="CLR"
-            TextColor="Red" 
-            Clicked="ClearButton_Clicked"/>
-
+            Text="CLR" 
+            TextColor="Red"
+            />
 
         <Button
-            Grid.Row="1"
+            x:Name="sineButton"
+            Grid.Row="2"
             Grid.Column="1"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="sin()"
+            TextColor="Red" />
+        <Button
+            x:Name="cosineButton"
+            Grid.Row="2"
+            Grid.Column="2"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="cos()"
+            TextColor="Red" />
+        <Button
+            x:Name="TangentButton"
+            Grid.Row="2"
+            Grid.Column="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="tan()"
+            TextColor="Red" />
+        <Button
+            x:Name="LogButton"
+            Grid.Row="3"
+            Grid.Column="0"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="LOG"
+            TextColor="Red" />
+        <Button
+            Grid.Row="7"
+            Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="27"
@@ -65,164 +106,195 @@
 
 
         <Button
-            Grid.Row="2"
+            Grid.Row="4"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="7"
-            TextColor="Black"
-            Clicked="NumberButton_Clicked"/>
-        
+            TextColor="Black" />
         <Button
-            Grid.Row="2"
+            Grid.Row="4"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="8"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
+            TextColor="Black" />
         <Button
-            Grid.Row="2"
+            Grid.Row="4"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="9"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
+            TextColor="Black" />
 
 
         <Button
-            Grid.Row="3"
+            Grid.Row="5"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="4"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
-        
-        
+            TextColor="Black" />
         <Button
-            Grid.Row="3"
+            Grid.Row="5"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="5"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
-        
-        
+            TextColor="Black" />
         <Button
-            Grid.Row="3"
+            Grid.Row="5"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="6"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
+            TextColor="Black" />
 
 
         <Button
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="1"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
+            TextColor="Black" />
         <Button
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="2"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
+            TextColor="Black" />
 
         <Button
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="3"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
-        
+            TextColor="Black" />
         <Button
-            Grid.Row="5"
+            Grid.Row="7"
             Grid.Column="0"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="36"
             Text="0"
-            TextColor="Black" 
-            Clicked="NumberButton_Clicked"/>
+            TextColor="Black" />
 
 
-        <Button
-            Grid.Row="1"
-            Grid.Column="2"
-            BackgroundColor="DarkGray"
-            CornerRadius="0"
-            FontSize="27"
-            Text="/"
-            TextColor="Red" 
-            Clicked="OperatorButton_Clicked"/>
-        <Button
-            Grid.Row="1"
-            Grid.Column="3"
-            BackgroundColor="DarkGray"
-            CornerRadius="0"
-            FontSize="27"
-            Text="*"
-            TextColor="Red" 
-            Clicked="OperatorButton_Clicked"/>
-
-        <Button
-            Grid.Row="2"
-            Grid.Column="3"
-            BackgroundColor="DarkGray"
-            CornerRadius="0"
-            FontSize="50"
-            Text="-"
-            TextColor="Red" 
-            Clicked="OperatorButton_Clicked"/>
         <Button
             Grid.Row="3"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
-            FontSize="32"
-            Text="+"
-            TextColor="Red" 
-            Clicked="OperatorButton_Clicked"/>
+            FontSize="27"
+            Text="/"
+            TextColor="Red" />
         <Button
             Grid.Row="4"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
             FontSize="27"
-            Text="."
-            TextColor="Red" 
-            Clicked="NumberButton_Clicked"/>
+            Text="x"
+            TextColor="Red" />
+
         <Button
             Grid.Row="5"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
+            FontSize="50"
+            Text="-"
+            TextColor="Red" />
+        <Button
+            Grid.Row="6"
+            Grid.Column="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="32"
+            Text="+"
+            TextColor="Red" />
+        <Button
+            Grid.Row="7"
+            Grid.Column="1"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="."
+            TextColor="Red" />
+        <Button
+            Grid.Row="7"
+            Grid.Column="3"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
             FontSize="27"
             Text="Enter"
-            TextColor="Red" 
-            Clicked="EnterButton_Clicked"/>
+            TextColor="Red" />
+        <Button
+            x:Name="EulerButton"
+            Grid.Row="3"
+            Grid.Column="2"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="eⁿ"
+            TextColor="Red"
+            />
+        <Button
+            x:Name="PiButton"
+            Grid.Row="3"
+            Grid.Column="1"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="π"
+            TextColor="Red"
+            
+            />
+        <Button
+            x:Name="xybutton"
+            Grid.Row="1"
+            Grid.Column="4"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="27"
+            Text="x^y"
+            TextColor="Red"
+            
+            />
+        <Button
+            Grid.Row="1"
+            Grid.ColumnSpan="1"
+            Grid.Column="2"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="25"
+            Text="Undo"
+            TextColor="red"
+            />
+        <Button
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Grid.Column="0"
+            BackgroundColor="DarkGray"
+            CornerRadius="0"
+            FontSize="25"
+            Text="Shift"
+            Clicked="ShiftButtonClick"
+            TextColor="Blue"
+            />
     </Grid>
 
 
