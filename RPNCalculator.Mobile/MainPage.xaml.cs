@@ -5,6 +5,8 @@ namespace RPNCalculator.Mobile;
 public partial class MainPage : ContentPage
 {
     RPNCalculator.Common.Calculator calc;
+    private bool isShift = false;
+
     public MainPage()
     {
         InitializeComponent();
@@ -29,7 +31,7 @@ public partial class MainPage : ContentPage
 
     private void EnterButton_Clicked(object sender, EventArgs e)
     {
-        calc.pressEnter();
+        //calc.pressEnter();
         result.Text = calc.DisplayString;
     }
 
@@ -50,4 +52,34 @@ public partial class MainPage : ContentPage
         result.Text = calc.DisplayString;
     }
 
+    void ShiftButtonClick(object sender, EventArgs e)
+    {
+        isShift = !isShift;
+        if (isShift)
+        {
+            PiButton.Text = "x!";
+            EulerButton.Text = "LN";
+            LogButton.Text = "√x";
+            TangentButton.Text = "arctan()";
+            TangentButton.FontSize = 18;
+            cosineButton.Text = "arccos()";
+            cosineButton.FontSize = 18;
+            sineButton.Text = "arcsin()";
+            sineButton.FontSize = 18;
+            xybutton.Text = "y√x";
+        }
+        else
+        {
+            PiButton.Text = "π";
+            EulerButton.Text = "eⁿ";
+            LogButton.Text = "LOG";
+            TangentButton.Text = "tan()";
+            TangentButton.FontSize = 27;
+            cosineButton.Text = "cos()";
+            cosineButton.FontSize = 27;
+            sineButton.Text = "sin()";
+            sineButton.FontSize = 27;
+            xybutton.Text = "x^y";
+        }
+    }
 }
