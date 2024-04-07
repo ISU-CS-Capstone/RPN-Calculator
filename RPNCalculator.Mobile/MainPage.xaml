@@ -57,6 +57,7 @@
             FontSize="27"
             Text="CLR" 
             TextColor="Red"
+            Clicked="ClearButton_Clicked"
             />
 
         <Button
@@ -67,7 +68,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="sin()"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             x:Name="cosineButton"
             Grid.Row="2"
@@ -76,7 +78,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="cos()"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             x:Name="TangentButton"
             Grid.Row="2"
@@ -85,7 +88,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="tan()"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             x:Name="LogButton"
             Grid.Row="3"
@@ -94,7 +98,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="LOG"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             Grid.Row="7"
             Grid.Column="2"
@@ -112,7 +117,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="7"
-            TextColor="Black" />
+            TextColor="Black"
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="4"
             Grid.Column="1"
@@ -120,7 +126,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="8"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="4"
             Grid.Column="2"
@@ -128,7 +135,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="9"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
 
 
         <Button
@@ -138,7 +146,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="4"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="5"
             Grid.Column="1"
@@ -146,7 +155,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="5"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="5"
             Grid.Column="2"
@@ -154,7 +164,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="6"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
 
 
         <Button
@@ -164,7 +175,9 @@
             CornerRadius="0"
             FontSize="36"
             Text="1"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
+        
         <Button
             Grid.Row="6"
             Grid.Column="1"
@@ -172,7 +185,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="2"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
 
         <Button
             Grid.Row="6"
@@ -181,7 +195,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="3"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="7"
             Grid.Column="0"
@@ -190,7 +205,8 @@
             CornerRadius="0"
             FontSize="36"
             Text="0"
-            TextColor="Black" />
+            TextColor="Black" 
+            Clicked="NumberButton_Clicked"/>
 
 
         <Button
@@ -200,7 +216,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="/"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             Grid.Row="4"
             Grid.Column="3"
@@ -208,7 +225,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="x"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
 
         <Button
             Grid.Row="5"
@@ -217,7 +235,8 @@
             CornerRadius="0"
             FontSize="50"
             Text="-"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             Grid.Row="6"
             Grid.Column="3"
@@ -225,7 +244,8 @@
             CornerRadius="0"
             FontSize="32"
             Text="+"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="OperatorButton_Clicked"/>
         <Button
             Grid.Row="7"
             Grid.Column="1"
@@ -233,7 +253,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="."
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="NumberButton_Clicked"/>
         <Button
             Grid.Row="7"
             Grid.Column="3"
@@ -241,7 +262,8 @@
             CornerRadius="0"
             FontSize="27"
             Text="Enter"
-            TextColor="Red" />
+            TextColor="Red" 
+            Clicked="EnterButton_Clicked"/>
         <Button
             x:Name="EulerButton"
             Grid.Row="3"
@@ -251,6 +273,7 @@
             FontSize="27"
             Text="eⁿ"
             TextColor="Red"
+            Clicked="OperatorButton_Clicked"
             />
         <Button
             x:Name="PiButton"
@@ -261,7 +284,7 @@
             FontSize="27"
             Text="π"
             TextColor="Red"
-            
+            Clicked="OperatorButton_Clicked"
             />
         <Button
             x:Name="xybutton"
@@ -272,7 +295,7 @@
             FontSize="27"
             Text="x^y"
             TextColor="Red"
-            
+            Clicked="OperatorButton_Clicked"
             />
         <Button
             Grid.Row="1"
@@ -283,6 +306,7 @@
             FontSize="25"
             Text="Undo"
             TextColor="red"
+            Clicked="OperatorButton_Clicked"
             />
         <Button
             Grid.Row="1"

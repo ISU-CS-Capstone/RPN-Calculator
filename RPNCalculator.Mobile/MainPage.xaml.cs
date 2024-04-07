@@ -31,7 +31,7 @@ public partial class MainPage : ContentPage
 
     private void EnterButton_Clicked(object sender, EventArgs e)
     {
-        //calc.pressEnter();
+        calc.pressEnter();
         result.Text = calc.DisplayString;
     }
 
@@ -40,7 +40,7 @@ public partial class MainPage : ContentPage
         var button = sender as Button;
         if (button != null)
         {
-            calc.pressOperator(Convert.ToChar(button.Text)); // add number to calculator
+            calc.pressOperator(button.Text); // add number to calculator
             result.Text = calc.DisplayString;
         }
         
