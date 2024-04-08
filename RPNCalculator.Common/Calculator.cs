@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -200,6 +201,15 @@ namespace RPNCalculator.Common
                     return 1;
                 else
                     return f * Factorial(f - 1);
+        }
+
+        public IEnumerable<string> GetTopStackItems()
+        {
+            // Get the stack items
+            List<string> stackItems = nStack.GetStackItems();
+
+            // Return the top five items
+            return stackItems.Take(5);
         }
     }
 }

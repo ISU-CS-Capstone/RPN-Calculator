@@ -50,6 +50,15 @@ namespace RPNCalculator.Common
             }
         }
 
+        // Method to get the stack items as a list of strings
+        public List<string> GetStackItems()
+        {
+            // Convert the stack items to a list of strings
+            List<string> stackList = new List<string>(stack);
+            stackList.Reverse(); // Reverse the list to maintain stack order
+            return stackList;
+            }
+
         public string Peek()
         {
             return stack.Peek();
