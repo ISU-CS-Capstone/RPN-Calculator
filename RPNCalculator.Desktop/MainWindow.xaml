@@ -5,7 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPNCalculator.Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="500">
+        Title="MainWindow" Height="600" Width="500"
+        Background="#FF1E1E1E">
+        
+    
+    <!--  STARTREGION Styling -->
+    <Window.Resources>
+        <!-- Style for digit buttons -->
+        <Style x:Key="DigitButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FF2E2E2E"/>
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <!-- Adding hover effect -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF555555"/> <!-- Lighter when hovered -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- Style for operation buttons -->
+        <Style x:Key="OperationButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FF3F3F3F"/>
+            <Setter Property="Foreground" Value="#FFD0D0D0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <!-- Adding hover effect -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF666666"/> <!-- Lighter when hovered -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <!--  ENDREGION Styling -->
+    
     <Grid>
         <!-- Define grid with two rows, output and button input -->
         <Grid.RowDefinitions>
@@ -13,66 +47,75 @@
             <RowDefinition Height="*"/> <!-- Button row -->
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" x:Name="DocumentationButton" Content="?" Click="DocumentationButton_Click" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip="Open Documentation"/>
+        <Button Grid.Row="0" x:Name="DocumentationButton" Content="?" Click="DocumentationButton_Click" Width="30" Height="30" 
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Background="#FF1E1E1E" Foreground="White" BorderThickness="0"
+                ToolTip="Open Documentation"/>
         <!-- Display -->
-        <TextBox x:Name="Display" Grid.Row="0" Margin="25,25,125,25" Height="100" TextAlignment="Right" IsReadOnly="True" Text="{Binding DisplayText, Mode=OneWay}"/>
-        <TextBox x:Name="StackDisplay" Grid.Row="0" Margin="0,25,35,25" Height="100" TextAlignment="Right" IsReadOnly="True" Width="75" HorizontalAlignment="Right"/>
+        <Border Grid.Row="0" Margin="25,25,125,25" Background="#FF252525" CornerRadius="10">
+            <TextBox x:Name="Display" Grid.Row="0" Margin="25,25,125,25" Height="100" BorderThickness="0" TextAlignment="Right" IsReadOnly="True"
+                     Text="{Binding DisplayText, Mode=OneWay}" Foreground="White" Background="#FF252525"/>
+        </Border>
+        <Border Grid.Row="0" Margin="0,25,35,25" Background="#FF252525" CornerRadius="10" HorizontalAlignment="Right" Width="75">
+            <TextBox x:Name="StackDisplay" Grid.Row="0" Margin="0,25,35,25" Height="100" BorderThickness="0" TextAlignment="Right" IsReadOnly="True"
+                     Width="75" HorizontalAlignment="Right" Foreground="White" Background="#FF252525"/>
+        </Border>
 
         <!-- Buttons: UniformGrid is used to evenly distribute buttons -->
         <UniformGrid Grid.Row="1" Rows="9" Columns="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <!-- Row 1 -->
-            <Button Content="CLR" Click="ClearButton_Click" />
-            <Button Content="+/-" /> <!-- Just for design currrently -->
-            <Button Content="/" Click="OperatorButton_Click" />
-            <Button Content="x" Click="OperatorButton_Click" />
+            <Button Content="CLR" Click="ClearButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="+/-" Style="{StaticResource OperationButtonStyle}" /> <!-- Just for design currrently -->
+            <Button Content="y√x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="e" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
 
             <!-- Row 2 -->
-            <Button Content="sin()" Click="DigitButton_Click" />
-            <Button Content="cos()" Click="DigitButton_Click" />
-            <Button Content="tan()" Click="DigitButton_Click" />
-            <Button Content="ln" Click="OperatorButton_Click" />
+            <Button Content="sin()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="cos()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="tan()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="ln" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
             
             <!-- Row 3 -->
-            <Button Content="arcsin()" Click="DigitButton_Click" />
-            <Button Content="arccos()" Click="DigitButton_Click" />
-            <Button Content="arctan()" Click="DigitButton_Click" />
-            <Button Content="e^x" Click="OperatorButton_Click" />
+            <Button Content="arcsin()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="arccos()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="arctan()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="e^x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
             
             <!-- Row 4 -->
-            <Button Content="π" Click="DigitButton_Click" />
-            <Button Content="x!" Click="DigitButton_Click" />
-            <Button Content="x^y" Click="DigitButton_Click" />
-            <Button Content="x^2" Click="OperatorButton_Click" />
+            <Button Content="π" Click="DigitButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="x!" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="x^y" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="x^2" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
             
             <!-- Row 5 -->
-            <Button Content="log" Click="DigitButton_Click" />
-            <Button Content="√x" Click="DigitButton_Click" />
-            <Button Content="y√x" Click="DigitButton_Click" />
-            <Button Content="e" Click="OperatorButton_Click" />
+            <Button Content="log" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="√x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+            <Button Content="/" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}"/>
+            <Button Content="x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
             
             <!-- Row 6 -->
-            <Button Content="7" Click="DigitButton_Click" />
-            <Button Content="8" Click="DigitButton_Click" />
-            <Button Content="9" Click="DigitButton_Click" />
-            <Button Content="-" Click="OperatorButton_Click" />
+            <Button Content="7" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+            <Button Content="8" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+            <Button Content="9" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+            <Button Content="-" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
 
             <!-- Row 7 -->
-            <Button Content="4" Click="DigitButton_Click" />
-            <Button Content="5" Click="DigitButton_Click" />
-            <Button Content="6" Click="DigitButton_Click" />
-            <Button Content="+" Click="OperatorButton_Click" />
+            <Button Content="4" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+            <Button Content="5" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+            <Button Content="6" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+            <Button Content="+" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
 
             <!-- Row 8 -->
-            <Button Content="1" Click="DigitButton_Click" />
-            <Button Content="2" Click="DigitButton_Click" />
-            <Button Content="3" Click="DigitButton_Click" />
-            <Button Content="." /> <!-- Just for design currrently -->
+            <Button Content="1" Click="DigitButton_Click"  Style="{StaticResource DigitButtonStyle}"/>
+            <Button Content="2" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+            <Button Content="3" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+            <Button Content="." Click="DigitButton_Click" Style="{StaticResource OperationButtonStyle}" />
 		
 		    <!-- Row 9 -->
-			<Button Content="" />
-			<Button Content="0" Click="DigitButton_Click" />
-			<Button Content="" />
-			<Button Content="Enter" Click="EnterButton_Click" /> 
+			<Button Content="" Style="{StaticResource DigitButtonStyle}" />
+			<Button Content="0" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
+			<Button Content="" Click="DigitButton_Click"  Style="{StaticResource DigitButtonStyle}"/>
+			<Button Content="Enter" Click="EnterButton_Click" Style="{StaticResource OperationButtonStyle}" /> 
         </UniformGrid>
     </Grid>
 </Window>
