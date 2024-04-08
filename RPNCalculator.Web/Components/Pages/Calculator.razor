@@ -1,5 +1,9 @@
 ﻿@page "/calculator"
 @rendermode InteractiveServer
+@using RPNCalculator.Common
+
+
+<!-- Start of the Frontend Code-->
 
 <!-- Set the page title -->
 <PageTitle>RPN Calculator</PageTitle>
@@ -15,8 +19,8 @@
 
 <!-- Undo container -->
 <div class="undo">
-    <!-- Display area for calculator undo (not implemented yet but designed) -->
-    <button @onclick="@(() => undo(" "))">Undo</button> <!-- History button -->
+    <!-- Display area for calculator undo-->
+    <button @onclick="@(() => AddOperator("Undo"))">Undo</button>
 </div>
 
     <!-- Calculator container -->
@@ -28,9 +32,10 @@
             <h2>Stack</h2>
             <div class="stack-container">
                 <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
+                    @foreach (var item in calc.GetTopStackItems())
+                    {
+                        <li>@item</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -45,7 +50,7 @@
             <button class="clear" @onclick="Clear">CLR</button> <!-- Button to clear input -->
             <button class="operator" @onclick="@(() => AddOperator("sin()"))">sin()</button>
             <button class="operator" @onclick="@(() => AddOperator("arcsin()"))">arcsin()</button>
-            <button class="operator" @onclick="@(() => AddOperator("pi"))">π</button>
+            <button class="operator" @onclick="@(() => AddOperator("π"))">π</button>
         </div>
 
         <!-- Repeat similar structure for other column of buttons -->
@@ -66,16 +71,16 @@
 
         <div class="row">
             <button class="operator" @onclick="@(() => AddOperator("*"))">x</button>
-            <button class="operator" @onclick="@(() => AddOperator("ln"))">ln</button>
+            <button class="operator" @onclick="@(() => AddOperator("LN"))">ln</button>
             <button class="operator" @onclick="@(() => AddOperator("e^x"))">e^x</button>
             <button class="operator" @onclick="@(() => AddOperator("x^2"))">x^2</button>
         </div>
 
         <div class="row">
-            <button class="operator" @onclick="@(() => AddOperator("log"))">log</button>
-            <button @onclick="@(() => AddNumber("7"))">7</button> <!-- Button to add number 7 -->
-            <button @onclick="@(() => AddNumber("4"))">4</button> <!-- Button to add number 4 -->
-            <button @onclick="@(() => AddNumber("1"))">1</button> <!-- Button to add number 1 -->
+            <button class="operator" @onclick="@(() => AddOperator("LOG"))">log</button>
+            <button @onclick="@(() => AddNumber("7"))">7</button>
+            <button @onclick="@(() => AddNumber("4"))">4</button>
+            <button @onclick="@(() => AddNumber("1"))">1</button>
         </div>
 
         <div class="row">
@@ -86,7 +91,7 @@
         </div>
 
         <div class="row">
-            <button class="operator" @onclick="@(() => AddOperator("y√ x"))">y√ x</button>
+            <button class="operator" @onclick="@(() => AddOperator("y√x"))">y√x</button>
             <button @onclick="@(() => AddNumber("9"))">9</button>
             <button @onclick="@(() => AddNumber("6"))">6</button>
             <button @onclick="@(() => AddNumber("3"))">3</button>
@@ -104,7 +109,7 @@
         </div>
 
         <div class="row">
-            <button @onclick="@(() => AddNumber("0"))">0</button> <!-- Button for number 0 -->
+            <button @onclick="@(() => AddNumber("0"))">0</button>
         </div>
 
         <div class="row">
@@ -117,81 +122,47 @@
     </div>
 </div>
 
+<!-- Start of the Backend Code-->
 @code {
-    private CalculatorWeb calculator = new CalculatorWeb();
-    private const int items = 5;
+
+    // Instantiate the calculator
+    private RPNCalculator.Common.Calculator calc = new RPNCalculator.Common.Calculator();
     private string displayValue = string.Empty;
     private string currentInput = string.Empty;
-    private bool isOperator = false;
 
     private void history(string value)
     {
     }
 
-    private void undo(string value)
+    // Method to add a number to the calculator
+    private void AddNumber(string number)
     {
+        calc.pressNumber(number[0]); 
+        displayValue = calc.DisplayString;
     }
 
-    private void AddNumber(string value)
+    // Method to add an operator to the calculator
+    private void AddOperator(string op)
     {
-        if (value != " ")
-        {
-            currentInput += value;
-            displayValue += value;
-            isOperator = false;
-        }
+        calc.pressOperator(op); 
+        displayValue = calc.DisplayString;
+
     }
 
-    private void AddOperator(string op = null)
-    {
-        if (!isOperator)
-        {
-            if (!string.IsNullOrEmpty(currentInput))
-            {
-                calculator.Push(decimal.Parse(currentInput));
-                currentInput = string.Empty;
-            }
-
-            if (op != null)
-            {
-                switch (op)
-                {
-                    case "+":
-                        calculator.Add();
-                        break;
-                    case "-":
-                        calculator.Subtract();
-                        break;
-                    case "*":
-                        calculator.Multiply();
-                        break;
-                    case "/":
-                        calculator.Divide();
-                        break;
-                }
-            }
-
-            displayValue = calculator.GetStackContent();
-            isOperator = true;
-        }
-    }
-
+    // Method to handle the "Enter" button click
     private void Enter()
     {
-        if (!string.IsNullOrEmpty(currentInput))
-        {
-            calculator.Push(decimal.Parse(currentInput));
-            currentInput = string.Empty;
-        }
+        calc.pressEnter(); 
+        displayValue = calc.DisplayString;
 
-        displayValue = calculator.GetStackContent();
     }
 
+    // Method to handle the "Clear" button click
     private void Clear()
     {
-        calculator.Clear();
-        displayValue = string.Empty;
+        calc.pressClear(); 
+        displayValue = calc.DisplayString;
         currentInput = string.Empty;
+
     }
-    
 }
