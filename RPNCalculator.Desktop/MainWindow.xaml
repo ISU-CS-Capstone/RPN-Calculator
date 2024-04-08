@@ -5,50 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RPNCalculator.Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="500">
     <Grid>
-        <!-- Define four rows for the grid -->
+        <!-- Define grid with two rows, output and button input -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/> <!-- Title row -->
-            <RowDefinition Height="*"/> <!-- Display row -->
-            <RowDefinition Height="*"/>    <!-- Buttons row -->
-            <RowDefinition Height="Auto"/> <!-- Enter button row -->
+            <RowDefinition Height="Auto"/>    <!-- Content row -->
+            <RowDefinition Height="*"/> <!-- Button row -->
         </Grid.RowDefinitions>
 
-        <!-- Title TextBlock -->
-        <TextBlock Grid.Row="0" Text="RPN Calculator" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="0,20,0,0"/>
         <Button Grid.Row="0" x:Name="DocumentationButton" Content="?" Click="DocumentationButton_Click" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip="Open Documentation"/>
         <!-- Display -->
-        <TextBox x:Name="Display" Grid.Row="1" Margin="25" TextAlignment="Right" IsReadOnly="True"
-                 Text="{Binding DisplayText, Mode=OneWay}"/>
+        <TextBox x:Name="Display" Grid.Row="0" Margin="25,25,125,25" Height="100" TextAlignment="Right" IsReadOnly="True" Text="{Binding DisplayText, Mode=OneWay}"/>
+        <TextBox x:Name="StackDisplay" Grid.Row="0" Margin="0,25,35,25" Height="100" TextAlignment="Right" IsReadOnly="True" Width="75" HorizontalAlignment="Right"/>
 
         <!-- Buttons: UniformGrid is used to evenly distribute buttons -->
-        <UniformGrid Grid.Row="2" Rows="5" Columns="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <UniformGrid Grid.Row="1" Rows="9" Columns="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <!-- Row 1 -->
-            <Button Content="CLR" Click="ClearButton_Click" /> <!-- Just for design currrently -->
+            <Button Content="CLR" Click="ClearButton_Click" />
             <Button Content="+/-" /> <!-- Just for design currrently -->
             <Button Content="/" Click="OperatorButton_Click" />
             <Button Content="x" Click="OperatorButton_Click" />
 
             <!-- Row 2 -->
+            <Button Content="sin()" Click="DigitButton_Click" />
+            <Button Content="cos()" Click="DigitButton_Click" />
+            <Button Content="tan()" Click="DigitButton_Click" />
+            <Button Content="ln" Click="OperatorButton_Click" />
+            
+            <!-- Row 3 -->
+            <Button Content="arcsin()" Click="DigitButton_Click" />
+            <Button Content="arccos()" Click="DigitButton_Click" />
+            <Button Content="arctan()" Click="DigitButton_Click" />
+            <Button Content="e^x" Click="OperatorButton_Click" />
+            
+            <!-- Row 4 -->
+            <Button Content="π" Click="DigitButton_Click" />
+            <Button Content="x!" Click="DigitButton_Click" />
+            <Button Content="x^y" Click="DigitButton_Click" />
+            <Button Content="x^2" Click="OperatorButton_Click" />
+            
+            <!-- Row 5 -->
+            <Button Content="log" Click="DigitButton_Click" />
+            <Button Content="√x" Click="DigitButton_Click" />
+            <Button Content="y√x" Click="DigitButton_Click" />
+            <Button Content="e" Click="OperatorButton_Click" />
+            
+            <!-- Row 6 -->
             <Button Content="7" Click="DigitButton_Click" />
             <Button Content="8" Click="DigitButton_Click" />
             <Button Content="9" Click="DigitButton_Click" />
             <Button Content="-" Click="OperatorButton_Click" />
 
-            <!-- Row 3 -->
+            <!-- Row 7 -->
             <Button Content="4" Click="DigitButton_Click" />
             <Button Content="5" Click="DigitButton_Click" />
             <Button Content="6" Click="DigitButton_Click" />
             <Button Content="+" Click="OperatorButton_Click" />
 
-            <!-- Row 4 -->
+            <!-- Row 8 -->
             <Button Content="1" Click="DigitButton_Click" />
             <Button Content="2" Click="DigitButton_Click" />
             <Button Content="3" Click="DigitButton_Click" />
             <Button Content="." /> <!-- Just for design currrently -->
 		
-		    <!-- Row 5 -->
+		    <!-- Row 9 -->
 			<Button Content="" />
 			<Button Content="0" Click="DigitButton_Click" />
 			<Button Content="" />
