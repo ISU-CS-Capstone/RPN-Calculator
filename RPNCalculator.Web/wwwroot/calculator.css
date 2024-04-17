@@ -10,13 +10,9 @@
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-.history {
-    margin-right: 10px; 
-}
-
-.undo {
+.float {
     margin-right: 10px;
-    margin-left: auto; /* Push the history button to the right */
+    margin-left: auto; /* Push the buttons to the right */
 }
 
 
@@ -103,4 +99,43 @@ button:hover {
 .enter {
     background-color: black;
     color: antiquewhite;
+}
+
+/* Styling for the alternative view */
+.userDefineFunction {
+    background-color: black; 
+    color: white; 
+    padding: 20px;
+    box-sizing: border-box; 
+    width: 100%; 
+}
+
+/* Styling for the custom function instructions */
+.userDefineFunction h2, .userDefineFunction p {
+    color: white; 
+    font-size: 24px;
+}
+
+/* Styling for the custom function text area */
+.userDefineFunction textarea {
+    background-color: white; 
+    color: black; 
+    width: 100%;
+    height: 150px;
+    font-size: 24px;
+    padding: 10px;
+}
+
+/* Styling for the compile and run button */
+.userDefineFunction button {
+    background-color: #808080; 
+    color: antiquewhite; 
+    padding:5px; 
+    border: none;  
+    cursor: pointer;
+}
+
+/* Styling when hovering over compile and run button */
+.userDefineFunction button:hover {
+    background-color: #ffb14c;
 }

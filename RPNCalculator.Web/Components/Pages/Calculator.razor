@@ -1,7 +1,8 @@
 ﻿@page "/calculator"
 @rendermode InteractiveServer
 @using RPNCalculator.Common
-
+@using System.Threading.Tasks
+@using System.Timers
 
 <!-- Start of the Frontend Code-->
 
@@ -11,17 +12,13 @@
 <!-- Page heading -->
 <h1>RPN Calculator</h1>
 
+@*
 <!-- History container -->
 <div class="history">
     <!-- Display area for calculator history (not implemented yet but designed) -->
     <button @onclick="@(() => history(" "))">History</button> <!-- History button -->
 </div>
-
-<!-- Undo container -->
-<div class="undo">
-    <!-- Display area for calculator undo-->
-    <button @onclick="@(() => AddOperator("Undo"))">Undo</button>
-</div>
+*@
 
     <!-- Calculator container -->
 <div class="calculator">
@@ -32,7 +29,7 @@
             <h2>Stack</h2>
             <div class="stack-container">
                 <ul>
-                    @foreach (var item in calc.GetTopStackItems())
+                    @foreach (var item in stackItems)
                     {
                         <li>@item</li>
                     }
@@ -43,9 +40,23 @@
         <input type="text" @bind="displayValue" readonly />
     </div>
 
-    <!-- Buttons container -->
-    <div class="buttons">
-        <!-- column of buttons -->
+    <!-- Undo, toggle, and float container -->
+    <div class="float">
+        <!-- Display area for calculator undo, toggle, and float-->
+        @*<button @onclick="@(() => AddOperator("undo"))">Undo </button>*@
+
+        <button @onclick="@ToggleView">@ToggleViewButtonText</button>
+
+        <button @onclick="@(() => AddOperator("Float"))">.0 ← </button>
+        <button @onclick="@(() => AddOperator("Float"))"> → .00</button>
+
+    </div>
+
+    @if (showCalculator)
+    {
+        <!-- Buttons container -->    
+        <div class="buttons">
+            <!-- column of buttons -->
         <div class="row">
             <button class="clear" @onclick="Clear">CLR</button> <!-- Button to clear input -->
             <button class="operator" @onclick="@(() => AddOperator("sin()"))">sin()</button>
@@ -120,6 +131,21 @@
             <button class="enter" @onclick="Enter">Enter</button> <!-- Button to trigger calculation -->
         </div>
     </div>
+    }
+
+    else{
+    <!-- Alternative view for inputting code -->
+    <div class="userDefineFunction">
+        <p>Custom Function Input: write your custom function below.</p>
+
+        <p>public double CustomFunction(Stack stack){</p>
+        <!-- Text area for user to input custom function -->
+        <textarea id="customFunctionTextArea" @bind="customFunctionCode" rows="10" cols="50"></textarea>
+        <p>}</p>
+        <!-- Button to compile and run the custom function -->
+        <button @onclick="CompileAndRun">Compile and Run</button>
+    </div>
+    }
 </div>
 
 <!-- Start of the Backend Code-->
@@ -129,9 +155,40 @@
     private RPNCalculator.Common.Calculator calc = new RPNCalculator.Common.Calculator();
     private string displayValue = string.Empty;
     private string currentInput = string.Empty;
+    private List<string> stackItems = new List<string>();
+    private Timer timer;
 
-    private void history(string value)
+    private bool showCalculator = true;
+    private string codeInput = string.Empty;
+
+    protected override Task OnInitializedAsync()
     {
+        // Set up the timer
+        timer = new Timer();
+        timer.Interval = 1000; // Update interval in milliseconds (e.g., every second)
+        timer.Elapsed += TimerElapsed;
+
+        // Start the timer
+        timer.Start();
+
+        return base.OnInitializedAsync();
+    }
+
+    // Method to handle the timer elapsed event
+    private void TimerElapsed(object sender, ElapsedEventArgs e)
+    {
+        // Update the list of top stack items
+        UpdateStackItems();
+    }
+
+    // Method to update the list of top stack items
+    private void UpdateStackItems()
+    {
+        // Get the top stack items from the calculator
+        stackItems = calc.GetTopStackItems().ToList();
+
+        // Invoke the UI refresh
+        InvokeAsync(StateHasChanged);
     }
 
     // Method to add a number to the calculator
@@ -165,4 +222,28 @@
         currentInput = string.Empty;
 
     }
-}
+
+    // Dispose method to stop the timer and prevent memory leaks
+    public void Dispose()
+    {
+        timer?.Dispose();
+    }
+
+    // Method to toggle between calculator view and code input view
+    private void ToggleView()
+    {
+        showCalculator = !showCalculator;
+    }
+
+    // Property to dynamically change the text of the toggle button based on the current view
+    private string ToggleViewButtonText => showCalculator ? "Switch to Input Code" : "Switch to Calculator View";
+
+
+    // Property to bind the user input for the custom function
+    private string customFunctionCode { get; set; }
+
+    // Method to handle compiling and running the code
+    private void CompileAndRun()
+    {
+    }
+ }

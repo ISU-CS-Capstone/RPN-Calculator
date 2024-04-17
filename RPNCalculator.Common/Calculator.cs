@@ -209,7 +209,7 @@ namespace RPNCalculator.Common
             List<string> stackItems = nStack.GetStackItems();
 
             // Return the top five items
-            return stackItems.Take(5);
+            return stackItems.TakeLast(5);
         }
     }
 }
