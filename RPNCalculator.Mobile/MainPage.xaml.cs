@@ -82,4 +82,13 @@ public partial class MainPage : ContentPage
             xybutton.Text = "x^y";
         }
     }
+    void Toggle(object sender, EventArgs e)
+	{
+        calculatorGrid.IsVisible = !calculatorGrid.IsVisible;
+        functionDisplay.IsVisible = !functionDisplay.IsVisible;
+
+        var button = sender as Button;
+        button.Text = calculatorGrid.IsVisible ? "Toggle" : "Toggle";
+	}
+    
 }
