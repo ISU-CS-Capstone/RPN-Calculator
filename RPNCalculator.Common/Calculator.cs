@@ -18,6 +18,7 @@ namespace RPNCalculator.Common
         private NumStack nStack;
         private CalcHistory hist;
         bool enterPressed;
+        int numFloats;
 
         // constructor
         public Calculator() {
@@ -25,12 +26,13 @@ namespace RPNCalculator.Common
             enterPressed = false;
             nStack = new NumStack();
             hist = new CalcHistory();
+            numFloats = 5;
         }
 
         //this method updates the displayString to the top value of the string stack
         public void updateDisplayString()
         {
-            DisplayString = nStack.Peek();
+            DisplayString = Math.Round(double.Parse(nStack.Peek()),numFloats).ToString();
         }
 
         //This method will be called when a number is pressed, and will update the DisplayString
@@ -86,6 +88,14 @@ namespace RPNCalculator.Common
                 updateDisplayString();
                 return;
             }
+            else if (op == "addFloat")
+            {
+                numFloats++;
+            }
+            else if (op == "removeFloat")
+            {
+                if (numFloats > 0) { numFloats--; }
+            }
             else if (nStack.Count() > 0)
             {
                 hist.updateHistory(new CalcStatus(nStack, enterPressed));
@@ -108,27 +118,30 @@ namespace RPNCalculator.Common
                  */
                 if ((op == "+" || op == "-" || op == "x" || op == "/" || op == "x^y" || op == "y√x") && nStack.Count() > 0)
                 {
-                    double operand2 = double.Parse(nStack.Pop());
-                    switch (op)
+                    if (nStack.Count() > 0)
                     {
-                        case "+":
-                            nStack.Push((operand1 + operand2).ToString());
-                            break;
-                        case "-":
-                            nStack.Push((operand1 - operand2).ToString());
-                            break;
-                        case "x":
-                            nStack.Push((operand1 * operand2).ToString());
-                            break;
-                        case "/":
-                            nStack.Push((operand1 / operand2).ToString());
-                            break;
-                        case "x^y":
-                            nStack.Push((Math.Pow(operand1, operand2)).ToString());
-                            break;
-                        case "y√x":
-                            nStack.Push(Math.Pow(operand1, 1.0 / operand2).ToString());
-                            break;
+                        double operand2 = double.Parse(nStack.Pop());
+                        switch (op)
+                        {
+                            case "+":
+                                nStack.Push((operand1 + operand2).ToString());
+                                break;
+                            case "-":
+                                nStack.Push((operand1 - operand2).ToString());
+                                break;
+                            case "x":
+                                nStack.Push((operand1 * operand2).ToString());
+                                break;
+                            case "/":
+                                nStack.Push((operand1 / operand2).ToString());
+                                break;
+                            case "x^y":
+                                nStack.Push((Math.Pow(operand1, operand2)).ToString());
+                                break;
+                            case "y√x":
+                                nStack.Push(Math.Pow(operand1, 1.0 / operand2).ToString());
+                                break;
+                        }
                     }
                 }
                 //otherwise, the operation only takes one operand
