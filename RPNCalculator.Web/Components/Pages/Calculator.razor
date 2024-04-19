@@ -43,12 +43,12 @@
     <!-- Undo, toggle, and float container -->
     <div class="float">
         <!-- Display area for calculator undo, toggle, and float-->
-        @*<button @onclick="@(() => AddOperator("undo"))">Undo </button>*@
+        <button @onclick="@(() => AddOperator("Undo"))">Undo </button>
 
         <button @onclick="@ToggleView">@ToggleViewButtonText</button>
 
-        <button @onclick="@(() => AddOperator("Float"))">.0 ← </button>
-        <button @onclick="@(() => AddOperator("Float"))"> → .00</button>
+        <button @onclick="@(() => AddOperator("removeFloat"))">.0 ← </button>
+        <button @onclick="@(() => AddOperator("addFloat"))"> → .00</button>
 
     </div>
 

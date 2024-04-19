@@ -221,8 +221,11 @@ namespace RPNCalculator.Common
             // Get the stack items
             List<string> stackItems = nStack.GetStackItems();
 
-            // Return the top five items
-            return stackItems.TakeLast(5);
+            // Return the top five items rounded to the same number of decimal places as DisplayString
+            return stackItems
+                .Where(item => !string.IsNullOrEmpty(item)) // Filter out empty strings
+                .TakeLast(5)
+                .Select(item => Math.Round(double.Parse(item), numFloats).ToString());
         }
     }
 }
