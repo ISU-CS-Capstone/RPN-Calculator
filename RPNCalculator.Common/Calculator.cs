@@ -34,7 +34,14 @@ namespace RPNCalculator.Common
         //this method updates the displayString to the top value of the string stack
         public void updateDisplayString()
         {
-            DisplayString = Math.Round(double.Parse(nStack.Peek()),numFloats).ToString();
+            if (nStack.Count() > 0 && nStack.Peek() != "")
+            {
+                DisplayString = Math.Round(double.Parse(nStack.Peek()), numFloats).ToString();
+            }
+            else
+            {
+                DisplayString = "";
+            }
         }
 
         //This method will be called when a number is pressed, and will update the DisplayString
@@ -84,7 +91,7 @@ namespace RPNCalculator.Common
                 CalcStatus history = hist.getHistory();
                 if (history != null)
                 {
-                    nStack = history.calcStack;
+                    nStack.stack = history.calcStack;
                     enterPressed = history.enterPressed;
                 }
                 updateDisplayString();
