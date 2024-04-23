@@ -81,7 +81,7 @@
         </div>
 
         <div class="row">
-            <button class="operator" @onclick="@(() => AddOperator("*"))">x</button>
+            <button class="operator" @onclick="@(() => AddOperator("x"))">x</button>
             <button class="operator" @onclick="@(() => AddOperator("LN"))">ln</button>
             <button class="operator" @onclick="@(() => AddOperator("e^x"))">e^x</button>
             <button class="operator" @onclick="@(() => AddOperator("x^2"))">x^2</button>
@@ -245,5 +245,7 @@
     // Method to handle compiling and running the code
     private void CompileAndRun()
     {
+        calc.userDefinedFunction(customFunctionCode);
+        customFunctionCode = "";
     }
  }
