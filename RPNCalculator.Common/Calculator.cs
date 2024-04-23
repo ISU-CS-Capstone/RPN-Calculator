@@ -34,7 +34,7 @@ namespace RPNCalculator.Common
         //this method updates the displayString to the top value of the string stack
         public void updateDisplayString()
         {
-            if (nStack.Count() > 0 && nStack.Peek() != "")
+            if (nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != ".")
             {
                 DisplayString = Math.Round(double.Parse(nStack.Peek()), numFloats).ToString();
             }
@@ -42,6 +42,7 @@ namespace RPNCalculator.Common
             {
                 DisplayString = "";
             }
+            if (nStack.Count() > 0 && ((nStack.Peek()[nStack.Peek().Length - 1] == '.') || numFloats == 0 && nStack.Peek().Contains('.'))) { DisplayString += "."; }
         }
 
         //This method will be called when a number is pressed, and will update the DisplayString
@@ -97,13 +98,23 @@ namespace RPNCalculator.Common
                 updateDisplayString();
                 return;
             }
-            else if (op == "addFloat" && numFloats < 12)
+            else if (op == "addFloat")
             {
-                numFloats++;
+                if (numFloats < 12)
+                {
+                    numFloats++;
+                    updateDisplayString();
+                }
+                return;
             }
-            else if (op == "removeFloat" && numFloats > 1)
+            else if (op == "removeFloat")
             {
-                { numFloats--; }
+                if (numFloats > 0)
+                {
+                    numFloats--;
+                    updateDisplayString();
+                }
+                return;
             }
             else if (nStack.Count() > 0)
             {
