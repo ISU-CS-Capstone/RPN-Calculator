@@ -10,9 +10,9 @@ namespace RPNCalculator.Common
     internal class CalcStatus
     {
         public NumStack calcStack;
-        public bool enterPressed;
+        public int enterPressed;
 
-        public CalcStatus(NumStack nStack, bool nEPressed)
+        public CalcStatus(NumStack nStack, int nEPressed)
         {
             calcStack = nStack;
             enterPressed = nEPressed;

@@ -8,7 +8,7 @@ namespace RPNCalculator.Common
 {
     internal class NumStack
     {
-        private Stack<string> stack;
+        public Stack<string> stack;
         public NumStack()
         {
             stack = new Stack<string>();
@@ -30,15 +30,22 @@ namespace RPNCalculator.Common
             return stack.Count;
         }
 
-        public void updateTop(string update, bool overwrite) 
+        public void updateTop(string update, int overwrite) 
         { 
+            //overwrite 0 = enter not pressed -> edit top of stack (append to the end of string at the top of the stack)
+            //overwrite 1 = operation pressed -> 
+            //overwrite 2 = enter pressed
             if (stack.Count > 0)
             {
-                if (!overwrite)
+                if (overwrite == 0)
                 {
                     stack.Push(stack.Pop() + update);
                 }
-                else
+                else if (overwrite == 1)
+                {
+                    stack.Push(update);
+                }
+                else if (overwrite == 2)
                 {
                     stack.Pop();
                     stack.Push(update);

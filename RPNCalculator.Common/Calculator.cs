@@ -17,15 +17,17 @@ namespace RPNCalculator.Common
         // Stack to hold numbers and results
         private NumStack nStack;
         private CalcHistory hist;
-        bool enterPressed;
+        private UserDefinedFunctions udf;
+        int enterPressed;
         int numFloats;
 
         // constructor
         public Calculator() {
             DisplayString = "";
-            enterPressed = false;
+            enterPressed = 0;
             nStack = new NumStack();
             hist = new CalcHistory();
+            udf = new UserDefinedFunctions();
             numFloats = 5;
         }
 
@@ -41,12 +43,12 @@ namespace RPNCalculator.Common
             //before pressing a Number, update the history
             hist.updateHistory(new CalcStatus(nStack, enterPressed));
             //we have to check if there is already a decimal
-            if (number == '.' && !enterPressed && nStack.Peek().Contains('.'))
+            if (number == '.' && enterPressed == 0 && nStack.Peek().Contains('.'))
             {
                 return;
             }
             nStack.updateTop(number.ToString(), enterPressed);
-            enterPressed = false;
+            enterPressed = 0;
             updateDisplayString();
           
         }
@@ -54,13 +56,13 @@ namespace RPNCalculator.Common
         //This method will be called when enter is pressed, pushing the current value onto the stack display string won't be updated because the number wasn't modified.
         public void pressEnter()
         {
-            if (!enterPressed)
+            if (enterPressed == 0)
             {
                 //before pushing enter, update the history
                 hist.updateHistory(new CalcStatus(nStack, enterPressed));
 
                 nStack.Push(nStack.Peek());
-                enterPressed = true;
+                enterPressed = 2;
             }
         }
 
@@ -88,13 +90,13 @@ namespace RPNCalculator.Common
                 updateDisplayString();
                 return;
             }
-            else if (op == "addFloat")
+            else if (op == "addFloat" && numFloats < 12)
             {
                 numFloats++;
             }
-            else if (op == "removeFloat")
+            else if (op == "removeFloat" && numFloats > 1)
             {
-                if (numFloats > 0) { numFloats--; }
+                { numFloats--; }
             }
             else if (nStack.Count() > 0)
             {
@@ -195,7 +197,7 @@ namespace RPNCalculator.Common
             }
             updateDisplayString();
             //setting enterPressed, so the next type on the calculator doesn't add to the current display, but creates a new value on the stack
-            enterPressed = true;
+            enterPressed = 1;
         }
 
         //This method will be called when clear is pressed -- deletes the current display string
@@ -205,9 +207,14 @@ namespace RPNCalculator.Common
             DisplayString = "";
             hist = new CalcHistory();
             nStack = new NumStack();
-            enterPressed = false;
+            enterPressed = 0;
         }
         
+        public void userDefinedFunction(string function)
+        {
+            double? returnValue = udf.CreateFunction(function, ref nStack.stack);
+            enterPressed = 1;
+        }
         public int Factorial(int f)
         {
                 if (f == 0)
