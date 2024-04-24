@@ -69,6 +69,17 @@
             <TextBox x:Name="StackDisplay" Grid.Row="0" Margin="0,25,35,25" Height="100" BorderThickness="0" TextAlignment="Right" IsReadOnly="True"
                      Width="75" HorizontalAlignment="Right" Foreground="White" Background="#FF252525"/>
         </Border>
+        <Border Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Content="0.0&lt;-" Style="{StaticResource DigitButtonStyle}" Click="DecreaseFloatButton_Click"/>
+                <Button Grid.Column="1" Content="0.00-&gt;" Style="{StaticResource DigitButtonStyle}" Click="IncreaseFloatButton_Click"/>
+            </Grid>
+        </Border>
 
         
         <!-- Buttons: UniformGrid is used to evenly distribute buttons -->
@@ -76,7 +87,7 @@
             <UniformGrid Rows="9" Columns="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <!-- Row 1 -->
                 <Button Content="CLR" Click="ClearButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="+/-" Style="{StaticResource OperationButtonStyle}" /> <!-- Just for design currrently -->
+                <Button Content="+/-" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
                 <Button Content="y√x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
                 <Button Content="e" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
 
@@ -136,7 +147,7 @@
                     <RowDefinition Height="*"/> <!-- Takes all available space -->
                     <RowDefinition Height="Auto"/> <!-- Takes space as per the content -->
                 </Grid.RowDefinitions>
-                <TextBox x:Name="LargeTextBox" Grid.Row="0" TextWrapping="Wrap" FontSize="16"
+                <TextBox x:Name="FunctionTextbox" Grid.Row="0" TextWrapping="Wrap" FontSize="16"
                          Background="#FF252525" Foreground="White" VerticalAlignment="Stretch" />
                 <Button Content="Compile and Run" Click="CompileButton_Click" Grid.Row="1"
                         HorizontalAlignment="Stretch" Padding="10" Background="#FF333333"

@@ -90,13 +90,28 @@ namespace RPNCalculator.Desktop
 
         private void CompileButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            calculator.userDefinedFunction(FunctionTextbox.Text);
+            FunctionTextbox.Text = "";
+            UpdateDisplay();
+        }
+
+        private void DecreaseFloatButton_Click(object sender, RoutedEventArgs e)
+        {
+            calculator.pressOperator("addFloat");
+            UpdateDisplay();
+        }
+
+        private void IncreaseFloatButton_Click(object sender, RoutedEventArgs e)
+        {
+            calculator.pressOperator("removeFloat");
+            UpdateDisplay();
         }
 
         
         // Handle input of operators, numpad, enter, etc...
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            if (CalcButtonBorder.Visibility == Visibility.Collapsed) return; // don't capture input's if typing into user defined textbox
             base.OnKeyDown(e);
             bool shiftPressed = e.KeyboardDevice.IsKeyDown(Key.LeftShift) || e.KeyboardDevice.IsKeyDown(Key.RightShift); // capture shift input to allow operators on main keyboard base
 
