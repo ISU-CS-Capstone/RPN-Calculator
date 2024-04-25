@@ -207,17 +207,8 @@ namespace RPNCalculator.Common
                         case "LN":
                             nStack.Push(Math.Log(operand1).ToString());
                             break;
-                        case "e^n":
+                        case "eⁿ":
                             nStack.Push(Math.Exp(operand1).ToString());
-                            break;
-                        case "+/-":
-                            nStack.Push((-operand1).ToString());
-                            break;
-                        case "e":
-                            nStack.Push((Math.E * operand1).ToString());
-                            break;
-                        case "x^2":
-                            nStack.Push(Math.Pow(operand1, 2).ToString());
                             break;
                     }
                 }

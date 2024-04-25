@@ -32,13 +32,6 @@
     font-size: 24px;
 }
 
-/* Remove bullets from the list */
-.stack-container ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
 /* Styling for the display area */
 .display {
     background-color: #f0f0f0;
