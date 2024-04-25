@@ -5,7 +5,7 @@
     Padding="{OnPlatform iOS='0,20,0,0'}"
     BackgroundColor="{DynamicResource SecondaryColor}">
     <Grid>
-    <Grid x:Name="functionDisplay" Padding="5" IsVisible="True">
+    <Grid x:Name="functionDisplay" Padding="5" IsVisible="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -106,9 +106,11 @@
         Padding="5,0"
         ColumnSpacing="1"
         RowSpacing="1"
-        IsVisible="False">
+        IsVisible="True">
 
         <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -132,25 +134,49 @@
             <ColumnDefinition Width="*" />
 
         </Grid.ColumnDefinitions>
-
+        <Label
+        x:Name="stack"
+        Grid.Row="1"
+        Grid.RowSpan="1"
+        Grid.Column="0"
+        Grid.ColumnSpan="2"
+        Padding="1"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        FontSize="20"
+        TextColor="Black"
+        BackgroundColor="LightGray"/>
+        
+        
+        
 
         <Label
-            x:Name="result"
             Grid.Row="0"
             Grid.ColumnSpan="4"
-            Padding="30"
+            Padding="3"
             BackgroundColor="White"
             FontAttributes="Bold"
-            FontSize="48"
-            HorizontalTextAlignment="End"
+            FontSize="25"
+            HorizontalTextAlignment="Start"
             LineBreakMode="NoWrap"
-            Text=" "
+            Text="Stack "
             TextColor="Black"
             VerticalTextAlignment="Center"/>
+        <Label
+                x:Name="result"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Grid.Column="3"
+                Padding="5"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="End"
+                VerticalOptions="FillAndExpand"
+                FontSize="48"
+                TextColor="Black"/>
 
 
         <Button
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="0"
             Grid.ColumnSpan="1"
             BackgroundColor="DarkGray"
@@ -163,7 +189,7 @@
 
         <Button
             x:Name="sineButton"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -173,7 +199,7 @@
             Clicked="OperatorButton_Clicked"/>
         <Button
             x:Name="cosineButton"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -183,7 +209,7 @@
             Clicked="OperatorButton_Clicked"/>
         <Button
             x:Name="TangentButton"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -193,7 +219,7 @@
             Clicked="OperatorButton_Clicked"/>
         <Button
             x:Name="LogButton"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -202,7 +228,7 @@
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
         <Button
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -212,7 +238,7 @@
 
 
         <Button
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -221,7 +247,7 @@
             TextColor="Black"
             Clicked="NumberButton_Clicked"/>
         <Button
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -230,7 +256,7 @@
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
         <Button
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -241,7 +267,7 @@
 
 
         <Button
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -250,7 +276,7 @@
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
         <Button
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -259,7 +285,7 @@
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
         <Button
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -270,7 +296,7 @@
 
 
         <Button
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -280,7 +306,7 @@
             Clicked="NumberButton_Clicked"/>
         
         <Button
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -290,7 +316,7 @@
             Clicked="NumberButton_Clicked"/>
 
         <Button
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -299,7 +325,7 @@
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
         <Button
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="0"
             Grid.ColumnSpan="1"
             BackgroundColor="DarkGray"
@@ -311,7 +337,7 @@
 
 
         <Button
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -320,7 +346,7 @@
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
         <Button
-            Grid.Row="5"
+            Grid.Row="6"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -330,7 +356,7 @@
             Clicked="OperatorButton_Clicked"/>
 
         <Button
-            Grid.Row="6"
+            Grid.Row="7"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -339,7 +365,7 @@
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
         <Button
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -348,7 +374,7 @@
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
         <Button
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -357,7 +383,7 @@
             TextColor="Red" 
             Clicked="NumberButton_Clicked"/>
         <Button
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -367,7 +393,7 @@
             Clicked="EnterButton_Clicked"/>
         <Button
             x:Name="EulerButton"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -378,7 +404,7 @@
             />
         <Button
             x:Name="PiButton"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -389,7 +415,7 @@
             />
         <Button
             x:Name="xybutton"
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="4"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -399,7 +425,7 @@
             Clicked="OperatorButton_Clicked"
             />
         <Button
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.ColumnSpan="1"
             Grid.Column="2"
             BackgroundColor="DarkGray"
@@ -410,7 +436,7 @@
             Clicked="OperatorButton_Clicked"
             />
         <Button
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.ColumnSpan="2"
             Grid.Column="0"
             BackgroundColor="DarkGray"
@@ -422,7 +448,7 @@
             />
 
         <Button
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.ColumnSpan="1"
             Grid.Column="2"
             BackgroundColor="DarkGray"
@@ -432,7 +458,7 @@
             TextColor="Red"
             />
         <Button
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.ColumnSpan="1"
             Grid.Column="3"
             BackgroundColor="DarkGray"
@@ -442,7 +468,7 @@
             TextColor="Red"
             />
         <Button
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             BackgroundColor="DarkGray"
@@ -451,8 +477,6 @@
             Text="Toggle"
             Clicked="Toggle"
             TextColor="Blue"/>
-
-
     </Grid>
     </Grid>
 
