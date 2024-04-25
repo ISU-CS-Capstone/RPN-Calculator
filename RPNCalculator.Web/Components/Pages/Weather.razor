@@ -3,65 +3,69 @@
 
 <PageTitle>Weather</PageTitle>
 
-<h1>Weather</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Reverse Polish Notation Calculator</title>
+</head>
+<body>
+    <h1>Reverse Polish Notation Calculator</h1>
 
-<p>This component demonstrates showing data.</p>
-
-@if (forecasts == null)
-{
+    <h2>Introduction</h2>
     <p>
-        <em>Loading...</em>
+        A Reverse Polish Notation (RPN) calculator, also known as postfix notation calculator, is a type of calculator that uses a different format for inputting arithmetic expressions. Unlike traditional calculators that use infix notation (where the operator is placed between the operands, like `2 + 3`), an RPN calculator receives inputs in a sequence where the operator follows all of its operands. For example, to add 2 and 3, you would input <code>2 3 +</code> instead of <code>2 + 3</code>.
     </p>
-}
-else
-{
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var forecast in forecasts)
-        {
-            <tr>
-                <td>@forecast.Date.ToShortDateString()</td>
-                <td>@forecast.TemperatureC</td>
-                <td>@forecast.TemperatureF</td>
-                <td>@forecast.Summary</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-}
+
+    <h2>How to Use an RPN Calculator</h2>
+    <p>
+        To use an RPN calculator, you need to input the operands first, followed by the operation you want to apply to them. Here is a step-by-step guide:
+    </p>
+    <ol>
+        <li><strong>Input the First Operand:</strong> Begin by entering the first number of your calculation.</li>
+        <li><strong>Enter Subsequent Operands:</strong> Input the next operand for the calculation.</li>
+        <li><strong>Apply an Operation:</strong> After entering the operands, input the operation (e.g., `+`, `-`, `*`, `/`) you want to perform. The calculator will apply this operation to the previously entered operands.</li>
+        <li><strong>Repeat:</strong> To continue calculations, keep adding operands and operators as needed. The calculator can handle complex calculations by applying operations in the sequence they are entered, respecting the last in, first out (LIFO) order.</li>
+    </ol>
+
+    <h3>Example</h3>
+    <p>
+        To calculate <code>(3 + 4) x 5</code>, you would input it as follows in an RPN calculator:
+    </p>
+    <pre>3 4 + 5 x</pre>
+    <p>
+        This input means:
+        <ul>
+            <li><code>3 4 +</code> adds 3 and 4.</li>
+            <li><code>5 x</code> then multiplies the result by 5.</li>
+        </ul>
+    </p>
+
+    <h2>How It Works</h2>
+    <p>
+        An RPN calculator internally uses a stack to keep track of operands. When you input a number, it's pushed onto the stack. When you input an operator, the calculator pops the required number of operands off the stack, applies the operation, and pushes the result back onto the stack. This process allows for sequential operations and handling complex expressions without the need for parentheses.
+    </p>
+
+    <h3>Operational Flow</h3>
+    <ol>
+        <li><strong>Operand Encounter:</strong> Each time an operand is encountered, it is pushed onto the stack.</li>
+        <li><strong>Operator Encounter:</strong> When an operator is encountered, the calculator pops the required operands from the stack, applies the operation, and pushes the result back onto the stack.</li>
+        <li><strong>Result:</strong> After all inputs are processed, the result is the top item on the stack.</li>
+    </ol>
+
+    <h2>Advantages of RPN Calculators</h2>
+    <ul>
+        <li><strong>Efficiency:</strong> Less need to use parentheses to dictate operation order.</li>
+        <li><strong>Speed:</strong> Users often find RPN calculators faster for entering complex calculations.</li>
+        <li><strong>Clarity:</strong> Each step of the calculation is explicit, reducing the risk of order-of-operation errors.</li>
+    </ul>
+
+    <p>
+        RPN calculators offer a powerful alternative for those familiar with their operation, providing clear and efficient calculation methods that are particularly favored by engineers, mathematicians, and computer scientists.
+    </p>
+</body>
+</html>
+
 
 @code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        // Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
-
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
-    }
-
-    private class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-        public int TemperatureC { get; set; }
-        public string? Summary { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
 
 }
