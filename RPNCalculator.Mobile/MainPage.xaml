@@ -138,7 +138,7 @@
             x:Name="result"
             Grid.Row="0"
             Grid.ColumnSpan="4"
-            Padding="30"
+
             BackgroundColor="White"
             FontAttributes="Bold"
             FontSize="48"
