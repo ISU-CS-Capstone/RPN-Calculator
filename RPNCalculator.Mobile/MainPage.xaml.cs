@@ -13,7 +13,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 //using Java.Util;
 
-namespace RPN_Calculator.Mobile;
+namespace RPNCalculator.Mobile;
 
 public partial class MainPage : ContentPage
 {
