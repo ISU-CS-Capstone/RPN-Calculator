@@ -17,9 +17,6 @@ namespace RPNCalculator.Mobile;
 public partial class MainPage : ContentPage
 {
     private bool isShift = false;
-    private string inputStack = "";
-    private string userInput = "";
-    //private int stackCounter = 1;
     
     private Calculator calculator = new Calculator();
 
@@ -94,11 +91,11 @@ public partial class MainPage : ContentPage
     }
     void Toggle(object sender, EventArgs e)
     {
-        calculatorGrid.IsVisible = !calculatorGrid.IsVisible;
-        functionDisplay.IsVisible = !functionDisplay.IsVisible;
+        CalculatorBorder.IsVisible = !CalculatorBorder.IsVisible;
+        FunctionBorder.IsVisible = !FunctionBorder.IsVisible;
 
         var button = sender as Button;
-        button.Text = calculatorGrid.IsVisible ? "Toggle" : "Toggle";
+        button.Text = CalculatorBorder.IsVisible ? "Toggle" : "Toggle";
     }
 
     private void NumberButton_Clicked(object sender, EventArgs e)
@@ -129,6 +126,24 @@ public partial class MainPage : ContentPage
     private void ClearButton_Clicked(object sender, EventArgs e)
     {
         calculator.pressClear();
+        UpdateDisplay();
+    }
+    private void DecreaseFloatButton_Click(object sender, EventArgs e)
+    {
+        calculator.pressOperator("addFloat");
+        UpdateDisplay();
+    }
+
+    private void IncreaseFloatButton_Click(object sender, EventArgs e)
+    {
+        calculator.pressOperator("removeFloat");
+        UpdateDisplay();
+    }
+
+    private void CompileButton_Click(object sender, EventArgs e)
+    {
+        calculator.userDefinedFunction(functionEditor.Text);
+        functionEditor.Text = "";
         UpdateDisplay();
     }
 }
