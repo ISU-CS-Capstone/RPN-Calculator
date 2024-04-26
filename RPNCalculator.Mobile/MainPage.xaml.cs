@@ -67,11 +67,8 @@ public partial class MainPage : ContentPage
             EulerButton.Text = "LN";
             LogButton.Text = "√x";
             TangentButton.Text = "arctan()";
-            TangentButton.FontSize = 18;
             cosineButton.Text = "arccos()";
-            cosineButton.FontSize = 18;
             sineButton.Text = "arcsin()";
-            sineButton.FontSize = 18;
             xybutton.Text = "y√x";
         }
         else
@@ -80,11 +77,8 @@ public partial class MainPage : ContentPage
             EulerButton.Text = "eⁿ";
             LogButton.Text = "LOG";
             TangentButton.Text = "tan()";
-            TangentButton.FontSize = 27;
             cosineButton.Text = "cos()";
-            cosineButton.FontSize = 27;
             sineButton.Text = "sin()";
-            sineButton.FontSize = 27;
             xybutton.Text = "x^y";
         }
 
