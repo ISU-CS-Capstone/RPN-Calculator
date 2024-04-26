@@ -88,7 +88,7 @@ namespace RPNCalculator.Common
             //if there isn't, do nothing
             //try
             //{
-                if (op == "π" || op == "pi")
+                if ((op == "π" || op == "pi") && !error)
                 {
                     hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
                     nStack.Push(Math.PI.ToString());
@@ -96,7 +96,7 @@ namespace RPNCalculator.Common
                     enterPressed = 1;
                     return;
                 }
-                if (op == "e")
+                if (op == "e" && !error)
                 {
                     hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
                     nStack.Push(Math.E.ToString());
@@ -138,14 +138,14 @@ namespace RPNCalculator.Common
 
                     return;
                 }
-                else if (op == "+/-" && nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != ".")
+                else if (op == "+/-" && nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != "." && !error)
                 {
                     nStack.Push((double.Parse(nStack.Pop())*-1).ToString());
                     enterPressed = 0;
                     updateDisplayString();
                     return;
                 }
-                else if (nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != ".")
+                else if (nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != "." && !error)
                 {
                     hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
                     double operand1 = double.Parse(nStack.Pop());
@@ -183,10 +183,10 @@ namespace RPNCalculator.Common
                                     nStack.Push((operand2 * operand1).ToString());
                                     break;
                                 case "/":
-                                    if (operand2 == 0)
+                                    if (operand1 == 0)
                                     {
                                         error = true;
-                                        enterPressed = 2;
+                                        enterPressed = 1;
                                         updateDisplayString();
                                         return;
                                     }
@@ -197,7 +197,14 @@ namespace RPNCalculator.Common
                                     break;
                                 case "y√x":
                                 case "yROOTx":
-                                    nStack.Push(Math.Pow(operand2, 1.0 / operand1).ToString());
+                                    if (operand1 == 0)
+                                    {
+                                        error = true;
+                                        enterPressed = 1;
+                                        updateDisplayString();
+                                        return;
+                                    }
+                                    nStack.Push(Math.Pow(operand1, 1.0 / operand2).ToString());
                                     break;
                             }
                         }
@@ -217,9 +224,23 @@ namespace RPNCalculator.Common
                                 nStack.Push(Math.Tan(operand1).ToString());
                                 break;
                             case "arcsin()":
+                                if (operand1 < -1 || operand1 > 1)
+                                {
+                                    error = true;
+                                    enterPressed = 1;
+                                    updateDisplayString();
+                                    return;
+                                }
                                 nStack.Push(Math.Asin(operand1).ToString());
                                 break;
                             case "arccos()":
+                                if (operand1 < -1 || operand1 > 1)
+                                {
+                                    error = true;
+                                    enterPressed = 1;
+                                    updateDisplayString();
+                                    return;
+                                }
                                 nStack.Push(Math.Acos(operand1).ToString());
                                 break;
                             case "arctan()":
@@ -239,18 +260,48 @@ namespace RPNCalculator.Common
                                 break;
                             case "√x":
                             case "ROOTx":
+                                if (operand1 < 0)
+                                {
+                                    error = true;
+                                    enterPressed = 1;
+                                    updateDisplayString();
+                                    return;
+                                }
                                 nStack.Push(Math.Sqrt(operand1).ToString());
                                 break;
                             case "LOG":
+                                if (operand1 <= 0)
+                                {
+                                    error = true;
+                                    enterPressed = 1;
+                                    updateDisplayString();
+                                    return;
+                                }
                                 nStack.Push(Math.Log10(operand1).ToString());
                                 break;
+                            case "ln":
                             case "LN":
+                                if (operand1 <= 0)
+                                {
+                                    error = true;
+                                    enterPressed = 1;
+                                    updateDisplayString();
+                                    return;
+                                }
                                 nStack.Push(Math.Log(operand1).ToString());
                                 break;
                             case "eⁿ":
                             case "e^n":
                                 nStack.Push(Math.Exp(operand1).ToString());
                                 break;
+                            case "x^2":
+                                nStack.Push(Math.Pow(operand1,2).ToString());
+                                break;
+                            default:
+                                nStack.Push(operand1.ToString());
+                                hist.getHistory();
+                                enterPressed = 0;
+                                return;
                         }
                     }
                 }
@@ -278,8 +329,14 @@ namespace RPNCalculator.Common
         
         public void userDefinedFunction(string function)
         {
+            hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
             double? returnValue = udf.CreateFunction(function, ref nStack.stack);
-            enterPressed = 1;
+            if (returnValue != null)
+            {
+                nStack.Push(returnValue.ToString());
+                updateDisplayString();
+                enterPressed = 1;
+            }
         }
         public int Factorial(int f)
         {
@@ -293,7 +350,7 @@ namespace RPNCalculator.Common
         {
             // Get the stack items
             List<string> stackItems = nStack.GetStackItems();
-            stackItems.RemoveAt(stackItems.Count-1);
+            if (stackItems.Count > 0 && !error) { stackItems.RemoveAt(stackItems.Count - 1); }
 
             // Return the top five items rounded to the same number of decimal places as DisplayString
             return stackItems
