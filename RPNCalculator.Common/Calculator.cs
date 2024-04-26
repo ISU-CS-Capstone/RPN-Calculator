@@ -346,6 +346,12 @@ namespace RPNCalculator.Common
                     return f * Factorial(f - 1);
         }
 
+        /*
+         * Author: Victoria Weir and Craig Price
+         * Description: This gets the top stack from the stack
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public IEnumerable<string> GetTopStackItems()
         {
             // Get the stack items

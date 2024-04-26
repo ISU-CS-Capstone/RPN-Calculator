@@ -6,19 +6,18 @@
 
 <!-- Start of the Frontend Code-->
 
+@*
+    Author: Victoria Weir
+    Description: Frontend design on the Web
+    Responsibility: Set up and design the frontend of the Web on Blazor
+    Certification: I certify that I wrote this code myself.
+*@
+
 <!-- Set the page title -->
 <PageTitle>RPN Calculator</PageTitle>
 
 <!-- Page heading -->
 <h1>RPN Calculator</h1>
-
-@*
-<!-- History container -->
-<div class="history">
-    <!-- Display area for calculator history (not implemented yet but designed) -->
-    <button @onclick="@(() => history(" "))">History</button> <!-- History button -->
-</div>
-*@
 
     <!-- Calculator container -->
 <div class="calculator">
@@ -145,7 +144,7 @@
         <!-- Example of the expected function signature -->
         <p>
             Example Function:
-            public double entryFunction(ref Stack(string) stack)
+            public double entryFunction(ref Stack&lt;string&gt; stack){
             stack.Push(1);
             return stack.Pop(1);
             }
@@ -165,7 +164,6 @@
 
 <!-- Start of the Backend Code-->
 @code {
-
     // Instantiate the calculator
     private RPNCalculator.Common.Calculator calc = new RPNCalculator.Common.Calculator();
     private string displayValue = string.Empty;
@@ -176,6 +174,12 @@
     private bool showCalculator = true;
     private string codeInput = string.Empty;
 
+    @*
+    Author: Victoria Weir
+    Description: Created a asynchornous operation where it runs when called
+    Responsibility: Figure out a way to constantly update the stack list view
+    Certification: I certify that I wrote this code myself.
+*@
     protected override Task OnInitializedAsync()
     {
         // Set up the timer
@@ -189,6 +193,12 @@
         return base.OnInitializedAsync();
     }
 
+    @*
+    Author: Victoria Weir
+    Description: Method to handle the timer elapsed even and then updates the top stack list
+    Responsibility: Continuation of setting up a timer to reload the stack list
+    Certification: I certify that I wrote this code myself.
+*@
     // Method to handle the timer elapsed event
     private void TimerElapsed(object sender, ElapsedEventArgs e)
     {
@@ -196,6 +206,12 @@
         UpdateStackItems();
     }
 
+    @*
+    Author: Victoria Weir
+    Description: Updates the list of top stack
+    Responsibility: Part of the backend and frontend connection to get the top stack items
+    Certification: I certify that I wrote this code myself.
+*@
     // Method to update the list of top stack items
     private void UpdateStackItems()
     {
@@ -206,6 +222,12 @@
         InvokeAsync(StateHasChanged);
     }
 
+    @*
+    Author: Victoria Weir
+    Description: Backend on the Web
+    Responsibility: Connect the backend common to web backend for the next following four methods
+    Certification: I certify that I wrote this code myself.
+*@
     // Method to add a number to the calculator
     private void AddNumber(string number)
     {
@@ -238,22 +260,45 @@
 
     }
 
+    @*
+    Author: Victoria Weir
+    Description: Stop timer and releases all rescources used by the system
+    Responsibility: Part of the timer
+    Certification: I certify that I wrote this code myself.
+*@
     // Dispose method to stop the timer and prevent memory leaks
     public void Dispose()
     {
         timer?.Dispose();
     }
 
+    @*
+    Author: Victoria Weir
+    Description: Backend connection to frontend. Makes sure that once toggle view can change back and forth
+    Responsibility: Visual changes when pushing the button. Connecting the backend to frontend
+    Certification: I certify that I wrote this code myself.
+*@
     // Method to toggle between calculator view and code input view
     private void ToggleView()
     {
         showCalculator = !showCalculator;
     }
 
-    // Property to dynamically change the text of the toggle button based on the current view
+    @*
+    Author: Victoria Weir
+    Description: This changes the two different views. ? is a short way of doing if-else statements. 
+    Responsibility: Visual change to the frontend and connect it to backend.
+    Certification: I certify that I wrote this code myself.
+*@
+    // Property to change the text of the toggle button based on the current view
     private string ToggleViewButtonText => showCalculator ? "Switch to Input Code" : "Switch to Calculator View";
 
-
+    @*
+    Author: Craig Price
+    Description: Connect the backend common's custom function to web backend
+    Responsibility: User defined function for the backend
+    Certification: I certify that I wrote this code myself.
+*@
     // Property to bind the user input for the custom function
     private string customFunctionCode { get; set; }
 
