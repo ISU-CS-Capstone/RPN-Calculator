@@ -29,10 +29,14 @@
             <h2>Stack</h2>
             <div class="stack-container">
                 <ul>
-                    @foreach (var item in stackItems)
-                    {
-                        <li>@item</li>
-                    }
+                    @{
+                        var ending = new[] { "st", "nd", "rd", "th", "th" };
+                        var itemCount = stackItems.Count;
+                        for(int i = 0; i<stackItems.Count; i++){
+                            var index = itemCount - i;
+                            <li>@index@(ending[Math.Min(index -1, 4)]): @stackItems[i]</li>
+                        }
+                     }
                 </ul>
             </div>
         </div>
@@ -83,7 +87,7 @@
         <div class="row">
             <button class="operator" @onclick="@(() => AddOperator("x"))">x</button>
             <button class="operator" @onclick="@(() => AddOperator("LN"))">ln</button>
-            <button class="operator" @onclick="@(() => AddOperator("e^x"))">e^x</button>
+            <button class="operator" @onclick="@(() => AddOperator("eⁿ"))">e^x</button>
             <button class="operator" @onclick="@(() => AddOperator("x^2"))">x^2</button>
         </div>
 
@@ -95,7 +99,7 @@
         </div>
 
         <div class="row">
-            <button class="operator" @onclick="@(() => AddOperator("√ x"))">√ x</button>
+            <button class="operator" @onclick="@(() => AddOperator("√x"))">√ x</button>
             <button @onclick="@(() => AddNumber("8"))">8</button>
             <button @onclick="@(() => AddNumber("5"))">5</button>
             <button @onclick="@(() => AddNumber("2"))">2</button>
@@ -136,12 +140,23 @@
     else{
     <!-- Alternative view for inputting code -->
     <div class="userDefineFunction">
-        <p>Custom Function Input: write your custom function below.</p>
+        <p>Custom Function Input: Write your custom function below.</p>
 
-        <p>public double CustomFunction(Stack stack){</p>
+        <!-- Example of the expected function signature -->
+        <p>
+            Example Function:
+            public double entryFunction(ref Stack(string) stack)
+            stack.Push(1);
+            return stack.Pop(1);
+            }
+        </p>
+
+        <p>public class Calculator{</p>
+
         <!-- Text area for user to input custom function -->
         <textarea id="customFunctionTextArea" @bind="customFunctionCode" rows="10" cols="50"></textarea>
         <p>}</p>
+
         <!-- Button to compile and run the custom function -->
         <button @onclick="CompileAndRun">Compile and Run</button>
     </div>
