@@ -29,8 +29,30 @@ namespace RPNCalculator.Desktop
         // change text box to be new content as the class updates the display string
         private void UpdateDisplay()
         {
+            // Get the value of the stack and display it
+            IEnumerable<string> stackValues = calculator.GetTopStackItems();
+
+            // Convert IEnumerable to List to access by index
+            List<string> stackValuesList = stackValues.ToList();
+
+            // Limit the display to the top 5 stack items, if more than 5
+            int displayCount = Math.Min(stackValuesList.Count, 5);
+
+            string display = "";
+            // Start from the top of the stack and append downwards
+            for (int i = displayCount - 1; i >= 0; i--)
+            {
+                // Append each value followed by a newline, top of the stack will be at the bottom
+                display += stackValuesList[i] + "\n";
+            }
+
+            // Assuming there is a property called DisplayText for data binding
+            StackDisplay.Text = display.TrimEnd();  // Set the built string to the DisplayText property, trimming any trailing newline
+
+            // Notify UI that DisplayText has changed
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayText)));
         }
+
         private void DigitButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -66,10 +88,30 @@ namespace RPNCalculator.Desktop
             this.Close();
         }
 
+        private void CompileButton_Click(object sender, RoutedEventArgs e)
+        {
+            calculator.userDefinedFunction(FunctionTextbox.Text);
+            FunctionTextbox.Text = "";
+            UpdateDisplay();
+        }
+
+        private void DecreaseFloatButton_Click(object sender, RoutedEventArgs e)
+        {
+            calculator.pressOperator("addFloat");
+            UpdateDisplay();
+        }
+
+        private void IncreaseFloatButton_Click(object sender, RoutedEventArgs e)
+        {
+            calculator.pressOperator("removeFloat");
+            UpdateDisplay();
+        }
+
         
         // Handle input of operators, numpad, enter, etc...
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            if (CalcButtonBorder.Visibility == Visibility.Collapsed) return; // don't capture input's if typing into user defined textbox
             base.OnKeyDown(e);
             bool shiftPressed = e.KeyboardDevice.IsKeyDown(Key.LeftShift) || e.KeyboardDevice.IsKeyDown(Key.RightShift); // capture shift input to allow operators on main keyboard base
 
@@ -128,5 +170,16 @@ namespace RPNCalculator.Desktop
             }
             UpdateDisplay();
         }
+        private void ToggleViewButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CalcButtonBorder.Visibility = Visibility.Collapsed;  // Hide the calculator
+            UserFunctionBorder.Visibility = Visibility.Visible;     // Show the textbox
+        }
+
+        private void ToggleViewButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CalcButtonBorder.Visibility = Visibility.Visible;   // Show the calculator
+            UserFunctionBorder.Visibility = Visibility.Collapsed;  // Hide the textbox
+        }        
     }
 }
