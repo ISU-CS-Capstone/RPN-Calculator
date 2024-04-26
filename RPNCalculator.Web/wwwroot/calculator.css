@@ -2,12 +2,14 @@
 .calculator {
     display: flex; /* Use flexbox to fill the available space */
     flex-direction: column; /* Arrange children vertically */
-    height: 100vh; /* Set height to 100% of the viewport height */
+    height: 85vh; /* Set height to 100% of the viewport height */
     width: 100%; /* Set width to 100% of the viewport width */
     justify-content: center; /* Center the calculator vertically */
     align-items: center; /* Center the calculator horizontally */
     padding: 5px; /* Add padding for better appearance */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .float {
