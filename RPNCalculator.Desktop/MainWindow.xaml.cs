@@ -30,11 +30,11 @@ namespace RPNCalculator.Desktop
         private void UpdateDisplay()
         {
             // Get the value of the stack and display it
-            IEnumerable<string> stackValues = calculator.GetTopStackItems();
+            IEnumerable<string>? stackValues = calculator.GetTopStackItems();
 
             // Convert IEnumerable to List to access by index
             List<string> stackValuesList = stackValues.ToList();
-            
+
             // Initialize display with 5 newlines
             string display = "\n\n\n\n\n";
 
@@ -46,7 +46,7 @@ namespace RPNCalculator.Desktop
                 {
                     display = display.Substring(1); // Remove one newline character for each additional item
                 }
-    
+
                 display += stackValuesList[i] + "\n"; // Append the item followed by a newline
             }
 
@@ -54,10 +54,8 @@ namespace RPNCalculator.Desktop
             {
                 display = display.TrimEnd('\n');
             }
-
             // Assuming there is a property called DisplayText for data binding
             StackDisplay.Text = display.TrimEnd();  // Set the built string to the DisplayText property, trimming any trailing newline
-
             // Notify UI that DisplayText has changed
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayText)));
         }
@@ -75,6 +73,7 @@ namespace RPNCalculator.Desktop
         {
             var button = (Button)sender;
             string? cmd = button.Tag.ToString();
+            Console.WriteLine(cmd);
             if (cmd == null)
             {
                 Console.WriteLine("Invalid tag for input button: " + button.Tag);
@@ -90,7 +89,6 @@ namespace RPNCalculator.Desktop
         }
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(((Button)sender).Tag);
             calculator.pressClear();
             UpdateDisplay();
         }
