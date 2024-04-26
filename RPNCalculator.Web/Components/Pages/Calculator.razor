@@ -67,7 +67,7 @@
         <!-- Repeat similar structure for other column of buttons -->
         <!-- Each button has an associated onclick event handler -->
         <div class="row">
-            <button class="operator" @onclick="@(() => AddOperator(null))">+/-</button>
+            <button class="operator" @onclick="@(() => AddOperator("+/-"))">+/-</button>
             <button class="operator" @onclick="@(() => AddOperator("cos()"))">cos()</button>
             <button class="operator" @onclick="@(() => AddOperator("arccos()"))">arccos()</button>
             <button class="operator" @onclick="@(() => AddOperator("x!"))">x!</button>

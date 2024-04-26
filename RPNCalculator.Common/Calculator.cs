@@ -248,6 +248,7 @@ namespace RPNCalculator.Common
         {
             // Get the stack items
             List<string> stackItems = nStack.GetStackItems();
+            stackItems.RemoveAt(stackItems.Count-1);
 
             // Return the top five items rounded to the same number of decimal places as DisplayString
             return stackItems
