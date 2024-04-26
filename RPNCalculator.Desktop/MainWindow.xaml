@@ -88,45 +88,45 @@
             <UniformGrid Rows="9" Columns="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <!-- Row 1 -->
                 <Button Content="CLR" Click="ClearButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="+/-" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="y√x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="e" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="+/-" Tag="+/-" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="y√x" Tag="yROOTx" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="e" Tag="e" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
 
                 <!-- Row 2 -->
-                <Button Content="sin()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="cos()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="tan()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="ln" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="sin()" Tag="sin()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="cos()" Tag="cos()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="tan()" Tag="tan()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="ln" Tag="ln" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
                 
                 <!-- Row 3 -->
-                <Button Content="arcsin()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="arccos()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="arctan()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="e^x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="arcsin()" Tag="arcsin()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="arccos()" Tag="arccos()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="arctan()" Tag="arctan()" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="e^x" Tag="e^x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
                 
                 <!-- Row 4 -->
-                <Button Content="π" Click="DigitButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="x!" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="x^y" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="x^2" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="π" Tag="pi" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="x!" Tag="x!" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="x^y" Tag="x^y" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="x^2" Tag="x^2" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
                 
                 <!-- Row 5 -->
-                <Button Content="log" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="√x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
-                <Button Content="/" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}"/>
-                <Button Content="x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="log" Tag="log" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="√x" Tag="ROOTx" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="/" Tag="/" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}"/>
+                <Button Content="x" Tag="x" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
                 
                 <!-- Row 6 -->
                 <Button Content="7" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
                 <Button Content="8" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
                 <Button Content="9" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
-                <Button Content="-" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="-" Tag="-" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
 
                 <!-- Row 7 -->
                 <Button Content="4" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
                 <Button Content="5" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
                 <Button Content="6" Click="DigitButton_Click" Style="{StaticResource DigitButtonStyle}" />
-                <Button Content="+" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
+                <Button Content="+" Tag="+" Click="OperatorButton_Click" Style="{StaticResource OperationButtonStyle}" />
 
                 <!-- Row 8 -->
                 <Button Content="1" Click="DigitButton_Click"  Style="{StaticResource DigitButtonStyle}"/>

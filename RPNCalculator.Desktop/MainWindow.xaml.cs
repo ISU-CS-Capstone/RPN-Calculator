@@ -73,12 +73,15 @@ namespace RPNCalculator.Desktop
         }
         private void OperatorButton_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            if (button != null)
+            var button = (Button)sender;
+            string? cmd = button.Tag.ToString();
+            if (cmd == null)
             {
-                calculator.pressOperator(button.Content.ToString()); // add operator to calc
-                UpdateDisplay();
+                Console.WriteLine("Invalid tag for input button: " + button.Tag);
+                return;
             }
+            calculator.pressOperator(cmd); // add operator to calc
+            UpdateDisplay();
         }
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
@@ -87,6 +90,7 @@ namespace RPNCalculator.Desktop
         }
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine(((Button)sender).Tag);
             calculator.pressClear();
             UpdateDisplay();
         }
