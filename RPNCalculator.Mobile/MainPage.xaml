@@ -5,67 +5,92 @@
     Padding="{OnPlatform iOS='0,20,0,0'}"
     BackgroundColor="{DynamicResource SecondaryColor}">
     <Grid>
-        <Grid x:Name="functionDisplay" Padding="5" IsVisible="False">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+        <Border Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    x:Name="stack"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="1"
+                    FontSize="20"
+                    TextColor="Black"
+                    BackgroundColor="LightGray"/>
+                <Label
+                    x:Name="result"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Padding="5"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="End"
+                    VerticalOptions="FillAndExpand"
+                    FontSize="48"
+                    TextColor="Black"/>
+            </Grid>
+        </Border>
 
-            </Grid.ColumnDefinitions>
+        <Border x:Name="FunctionBorder" Grid.Row="1" IsVisible="False">
+            <Grid x:Name="functionDisplay" Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Button
-            Grid.Row="0"
-            Grid.Column="3"
-            Grid.ColumnSpan="2"
-            BackgroundColor="DarkGray"
-            CornerRadius="0"
-            FontSize="20"
-            Text="Toggle"
-            Clicked="Toggle"
-            TextColor="Red"
-            />
-            <Label Grid.Row="1"
-                   />
-            <Label Grid.Row="2"
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Text="Toggle"
+                    Clicked="Toggle"
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+                <Label Grid.Row="1"/>
+                <Label Grid.Row="2"
                    Grid.ColumnSpan="4"
                    Text="Custom Function Instructions"
                    FontAttributes="Bold"
                    HorizontalOptions="Start" 
                    VerticalOptions="Center" 
                    FontSize="26"/>
-            <Label Grid.Row="3"
-                   />
-            <Label Grid.Row="4"
+                <Label Grid.Row="3"/>
+                <Label Grid.Row="4"
                    Grid.ColumnSpan="4"
                    Text="Write your custom function below:"
                    FontSize="18"
                    HorizontalOptions="Start" 
                    VerticalOptions="Center"/>
-            <Label Grid.Row="5"/>
-            <Label Grid.Row="6"
+                <Label Grid.Row="5"/>
+                <Label Grid.Row="6"
                    Grid.ColumnSpan="4"
                    Text="public double CustomFunction(Stack stack) ["
                    FontSize="18"
@@ -73,305 +98,291 @@
                    VerticalOptions="Center"
                    TextColor="HotPink"/>
 
-            <Editor x:Name="functionEditor"
-            Grid.Row="8"
-            Grid.ColumnSpan="4"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand"
-            FontSize="16"
-            BackgroundColor="White"
-            TextColor="Black"
-            Placeholder ="Enter function logic here"
-            AutoSize="TextChanges"
-            />
+                <Editor x:Name="functionEditor"
+                    Grid.Row="8"
+                    Grid.ColumnSpan="4"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    FontSize="16"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    Placeholder="Enter function logic here"
+                    AutoSize="TextChanges"
+                />
 
-            <Label Grid.Row="10"
-                  Grid.ColumnSpan="4"
-                  FontSize="18"
-                  Text="]"
-                  TextColor="HotPink"/>
-            <Label Grid.Row="11"/>
-            <Button
-                Grid.Row="12"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                BackgroundColor="DarkGray"
-                CornerRadius="0"
-                FontSize="20"
-                Text="Compile and Run" 
-                TextColor="Red"/>
-        </Grid>
-        
+                <Label Grid.Row="10"
+                   Grid.ColumnSpan="4"
+                   FontSize="18"
+                   Text="]"
+                   TextColor="HotPink"/>
+                <Label Grid.Row="11"/>
+                <Button
+                    Grid.Row="12"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Compile and Run" 
+                    Clicked="CompileButton_Click"
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"  
+                    />
+            </Grid>
+        </Border>
+
         <!-- Start of Calculator UI-->
-        <Grid x:Name="calculatorGrid"
-        Padding="5,0"
-        IsVisible="True">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Border x:Name="CalculatorBorder" Grid.Row="1" IsVisible="True">
+            <Grid x:Name="calculatorGrid"
+            Padding="5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <!-- Start Row 0 -->
-            <Label
-                x:Name="stack"
-                Grid.Row="0"
-                Padding="1"
-                FontSize="20"
-                TextColor="Black"
-                BackgroundColor="LightGray"/>
-            <Label
-                x:Name="result"
-                Grid.Row="0"
-                Grid.Column="3"
-                Padding="5"
-                HorizontalOptions="FillAndExpand"
-                HorizontalTextAlignment="End"
-                VerticalOptions="FillAndExpand"
-                FontSize="48"
-                TextColor="Black"/>
-            <!-- Start Row 1 -->
-            <Button
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Text="Toggle"
-                Clicked="Toggle"
-                Style="{StaticResource SecondaryOperatorButtonStyle}"
-                />
-            <Button
-                Grid.Row="1"
-                Grid.ColumnSpan="1"
-                Grid.Column="2"
-                Text="0.0←"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="1"
-                Grid.ColumnSpan="1"
-                Grid.Column="3"
-                Text="0.0→"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <!-- Start Row 2 -->
-            <Button
-                Grid.Row="2"
-                Grid.ColumnSpan="2"
-                Grid.Column="0"
-                Text="Shift"
-                Clicked="ShiftButtonClick"
-                Style="{StaticResource PrimaryOperatorButtonStyle}"
-                />
-            <Button
-                Grid.Row="2"
-                Grid.ColumnSpan="1"
-                Grid.Column="2"
-                Text="Undo"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource PrimaryOperatorButtonStyle}"
-                />
-            <Button
-                x:Name="xybutton"
-                Grid.Row="2"
-                Grid.Column="4"
-                FontSize="27"
-                Text="x^y"
-                Clicked="OperatorButton_Clicked" 
-                Style="{StaticResource SecondaryOperatorButtonStyle}"
-                />
-            <!-- Start Row 3 -->
-            <Button
-                Grid.Row="3"
-                Grid.Column="0"
-                Grid.ColumnSpan="1"
-                Text="CLR" 
-                Clicked="ClearButton_Clicked" 
-                Style="{StaticResource PrimaryOperatorButtonStyle}"
-                />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!-- Start Row 0 -->
 
-            <Button
-                x:Name="sineButton"
-                Grid.Row="3"
-                Grid.Column="1"
-                Text="sin()"
-                Clicked="OperatorButton_Clicked" 
-                Style="{StaticResource PrimaryOperatorButtonStyle}"
-                />
-            <Button
-                x:Name="cosineButton"
-                Grid.Row="3"
-                Grid.Column="2"
-                Text="cos()"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource PrimaryOperatorButtonStyle}"
-                />
-            <Button
-                x:Name="TangentButton"
-                Grid.Row="3"
-                Grid.Column="3"
-                Text="tan()"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource SecondaryOperatorButtonStyle}"
-                />
-            <!-- Start Row 4 -->
-            <Button
-                x:Name="LogButton"
-                Grid.Row="4"
-                Grid.Column="0"
-                Text="LOG"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource PrimaryOperatorButtonStyle}"
-                />
-            <Button
-                x:Name="PiButton"
-                Grid.Row="4"
-                Grid.Column="1"
-                Text="π"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource PrimaryOperatorButtonStyle}"
-                />
-            <Button
-                x:Name="EulerButton"
-                Grid.Row="4"
-                Grid.Column="2"
-                Text="e^n"
-                Clicked="OperatorButton_Clicked" 
-                Style="{StaticResource PrimaryOperatorButtonStyle}"
-                />
-            <Button
-                Grid.Row="4"
-                Grid.Column="3"
-                Text="/"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource SecondaryOperatorButtonStyle}"
-                />
-            <!-- Start Row 5 -->
-            <Button
-                Grid.Row="5"
-                Grid.Column="0"
-                Text="7"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="5"
-                Grid.Column="1"
-                Text="8"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="5"
-                Grid.Column="2"
-                Text="9"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="5"
-                Grid.Column="3"
-                Text="x"
-                Clicked="OperatorButton_Clicked" 
-                Style="{StaticResource SecondaryOperatorButtonStyle}"
-                />
-            <!-- Start Row 6 -->
-            <Button
-                Grid.Row="6"
-                Grid.Column="0"
-                Text="4"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="6"
-                Grid.Column="1"
-                Text="5"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="6"
-                Grid.Column="2"
-                Text="6"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="6"
-                Grid.Column="3"
-                Text="-"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource SecondaryOperatorButtonStyle}"
-                />
-            <!-- Start Row 7 -->
-            <Button
-                Grid.Row="7"
-                Grid.Column="0"
-                Text="1"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="7"
-                Grid.Column="1"
-                Text="2"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="7"
-                Grid.Column="2"
-                Text="3"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"/>
-            <Button
-                Grid.Row="7"
-                Grid.Column="3"
-                Text="+"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource SecondaryOperatorButtonStyle}"
-                />
-            <!-- Start Row 8 -->
-            <Button
-                Grid.Row="8"
-                Grid.Column="0"
-                Grid.ColumnSpan="1"
-                Text="0"
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"/>
-            <Button
-                Grid.Row="8"
-                Grid.Column="1"
-                Text="."
-                Clicked="NumberButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="8"
-                Grid.Column="2"
-                Text="+/-"
-                Clicked="OperatorButton_Clicked"
-                Style="{StaticResource NumberButtonStyle}"
-                />
-            <Button
-                Grid.Row="8"
-                Grid.Column="3"
-                Text="Enter"
-                Clicked="EnterButton_Clicked"
-                Style="{StaticResource SecondaryOperatorButtonStyle}"
-                />
-        </Grid>
+                <!-- Start Row 1 -->
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Toggle"
+                    Clicked="Toggle"
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="0"
+                    Grid.ColumnSpan="1"
+                    Grid.Column="2"
+                    Text="0.0←"
+                    Clicked="DecreaseFloatButton_Click"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="0"
+                    Grid.ColumnSpan="1"
+                    Grid.Column="3"
+                    Text="0.0→"
+                    Clicked="IncreaseFloatButton_Click"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <!-- Start Row 2 -->
+                <Button
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0"
+                    Text="Shift"
+                    Clicked="ShiftButtonClick"
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="1"
+                    Grid.ColumnSpan="1"
+                    Grid.Column="2"
+                    Text="Undo"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"
+                    />
+                <Button
+                    x:Name="xybutton"
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    FontSize="27"
+                    Text="x^y"
+                    Clicked="OperatorButton_Clicked" 
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+                <!-- Start Row 3 -->
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="1"
+                    Text="CLR" 
+                    Clicked="ClearButton_Clicked" 
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"
+                    />
+
+                <Button
+                    x:Name="sineButton"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="sin()"
+                    Clicked="OperatorButton_Clicked" 
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"
+                    />
+                <Button
+                    x:Name="cosineButton"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Text="cos()"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"
+                    />
+                <Button
+                    x:Name="TangentButton"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Text="tan()"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+                <!-- Start Row 4 -->
+                <Button
+                    x:Name="LogButton"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Text="LOG"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"
+                    />
+                <Button
+                    x:Name="PiButton"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="π"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"
+                    />
+                <Button
+                    x:Name="EulerButton"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Text="e^n"
+                    Clicked="OperatorButton_Clicked" 
+                    Style="{StaticResource PrimaryOperatorButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Text="/"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+                <!-- Start Row 5 -->
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Text="7"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text="8"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Text="9"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="3"
+                    Text="x"
+                    Clicked="OperatorButton_Clicked" 
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+                <!-- Start Row 6 -->
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Text="4"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text="5"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Text="6"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="3"
+                    Text="-"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+                <!-- Start Row 7 -->
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Text="1"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Text="2"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Text="3"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"/>
+                <Button
+                    Grid.Row="6"
+                    Grid.Column="3"
+                    Text="+"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+                <!-- Start Row 8 -->
+                <Button
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="1"
+                    Text="0"
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"/>
+                <Button
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Text="."
+                    Clicked="NumberButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    Text="+/-"
+                    Clicked="OperatorButton_Clicked"
+                    Style="{StaticResource NumberButtonStyle}"
+                    />
+                <Button
+                    Grid.Row="7"
+                    Grid.Column="3"
+                    Text="Enter"
+                    Clicked="EnterButton_Clicked"
+                    Style="{StaticResource SecondaryOperatorButtonStyle}"
+                    />
+            </Grid>
+        </Border>
     </Grid>
 </ContentPage>
