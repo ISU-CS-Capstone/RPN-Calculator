@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Padding="{OnPlatform iOS='0,20,0,0'}"
-    BackgroundColor="{DynamicResource SecondaryColor}">
+    BackgroundColor="{DynamicResource SecondaryColor}
+    ">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="300" />
@@ -13,7 +14,7 @@
         <Border Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.15*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label
@@ -48,7 +49,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -122,6 +123,7 @@
                     Grid.ColumnSpan="2"
                     Text="Compile and Run" 
                     Clicked="CompileButton_Click"
+                    FontSize="15"
                     Style="{StaticResource PrimaryOperatorButtonStyle}"  
                     />
             </Grid>
