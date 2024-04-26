@@ -42,7 +42,7 @@ namespace RPNCalculator.Common
             {
                 DisplayString = "";
             }
-            if (nStack.Count() > 0 && ((nStack.Peek()[nStack.Peek().Length - 1] == '.') || numFloats == 0 && nStack.Peek().Contains('.'))) { DisplayString += "."; }
+            if (nStack.Count() > 0 && nStack.Peek().Length > 0 && ((nStack.Peek()[nStack.Peek().Length - 1] == '.') || (numFloats == 0 && nStack.Peek().Contains('.')))) { DisplayString += "."; }
         }
 
         //This method will be called when a number is pressed, and will update the DisplayString
@@ -209,6 +209,9 @@ namespace RPNCalculator.Common
                             break;
                         case "eⁿ":
                             nStack.Push(Math.Exp(operand1).ToString());
+                            break;
+                        case "+/-":
+                            nStack.Push((-1*operand1).ToString());
                             break;
                     }
                 }
