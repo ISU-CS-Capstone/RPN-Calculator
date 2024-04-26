@@ -7,7 +7,7 @@
     <Style x:Key="NumberButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="#363737"/>
         <Setter Property="TextColor" Value="White"/>
-        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontSize" Value="22"/>
         <Setter Property="CornerRadius" Value="5"/>
         <Setter Property="BorderWidth" Value="1"/>
         <Setter Property="BorderColor" Value="Black"/>
@@ -18,7 +18,7 @@
     <Style x:Key="PrimaryOperatorButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="DarkGray"/>
         <Setter Property="TextColor" Value="White"/>
-        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontSize" Value="22"/>
         <Setter Property="CornerRadius" Value="5"/>
         <Setter Property="BorderWidth" Value="1"/>
         <Setter Property="BorderColor" Value="Black"/>
@@ -29,7 +29,7 @@
     <Style x:Key="SecondaryOperatorButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="Orange"/>
         <Setter Property="TextColor" Value="White"/>
-        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontSize" Value="22"/>
         <Setter Property="CornerRadius" Value="5"/>
         <Setter Property="BorderWidth" Value="1"/>
         <Setter Property="BorderColor" Value="Black"/>
