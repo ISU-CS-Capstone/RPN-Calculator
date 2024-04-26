@@ -210,6 +210,9 @@ namespace RPNCalculator.Common
                         case "eⁿ":
                             nStack.Push(Math.Exp(operand1).ToString());
                             break;
+                        case "+/-":
+                            nStack.Push((-1*operand1).ToString());
+                            break;
                     }
                 }
             }
