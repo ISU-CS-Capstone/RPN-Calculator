@@ -54,6 +54,7 @@
                       Foreground="#ffD0D0D0"
                       FontWeight="Bold"
                       VerticalAlignment="Top"
+                      KeyboardNavigation.AcceptsReturn="False"
                       Checked="ToggleViewButton_Checked" 
                       Unchecked="ToggleViewButton_Unchecked" />
         <Button Grid.Row="0" x:Name="DocumentationButton" Content="?" Click="DocumentationButton_Click" Width="30" Height="30" 

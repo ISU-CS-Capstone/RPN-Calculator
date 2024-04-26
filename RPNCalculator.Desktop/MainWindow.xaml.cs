@@ -34,16 +34,25 @@ namespace RPNCalculator.Desktop
 
             // Convert IEnumerable to List to access by index
             List<string> stackValuesList = stackValues.ToList();
+            
+            // Initialize display with 5 newlines
+            string display = "\n\n\n\n\n";
 
             // Limit the display to the top 5 stack items, if more than 5
-            int displayCount = Math.Min(stackValuesList.Count, 5);
-
-            string display = "";
-            // Start from the top of the stack and append downwards
-            for (int i = displayCount - 1; i >= 0; i--)
+            for (int i = 0; i < stackValuesList.Count && i < 5; i++)
             {
-                // Append each value followed by a newline, top of the stack will be at the bottom
-                display += stackValuesList[i] + "\n";
+                // Adjust the number of leading newlines based on the number of items
+                if (i > 0)
+                {
+                    display = display.Substring(1); // Remove one newline character for each additional item
+                }
+    
+                display += stackValuesList[i] + "\n"; // Append the item followed by a newline
+            }
+
+            if (display.EndsWith("\n")) // trail whitespace to look nicer
+            {
+                display = display.TrimEnd('\n');
             }
 
             // Assuming there is a property called DisplayText for data binding
