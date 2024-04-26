@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 //using Android.Telecom;
 using System.Collections;
@@ -13,7 +13,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 //using Java.Util;
 
-namespace RPNCalculator.Mobile;
+namespace RPN_Calculator.Mobile;
 
 public partial class MainPage : ContentPage
 {

@@ -36,7 +36,7 @@ namespace RPNCalculator.Desktop
             var button = sender as Button;
             if (button != null)
             {
-                calculator.PressNumber(Convert.ToChar(button.Content)); // add number to calculator
+                calculator.pressNumber(Convert.ToChar(button.Content)); // add number to calculator
                 UpdateDisplay();
             }
         }
@@ -45,18 +45,18 @@ namespace RPNCalculator.Desktop
             var button = sender as Button;
             if (button != null)
             {
-                calculator.PressOperator(Convert.ToChar(button.Content)); // add operator to calc
+                calculator.pressOperator(button.Content.ToString()); // add operator to calc
                 UpdateDisplay();
             }
         }
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            calculator.PressEnter();
+            calculator.pressEnter();
             UpdateDisplay();
         }
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            calculator.Clear();
+            calculator.pressClear();
             UpdateDisplay();
         }
         private void DocumentationButton_Click(object sender, RoutedEventArgs e)
@@ -76,11 +76,11 @@ namespace RPNCalculator.Desktop
             // Handle Numbers
             if (e.Key >= Key.D0 && e.Key <= Key.D9 && !shiftPressed) // Main keyboard numbers, no shift pressed
             {
-                calculator.PressNumber((char)('0' + e.Key - Key.D0));
+                calculator.pressNumber((char)('0' + e.Key - Key.D0));
             }
             else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) // Numpad numbers
             {
-                calculator.PressNumber((char)('0' + e.Key - Key.NumPad0));
+                calculator.pressNumber((char)('0' + e.Key - Key.NumPad0));
             }
             // Handle + and -
             else if (shiftPressed)
@@ -89,11 +89,11 @@ namespace RPNCalculator.Desktop
                 {
                     case Key.OemPlus:
                     case Key.Add:
-                        calculator.PressOperator('+');
+                        calculator.pressOperator("+");
                         break;
                     case Key.OemMinus:
                     case Key.Subtract:
-                        calculator.PressOperator('-');
+                        calculator.pressOperator("-");
                         break;
                 }
             }
@@ -102,14 +102,14 @@ namespace RPNCalculator.Desktop
                 switch (e.Key)
                 {
                     case Key.Multiply:
-                        calculator.PressOperator('*');
+                        calculator.pressOperator("*");
                         break;
                     case Key.Divide:
                     case Key.OemQuestion:
-                        calculator.PressOperator('/');
+                        calculator.pressOperator("/");
                         break;
                     case Key.Enter:
-                        calculator.PressEnter();
+                        calculator.pressEnter();
                         break;
                 }
             }
@@ -119,10 +119,10 @@ namespace RPNCalculator.Desktop
                 switch (e.Key)
                 {
                     case Key.D8: // shift + 8
-                        calculator.PressOperator('*');
+                        calculator.pressOperator("*");
                         break;
                     case Key.OemPlus: // shift + =
-                        calculator.PressOperator('+');
+                        calculator.pressOperator("+");
                         break;
                 }
             }
