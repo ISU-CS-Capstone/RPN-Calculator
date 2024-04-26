@@ -5,38 +5,38 @@
     Padding="{OnPlatform iOS='0,20,0,0'}"
     BackgroundColor="{DynamicResource SecondaryColor}">
     <Grid>
-    <Grid x:Name="functionDisplay" Padding="5" IsVisible="True">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+        <Grid x:Name="functionDisplay" Padding="5" IsVisible="False">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
 
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
 
-        </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
 
-        <Button
+            <Button
             Grid.Row="0"
             Grid.Column="3"
             Grid.ColumnSpan="2"
@@ -47,25 +47,25 @@
             Clicked="Toggle"
             TextColor="Red"
             />
-        <Label Grid.Row="1"
+            <Label Grid.Row="1"
                    />
-        <Label Grid.Row="2"
+            <Label Grid.Row="2"
                    Grid.ColumnSpan="4"
                    Text="Custom Function Instructions"
                    FontAttributes="Bold"
                    HorizontalOptions="Start" 
                    VerticalOptions="Center" 
                    FontSize="26"/>
-        <Label Grid.Row="3"
+            <Label Grid.Row="3"
                    />
-        <Label Grid.Row="4"
+            <Label Grid.Row="4"
                    Grid.ColumnSpan="4"
                    Text="Write your custom function below:"
                    FontSize="18"
                    HorizontalOptions="Start" 
                    VerticalOptions="Center"/>
-        <Label Grid.Row="5"/>
-        <Label Grid.Row="6"
+            <Label Grid.Row="5"/>
+            <Label Grid.Row="6"
                    Grid.ColumnSpan="4"
                    Text="public double CustomFunction(Stack stack) ["
                    FontSize="18"
@@ -73,7 +73,7 @@
                    VerticalOptions="Center"
                    TextColor="HotPink"/>
 
-        <Editor x:Name="functionEditor"
+            <Editor x:Name="functionEditor"
             Grid.Row="8"
             Grid.ColumnSpan="4"
             HorizontalOptions="FillAndExpand"
@@ -85,13 +85,13 @@
             AutoSize="TextChanges"
             />
 
-        <Label Grid.Row="10"
+            <Label Grid.Row="10"
                   Grid.ColumnSpan="4"
                   FontSize="18"
                   Text="]"
                   TextColor="HotPink"/>
-        <Label Grid.Row="11"/>
-        <Button
+            <Label Grid.Row="11"/>
+            <Button
             Grid.Row="12"
             Grid.Column="0"
             Grid.ColumnSpan="2"
@@ -101,56 +101,82 @@
             Text="Compile and Run" 
             TextColor="Red"
             />
-    </Grid>
-    <Grid x:Name="calculatorGrid"
+        </Grid>
+        <Grid x:Name="calculatorGrid"
         Padding="5,0"
         ColumnSpacing="1"
         RowSpacing="1"
-        IsVisible="False">
+        IsVisible="True">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <Grid.RowDefinitions>
 
-
-
-
-
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-
-        </Grid.ColumnDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
 
 
-        <Label
-            x:Name="result"
+
+
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+            <Label
+        x:Name="stack"
+        Grid.Row="1"
+        Grid.RowSpan="1"
+        Grid.Column="0"
+        Grid.ColumnSpan="2"
+        Padding="1"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        FontSize="20"
+        TextColor="Black"
+        BackgroundColor="LightGray"/>
+
+
+
+
+            <Label
             Grid.Row="0"
             Grid.ColumnSpan="4"
-
+            Padding="1"
             BackgroundColor="White"
             FontAttributes="Bold"
-            FontSize="48"
-            HorizontalTextAlignment="End"
+            FontSize="25"
+            HorizontalTextAlignment="Start"
             LineBreakMode="NoWrap"
-            Text=" "
+            Text="Stack "
             TextColor="Black"
             VerticalTextAlignment="Center"/>
+            <Label
+                x:Name="result"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Grid.Column="3"
+                Padding="5"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="End"
+                VerticalOptions="FillAndExpand"
+                FontSize="48"
+                TextColor="Black"/>
 
 
-        <Button
-            Grid.Row="3"
+            <Button
+            Grid.Row="4"
             Grid.Column="0"
             Grid.ColumnSpan="1"
             BackgroundColor="DarkGray"
@@ -161,9 +187,9 @@
             Clicked="ClearButton_Clicked"
             />
 
-        <Button
+            <Button
             x:Name="sineButton"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -171,9 +197,9 @@
             Text="sin()"
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
-        <Button
+            <Button
             x:Name="cosineButton"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -181,9 +207,9 @@
             Text="cos()"
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
-        <Button
+            <Button
             x:Name="TangentButton"
-            Grid.Row="3"
+            Grid.Row="4"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -191,9 +217,9 @@
             Text="tan()"
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
-        <Button
+            <Button
             x:Name="LogButton"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -201,8 +227,8 @@
             Text="LOG"
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
-        <Button
-            Grid.Row="8"
+            <Button
+            Grid.Row="9"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -211,8 +237,8 @@
             TextColor="Red" />
 
 
-        <Button
-            Grid.Row="5"
+            <Button
+            Grid.Row="6"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -220,8 +246,8 @@
             Text="7"
             TextColor="Black"
             Clicked="NumberButton_Clicked"/>
-        <Button
-            Grid.Row="5"
+            <Button
+            Grid.Row="6"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -229,8 +255,8 @@
             Text="8"
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
-        <Button
-            Grid.Row="5"
+            <Button
+            Grid.Row="6"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -240,8 +266,8 @@
             Clicked="NumberButton_Clicked"/>
 
 
-        <Button
-            Grid.Row="6"
+            <Button
+            Grid.Row="7"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -249,8 +275,8 @@
             Text="4"
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
-        <Button
-            Grid.Row="6"
+            <Button
+            Grid.Row="7"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -258,8 +284,8 @@
             Text="5"
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
-        <Button
-            Grid.Row="6"
+            <Button
+            Grid.Row="7"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -269,8 +295,8 @@
             Clicked="NumberButton_Clicked"/>
 
 
-        <Button
-            Grid.Row="7"
+            <Button
+            Grid.Row="8"
             Grid.Column="0"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -278,9 +304,9 @@
             Text="1"
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
-        
-        <Button
-            Grid.Row="7"
+
+            <Button
+            Grid.Row="8"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -289,8 +315,8 @@
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
 
-        <Button
-            Grid.Row="7"
+            <Button
+            Grid.Row="8"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -298,8 +324,8 @@
             Text="3"
             TextColor="Black" 
             Clicked="NumberButton_Clicked"/>
-        <Button
-            Grid.Row="8"
+            <Button
+            Grid.Row="9"
             Grid.Column="0"
             Grid.ColumnSpan="1"
             BackgroundColor="DarkGray"
@@ -310,8 +336,8 @@
             Clicked="NumberButton_Clicked"/>
 
 
-        <Button
-            Grid.Row="4"
+            <Button
+            Grid.Row="5"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -319,8 +345,8 @@
             Text="/"
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
-        <Button
-            Grid.Row="5"
+            <Button
+            Grid.Row="6"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -329,8 +355,8 @@
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
 
-        <Button
-            Grid.Row="6"
+            <Button
+            Grid.Row="7"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -338,8 +364,8 @@
             Text="-"
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
-        <Button
-            Grid.Row="7"
+            <Button
+            Grid.Row="8"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -347,8 +373,8 @@
             Text="+"
             TextColor="Red" 
             Clicked="OperatorButton_Clicked"/>
-        <Button
-            Grid.Row="8"
+            <Button
+            Grid.Row="9"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -356,8 +382,8 @@
             Text="."
             TextColor="Red" 
             Clicked="NumberButton_Clicked"/>
-        <Button
-            Grid.Row="8"
+            <Button
+            Grid.Row="9"
             Grid.Column="3"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -365,9 +391,9 @@
             Text="Enter"
             TextColor="Red" 
             Clicked="EnterButton_Clicked"/>
-        <Button
+            <Button
             x:Name="EulerButton"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="2"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -376,9 +402,9 @@
             TextColor="Red"
             Clicked="OperatorButton_Clicked"
             />
-        <Button
+            <Button
             x:Name="PiButton"
-            Grid.Row="4"
+            Grid.Row="5"
             Grid.Column="1"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -387,9 +413,9 @@
             TextColor="Red"
             Clicked="OperatorButton_Clicked"
             />
-        <Button
+            <Button
             x:Name="xybutton"
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="4"
             BackgroundColor="DarkGray"
             CornerRadius="0"
@@ -398,8 +424,8 @@
             TextColor="Red"
             Clicked="OperatorButton_Clicked"
             />
-        <Button
-            Grid.Row="2"
+            <Button
+            Grid.Row="3"
             Grid.ColumnSpan="1"
             Grid.Column="2"
             BackgroundColor="DarkGray"
@@ -409,8 +435,8 @@
             TextColor="red"
             Clicked="OperatorButton_Clicked"
             />
-        <Button
-            Grid.Row="2"
+            <Button
+            Grid.Row="3"
             Grid.ColumnSpan="2"
             Grid.Column="0"
             BackgroundColor="DarkGray"
@@ -421,8 +447,8 @@
             TextColor="Blue"
             />
 
-        <Button
-            Grid.Row="1"
+            <Button
+            Grid.Row="2"
             Grid.ColumnSpan="1"
             Grid.Column="2"
             BackgroundColor="DarkGray"
@@ -431,8 +457,8 @@
             Text="0.0←"
             TextColor="Red"
             />
-        <Button
-            Grid.Row="1"
+            <Button
+            Grid.Row="2"
             Grid.ColumnSpan="1"
             Grid.Column="3"
             BackgroundColor="DarkGray"
@@ -441,8 +467,8 @@
             Text="0.0→"
             TextColor="Red"
             />
-        <Button
-            Grid.Row="1"
+            <Button
+            Grid.Row="2"
             Grid.Column="0"
             Grid.ColumnSpan="2"
             BackgroundColor="DarkGray"
@@ -451,12 +477,6 @@
             Text="Toggle"
             Clicked="Toggle"
             TextColor="Blue"/>
-
-
+        </Grid>
     </Grid>
-    </Grid>
-
-
-
-
 </ContentPage>

@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using Android.Telecom;
+//using Android.Telecom;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,13 +11,12 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
-using Java.Util;
+//using Java.Util;
 
 namespace RPN_Calculator.Mobile;
 
 public partial class MainPage : ContentPage
 {
-
 
     //new class to store the values of the current history
     internal class CalcStatus
@@ -540,7 +539,7 @@ public partial class MainPage : ContentPage
 
         // Update the input display with the user input
         result.Text = userInput;
-        var stackItems = calculator.GetTopStackItems(); 
+        var stackItems = calculator.GetTopStackItems();
 
         //stackCounter++;
     }
@@ -601,7 +600,4 @@ public partial class MainPage : ContentPage
         result.Text = "";
 
     }
-    
-
-
 }
