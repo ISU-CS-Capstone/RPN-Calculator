@@ -11,11 +11,13 @@ namespace RPNCalculator.Common
     {
         public Stack<string> calcStack;
         public int enterPressed;
+        public bool error;
 
-        public CalcStatus(NumStack nStack, int nEPressed)
+        public CalcStatus(NumStack nStack, int nEPressed, bool errorPressed)
         {
             calcStack = new Stack<string>(nStack.stack.Reverse());
             enterPressed = nEPressed;
+            error = errorPressed;
         }
 
 

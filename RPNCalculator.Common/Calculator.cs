@@ -20,6 +20,7 @@ namespace RPNCalculator.Common
         private UserDefinedFunctions udf;
         int enterPressed;
         int numFloats;
+        bool error;
 
         // constructor
         public Calculator() {
@@ -29,16 +30,21 @@ namespace RPNCalculator.Common
             hist = new CalcHistory();
             udf = new UserDefinedFunctions();
             numFloats = 5;
+            error = false;
         }
 
         //this method updates the displayString to the top value of the string stack
         public void updateDisplayString()
         {
-            if (nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != ".")
+            if (nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != "." && !error)
             {
                 DisplayString = Math.Round(double.Parse(nStack.Peek()), numFloats).ToString();
             }
-            else
+            else if (error)
+            {
+                DisplayString = "ERROR";
+            }
+            else 
             {
                 DisplayString = "";
             }
@@ -49,13 +55,14 @@ namespace RPNCalculator.Common
         public void pressNumber(char number)
         {
             //before pressing a Number, update the history
-            hist.updateHistory(new CalcStatus(nStack, enterPressed));
+            hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
             //we have to check if there is already a decimal
             if (number == '.' && enterPressed == 0 && nStack.Peek().Contains('.'))
             {
                 return;
             }
             nStack.updateTop(number.ToString(), enterPressed);
+            error = false;
             enterPressed = 0;
             updateDisplayString();
           
@@ -64,10 +71,10 @@ namespace RPNCalculator.Common
         //This method will be called when enter is pressed, pushing the current value onto the stack display string won't be updated because the number wasn't modified.
         public void pressEnter()
         {
-            if (enterPressed == 0)
+            if ((enterPressed == 0 || enterPressed == 1) && !error)
             {
                 //before pushing enter, update the history
-                hist.updateHistory(new CalcStatus(nStack, enterPressed));
+                hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
 
                 nStack.Push(nStack.Peek());
                 enterPressed = 2;
@@ -79,13 +86,22 @@ namespace RPNCalculator.Common
         {
             //can't perform the operation if there isn't at least 1 value on the stack to add
             //if there isn't, do nothing
-            try
-            {
-                if (op == "π")
+            //try
+            //{
+                if (op == "π" || op == "pi")
                 {
-                    hist.updateHistory(new CalcStatus(nStack, enterPressed));
+                    hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
                     nStack.Push(Math.PI.ToString());
                     updateDisplayString();
+                    enterPressed = 1;
+                    return;
+                }
+                if (op == "e")
+                {
+                    hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
+                    nStack.Push(Math.E.ToString());
+                    updateDisplayString();
+                    enterPressed = 1;
                     return;
                 }
                 //call undo
@@ -96,6 +112,7 @@ namespace RPNCalculator.Common
                     {
                         nStack.stack = history.calcStack;
                         enterPressed = history.enterPressed;
+                        error = history.error;
                     }
 
                     updateDisplayString();
@@ -121,9 +138,16 @@ namespace RPNCalculator.Common
 
                     return;
                 }
-                else if (nStack.Count() > 0)
+                else if (op == "+/-" && nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != ".")
                 {
-                    hist.updateHistory(new CalcStatus(nStack, enterPressed));
+                    nStack.Push((double.Parse(nStack.Pop())*-1).ToString());
+                    enterPressed = 0;
+                    updateDisplayString();
+                    return;
+                }
+                else if (nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != ".")
+                {
+                    hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
                     double operand1 = double.Parse(nStack.Pop());
                     /*
                      * 's' == sin()
@@ -141,7 +165,7 @@ namespace RPNCalculator.Common
                      * 'e' == e^x
                      * 'E' == x^y
                      */
-                    if ((op == "+" || op == "-" || op == "x" || op == "/" || op == "x^y" || op == "y√x") &&
+                    if ((op == "+" || op == "-" || op == "x" || op == "/" || op == "x^y" || op == "y√x" || op == "yROOTx") &&
                         nStack.Count() > 0)
                     {
                         if (nStack.Count() > 0)
@@ -150,22 +174,30 @@ namespace RPNCalculator.Common
                             switch (op)
                             {
                                 case "+":
-                                    nStack.Push((operand1 + operand2).ToString());
+                                    nStack.Push((operand2 + operand1).ToString());
                                     break;
                                 case "-":
-                                    nStack.Push((operand1 - operand2).ToString());
+                                    nStack.Push((operand2 - operand1).ToString());
                                     break;
                                 case "x":
-                                    nStack.Push((operand1 * operand2).ToString());
+                                    nStack.Push((operand2 * operand1).ToString());
                                     break;
                                 case "/":
-                                    nStack.Push((operand1 / operand2).ToString());
+                                    if (operand2 == 0)
+                                    {
+                                        error = true;
+                                        enterPressed = 2;
+                                        updateDisplayString();
+                                        return;
+                                    }
+                                    nStack.Push((operand2 / operand1).ToString());
                                     break;
                                 case "x^y":
-                                    nStack.Push((Math.Pow(operand1, operand2)).ToString());
+                                    nStack.Push((Math.Pow(operand2, operand1)).ToString());
                                     break;
                                 case "y√x":
-                                    nStack.Push(Math.Pow(operand1, 1.0 / operand2).ToString());
+                                case "yROOTx":
+                                    nStack.Push(Math.Pow(operand2, 1.0 / operand1).ToString());
                                     break;
                             }
                         }
@@ -206,6 +238,7 @@ namespace RPNCalculator.Common
 
                                 break;
                             case "√x":
+                            case "ROOTx":
                                 nStack.Push(Math.Sqrt(operand1).ToString());
                                 break;
                             case "LOG":
@@ -215,10 +248,8 @@ namespace RPNCalculator.Common
                                 nStack.Push(Math.Log(operand1).ToString());
                                 break;
                             case "eⁿ":
+                            case "e^n":
                                 nStack.Push(Math.Exp(operand1).ToString());
-                                break;
-                            case "+/-":
-                                nStack.Push((-1 * operand1).ToString());
                                 break;
                         }
                     }
@@ -227,11 +258,11 @@ namespace RPNCalculator.Common
                 updateDisplayString();
                 //setting enterPressed, so the next type on the calculator doesn't add to the current display, but creates a new value on the stack
                 enterPressed = 1;
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error);
-            }
+            //}
+            //catch (Exception error)
+            //{
+                //Console.WriteLine(error);
+            //}
         }
 
         //This method will be called when clear is pressed -- deletes the current display string
@@ -242,6 +273,7 @@ namespace RPNCalculator.Common
             hist = new CalcHistory();
             nStack = new NumStack();
             enterPressed = 0;
+            error = false;
         }
         
         public void userDefinedFunction(string function)
