@@ -11,23 +11,36 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 using RPNCalculator.Common;
-
+/*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
 namespace RPNCalculator.Mobile;
 
 public partial class MainPage : ContentPage
 {
     private bool isShift = false;
-    
+
+    // This will create and instantialize the calculator to perform calculations
     private Calculator calculator = new Calculator();
 
     public MainPage()
     {
         InitializeComponent();
     }
-    
+
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This method will update the display with stack values
     private void UpdateDisplay()
     {
-        // Get the value of the stack and display it
+        // This will get the value of the stack and display it
         IEnumerable<string> stackValues = calculator.GetTopStackItems();
 
         // Convert IEnumerable to List to access by index
@@ -45,19 +58,25 @@ public partial class MainPage : ContentPage
                 display = display.Substring(1); // Remove one newline character for each additional item
             }
 
-            display += stackValuesList[i] + "\n"; // Append the item followed by a newline
+            display += stackValuesList[i] + "\n"; // This will append the item followed by a newline
         }
 
-        if (display.EndsWith("\n")) // trail whitespace to look nicer
+        if (display.EndsWith("\n")) // This is added to trail the whitespace in order to make it look nicer
         {
             display = display.TrimEnd('\n');
         }
 
-        // Assuming there is a property called DisplayText for data binding
-        stack.Text = display.TrimEnd();  // Set the built string to the DisplayText property, trimming any trailing newline
+        stack.Text = display.TrimEnd();  // Thiss will set the built string to the DisplayText property, trimming any trailing newline
         result.Text = calculator.DisplayString;
     }
 
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This eventhandler will handle the actions of the shift button of the calculator
     void ShiftButtonClick(object sender, EventArgs e)
     {
         isShift = !isShift;
@@ -83,6 +102,14 @@ public partial class MainPage : ContentPage
         }
 
     }
+
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This eventhandler will handle switching between the calculator and the user defined function page when the toggle button is clicked
     void Toggle(object sender, EventArgs e)
     {
         CalculatorBorder.IsVisible = !CalculatorBorder.IsVisible;
@@ -92,6 +119,13 @@ public partial class MainPage : ContentPage
         button.Text = CalculatorBorder.IsVisible ? "Toggle" : "Toggle";
     }
 
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This will handle displaying any numbers the user might click on onto the result screen
     private void NumberButton_Clicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -103,11 +137,26 @@ public partial class MainPage : ContentPage
         UpdateDisplay();
     }
 
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This will handle displaying the results of the users calculations on the result screen when the user presses enter
     private void EnterButton_Clicked(object sender, EventArgs e)
     {
         calculator.pressEnter();
         UpdateDisplay();
     }
+
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This will handle displaying and calculating any calculations the user might make using any of the operations from the calculator
     private void OperatorButton_Clicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -117,23 +166,53 @@ public partial class MainPage : ContentPage
         }
         UpdateDisplay();
     }
+
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This will handle clearing the calculator screen when the clear button is clicked
     private void ClearButton_Clicked(object sender, EventArgs e)
     {
         calculator.pressClear();
         UpdateDisplay();
     }
+
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This will handle decreasing the float of a number on the calculator screen
     private void DecreaseFloatButton_Click(object sender, EventArgs e)
     {
         calculator.pressOperator("addFloat");
         UpdateDisplay();
     }
 
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This will handle increasing the float of a number on the calculator screen
     private void IncreaseFloatButton_Click(object sender, EventArgs e)
     {
         calculator.pressOperator("removeFloat");
         UpdateDisplay();
     }
 
+    /*
+    Author: Saim Ishtiaq
+    Description: Designing the mobile version of the RPNCalculator by solely working on the frontend and some of the backend
+    Goal: Set up and design the frontend of the Mobile using .Maui and an android emulator
+    Certification: I certify that I wrote all of the code in this file myself.
+*/
+    // This will handle compiling and running the function that the user enters in the user defined function section
     private void CompileButton_Click(object sender, EventArgs e)
     {
         calculator.userDefinedFunction(functionEditor.Text);
