@@ -1,3 +1,9 @@
+<!-- Author: Saim Ishtiaq
+ Description: Frontend styling for the Mobile version of the RPNCalculator
+ Responsibility: To Design and style the frontend of the mobile version of the RPNCalculator
+ Certification: I certify that I wrote all of the code in this .xaml file myself.
+ -->
+
 <ContentPage
     x:Class="RPNCalculator.Mobile.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -17,6 +23,8 @@
                     <ColumnDefinition Width="0.15*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                
+                <!--This label will create and style the space in which the stack is displayed and updated-->
                 <Label
                     x:Name="stack"
                     Grid.Row="0"
@@ -25,6 +33,7 @@
                     FontSize="20"
                     TextColor="Black"
                     BackgroundColor="LightGray"/>
+                <!--This label will create and style the space in which the numbers inputted by the user and the results of the calculations the user desires will appear-->
                 <Label
                     x:Name="result"
                     Grid.Row="0"
@@ -37,9 +46,10 @@
                     TextColor="Black"/>
             </Grid>
         </Border>
-
+        <!--Border for function display-->
         <Border x:Name="FunctionBorder" Grid.Row="1" IsVisible="False">
             <Grid x:Name="functionDisplay" Padding="5">
+                <!--The following will denote the row and coloumn definitions for various elements-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -68,6 +78,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <!--This button will create and style the toggle button which will allow the user to switch between the calculator and the user defined
+                function layout-->
                 <Button
                     Grid.Row="0"
                     Grid.Column="3"
@@ -76,6 +88,7 @@
                     Style="{StaticResource SecondaryOperatorButtonStyle}"
                     />
                 <Label Grid.Row="1"/>
+                <!--This is the label for custom function instructions-->
                 <Label Grid.Row="2"
                    Grid.ColumnSpan="4"
                    Text="Custom Function Instructions"
@@ -84,6 +97,8 @@
                    VerticalOptions="Center" 
                    FontSize="26"/>
                 <Label Grid.Row="3"/>
+
+                <!--This is the label that will prompt the user to write their custom function below-->
                 <Label Grid.Row="4"
                    Grid.ColumnSpan="4"
                    Text="Write your custom function below:"
@@ -91,6 +106,9 @@
                    HorizontalOptions="Start" 
                    VerticalOptions="Center"/>
                 <Label Grid.Row="5"/>
+
+                <!--This is the label that shows how the function needs to be defined (what parameters need to be used,
+                the fact that it needs to be a double, etc-->
                 <Label Grid.Row="6"
                    Grid.ColumnSpan="4"
                    Text="public double CustomFunction(Stack stack) ["
@@ -99,6 +117,7 @@
                    VerticalOptions="Center"
                    TextColor="HotPink"/>
 
+                <!--This is the editor which will allow the user to enter their custom function logic-->
                 <Editor x:Name="functionEditor"
                     Grid.Row="8"
                     Grid.ColumnSpan="4"
@@ -111,12 +130,15 @@
                     AutoSize="TextChanges"
                 />
 
+                <!--This is the label that denotes the end of the custom function declaration-->
                 <Label Grid.Row="10"
                    Grid.ColumnSpan="4"
                    FontSize="18"
                    Text="]"
                    TextColor="HotPink"/>
                 <Label Grid.Row="11"/>
+
+                <!--This button will be used to compile and run the custom function that the user creates-->
                 <Button
                     Grid.Row="12"
                     Grid.Column="0"
@@ -129,7 +151,7 @@
             </Grid>
         </Border>
 
-        <!-- Start of Calculator UI-->
+        <!-- This signifies the start of the code for the Calculator UI-->
         <Border x:Name="CalculatorBorder" Grid.Row="1" IsVisible="True">
             <Grid x:Name="calculatorGrid"
             Padding="5,0">
@@ -153,6 +175,8 @@
                 <!-- Start Row 0 -->
 
                 <!-- Start Row 1 -->
+                 <!--This button will create and style the toggle button which will allow the user to switch between the calculator and the user defined
+                function layout-->
                 <Button
                     Grid.Row="0"
                     Grid.Column="0"
@@ -161,6 +185,8 @@
                     Clicked="Toggle"
                     Style="{StaticResource SecondaryOperatorButtonStyle}"
                     />
+                 <!--This button will create and style the decrease float button which will allow the user to decrease 
+                the floats in the results (for example, using this button can change 2.000 to 2.0-->
                 <Button
                     Grid.Row="0"
                     Grid.ColumnSpan="1"
@@ -169,6 +195,8 @@
                     Clicked="DecreaseFloatButton_Click"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                 <!--This button will create and style the increase float button which will allow the user to increase 
+                the floats in the results (for example, using this button can change 2.0 to 2.000-->
                 <Button
                     Grid.Row="0"
                     Grid.ColumnSpan="1"
@@ -178,6 +206,8 @@
                     Style="{StaticResource NumberButtonStyle}"
                     />
                 <!-- Start Row 2 -->
+                 <!--This button will create and style the shift button which will allow the user to shift some of the buttons 
+                in the calculator (for example, using this button can change sin() to arcsin)-->
                 <Button
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
@@ -186,6 +216,8 @@
                     Clicked="ShiftButtonClick"
                     Style="{StaticResource PrimaryOperatorButtonStyle}"
                     />
+                 <!--This button will create and style the undo button which will allow the user to undo 
+                an input that they may have inputted and wanted to undo to go to the previous input-->
                 <Button
                     Grid.Row="1"
                     Grid.ColumnSpan="1"
@@ -194,6 +226,8 @@
                     Clicked="OperatorButton_Clicked"
                     Style="{StaticResource PrimaryOperatorButtonStyle}"
                     />
+                <!--This button will create and style the x^y button which will allow the user to use 
+                the x^y operator to make any calculation that they might desire-->
                 <Button
                     x:Name="xybutton"
                     Grid.Row="1"
@@ -204,6 +238,8 @@
                     Style="{StaticResource SecondaryOperatorButtonStyle}"
                     />
                 <!-- Start Row 3 -->
+                <!--This button will create and style the clear button which will allow the user to clear the
+                calculator screen -->
                 <Button
                     Grid.Row="2"
                     Grid.Column="0"
@@ -212,7 +248,8 @@
                     Clicked="ClearButton_Clicked" 
                     Style="{StaticResource PrimaryOperatorButtonStyle}"
                     />
-
+                 <!--This button will create and style the sin() button which will allow the user to use 
+                the sin() operator to make any calculation that they might desire-->
                 <Button
                     x:Name="sineButton"
                     Grid.Row="2"
@@ -221,6 +258,8 @@
                     Clicked="OperatorButton_Clicked" 
                     Style="{StaticResource PrimaryOperatorButtonStyle}"
                     />
+                 <!--This button will create and style the cos() button which will allow the user to use 
+                the cos() operator to make any calculation that they might desire-->
                 <Button
                     x:Name="cosineButton"
                     Grid.Row="2"
@@ -229,6 +268,8 @@
                     Clicked="OperatorButton_Clicked"
                     Style="{StaticResource PrimaryOperatorButtonStyle}"
                     />
+                 <!--This button will create and style the tan() button which will allow the user to use 
+                the tan() operator to make any calculation that they might desire-->
                 <Button
                     x:Name="TangentButton"
                     Grid.Row="2"
@@ -238,6 +279,8 @@
                     Style="{StaticResource SecondaryOperatorButtonStyle}"
                     />
                 <!-- Start Row 4 -->
+                 <!--This button will create and style the LOG button which will allow the user to use 
+                the LOG operator to make any calculation that they might desire-->
                 <Button
                     x:Name="LogButton"
                     Grid.Row="3"
@@ -246,6 +289,8 @@
                     Clicked="OperatorButton_Clicked"
                     Style="{StaticResource PrimaryOperatorButtonStyle}"
                     />
+                 <!--This button will create and style the π button which will allow the user to use 
+                the π operator to make any calculation that they might desire-->
                 <Button
                     x:Name="PiButton"
                     Grid.Row="3"
@@ -254,6 +299,8 @@
                     Clicked="OperatorButton_Clicked"
                     Style="{StaticResource PrimaryOperatorButtonStyle}"
                     />
+                 <!--This button will create and style the euler button which will allow the user to use 
+                the euler operator to make any calculation that they might desire-->
                 <Button
                     x:Name="EulerButton"
                     Grid.Row="3"
@@ -262,6 +309,7 @@
                     Clicked="OperatorButton_Clicked" 
                     Style="{StaticResource PrimaryOperatorButtonStyle}"
                     />
+                 <!--This button will create and style the / button which will allow the user to divide numbers-->
                 <Button
                     Grid.Row="3"
                     Grid.Column="3"
@@ -270,6 +318,7 @@
                     Style="{StaticResource SecondaryOperatorButtonStyle}"
                     />
                 <!-- Start Row 5 -->
+                <!--This button will create and style the button for the number 7-->
                 <Button
                     Grid.Row="4"
                     Grid.Column="0"
@@ -277,6 +326,7 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                <!--This button will create and style the button for the number 8-->
                 <Button
                     Grid.Row="4"
                     Grid.Column="1"
@@ -284,6 +334,7 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                <!--This button will create and style the button for the number 9-->
                 <Button
                     Grid.Row="4"
                     Grid.Column="2"
@@ -291,6 +342,7 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                 <!--This button will create and style the x button which will allow the user to multiply numbers-->
                 <Button
                     Grid.Row="4"
                     Grid.Column="3"
@@ -299,6 +351,7 @@
                     Style="{StaticResource SecondaryOperatorButtonStyle}"
                     />
                 <!-- Start Row 6 -->
+                <!--This button will create and style the button for the number 4-->
                 <Button
                     Grid.Row="5"
                     Grid.Column="0"
@@ -306,6 +359,7 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                <!--This button will create and style the button for the number 5-->
                 <Button
                     Grid.Row="5"
                     Grid.Column="1"
@@ -313,6 +367,7 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                <!--This button will create and style the button for the number 6-->
                 <Button
                     Grid.Row="5"
                     Grid.Column="2"
@@ -320,6 +375,7 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                 <!--This button will create and style the - button which will allow the user to subtract numbers -->
                 <Button
                     Grid.Row="5"
                     Grid.Column="3"
@@ -328,6 +384,7 @@
                     Style="{StaticResource SecondaryOperatorButtonStyle}"
                     />
                 <!-- Start Row 7 -->
+                <!--This button will create and style the button for the number 1-->
                 <Button
                     Grid.Row="6"
                     Grid.Column="0"
@@ -335,6 +392,7 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                <!--This button will create and style the button for the number 2-->
                 <Button
                     Grid.Row="6"
                     Grid.Column="1"
@@ -342,12 +400,14 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                <!--This button will create and style the button for the number 3-->
                 <Button
                     Grid.Row="6"
                     Grid.Column="2"
                     Text="3"
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"/>
+                <!--This button will create and style the + button which will allow the user to add numbers -->
                 <Button
                     Grid.Row="6"
                     Grid.Column="3"
@@ -356,6 +416,7 @@
                     Style="{StaticResource SecondaryOperatorButtonStyle}"
                     />
                 <!-- Start Row 8 -->
+                <!--This button will create and style the button for the number 0-->
                 <Button
                     Grid.Row="7"
                     Grid.Column="0"
@@ -363,6 +424,7 @@
                     Text="0"
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"/>
+                <!--This button will create and style the button that'll allow the user to enter decimal numbers-->
                 <Button
                     Grid.Row="7"
                     Grid.Column="1"
@@ -370,6 +432,7 @@
                     Clicked="NumberButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                <!--This button will create and style the +/- button which will allow the user to change the arithmetic sign-->
                 <Button
                     Grid.Row="7"
                     Grid.Column="2"
@@ -377,6 +440,7 @@
                     Clicked="OperatorButton_Clicked"
                     Style="{StaticResource NumberButtonStyle}"
                     />
+                <!--This button will create and style the Enter button which will display the results of an arithmetic operation when pressed-->
                 <Button
                     Grid.Row="7"
                     Grid.Column="3"
