@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace RPNCalculator.Common
 {
-    //new class to store the values of the current history
+        /*
+         * Author:  Craig Price
+         * Description: This class stores a "snapshot" of the history of the calculator. Including the stack, whether enter has been pressed, and if there is an error.
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
     internal class CalcStatus
     {
         public Stack<string> calcStack;

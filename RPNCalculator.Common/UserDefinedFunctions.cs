@@ -12,6 +12,12 @@ namespace RPNCalculator.Common
 {
     internal class UserDefinedFunctions
     {
+        /*
+         * Author: Craig Price
+         * Description: This method creates and compiles a user defined function from the string and stack reference provided.
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public double? CreateFunction(string function, ref Stack<string> stack)
         {
             string baseFunction = @"
@@ -29,7 +35,7 @@ namespace RPNCalculator.Common
 
             string completeFunction = baseFunction.Replace("replace", function);
             SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(completeFunction);
-            string assemblyName = Path.GetRandomFileName();
+            string assemblyLocation = Path.GetRandomFileName();
             MetadataReference[] references = new MetadataReference[]
             {
                 MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
@@ -38,7 +44,7 @@ namespace RPNCalculator.Common
             };
 
             CSharpCompilation compilation = CSharpCompilation.Create(
-                assemblyName,
+                assemblyLocation,
                 syntaxTrees: new[] { syntaxTree },
                 references: references,
                 options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
@@ -49,12 +55,6 @@ namespace RPNCalculator.Common
 
                 if (!result.Success)
                 {
-                    IEnumerable<Diagnostic> diagnostics = result.Diagnostics;
-
-                    //foreach (Diagnostic diagnostic in diagnostics)
-                    //{
-                    //    MessageBox.Show(diagnostic.Id + ":" + diagnostic.GetMessage() + "\r\n");
-                    //}
                     return null;
                 }
                 else
@@ -62,11 +62,11 @@ namespace RPNCalculator.Common
                     ms.Seek(0, SeekOrigin.Begin);
                     Assembly assembly = Assembly.Load(ms.ToArray());
                     Type type = assembly.GetType("UserDefinedFunctions.UDF");
-                    object obj = Activator.CreateInstance(type);
+                    object instance = Activator.CreateInstance(type);
                     object returnVal = type.InvokeMember("entryFunction",
                         BindingFlags.Default | BindingFlags.InvokeMethod,
                         null,
-                        obj,
+                        instance,
                         new object[] { stack });
                     return (double)returnVal;
                 }

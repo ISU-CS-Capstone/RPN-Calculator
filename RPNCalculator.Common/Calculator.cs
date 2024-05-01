@@ -11,10 +11,14 @@ namespace RPNCalculator.Common
 {
     public class Calculator
     {
-        //This string will be accessed by the frontend and will contain what should be displayed
+        /*
+         * Author: Craig Price
+         * Description: Class level variables we have to keep track of
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public string DisplayString { get; private set; }
 
-        // Stack to hold numbers and results
         private NumStack nStack;
         private CalcHistory hist;
         private UserDefinedFunctions udf;
@@ -22,7 +26,12 @@ namespace RPNCalculator.Common
         int numFloats;
         bool error;
 
-        // constructor
+        /*
+         * Author: Craig Price
+         * Description: This is the default constructor for our calculator class
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public Calculator() {
             DisplayString = "";
             enterPressed = 0;
@@ -33,7 +42,12 @@ namespace RPNCalculator.Common
             error = false;
         }
 
-        //this method updates the displayString to the top value of the string stack
+        /*
+         * Author: Craig Price
+         * Description: This method updates the display string from the top of the stack to keep it looking nice and presentable.
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public void updateDisplayString()
         {
             if (nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != "." && !error)
@@ -51,7 +65,12 @@ namespace RPNCalculator.Common
             if (nStack.Count() > 0 && nStack.Peek().Length > 0 && ((nStack.Peek()[nStack.Peek().Length - 1] == '.') || (numFloats == 0 && nStack.Peek().Contains('.')))) { DisplayString += "."; }
         }
 
-        //This method will be called when a number is pressed, and will update the DisplayString
+        /*
+         * Author: Craig Price
+         * Description: This method is called when a number is pressed. it updates the top string in the stack with the new number
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public void pressNumber(char number)
         {
             //before pressing a Number, update the history
@@ -68,7 +87,12 @@ namespace RPNCalculator.Common
           
         }
 
-        //This method will be called when enter is pressed, pushing the current value onto the stack display string won't be updated because the number wasn't modified.
+        /*
+         * Author: Craig Price
+         * Description: This method is called when enter is pressed on the calculator. It pushes the value onto the stack and allows the user to start modifying a new value.
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public void pressEnter()
         {
             if ((enterPressed == 0 || enterPressed == 1) && !error)
@@ -81,13 +105,14 @@ namespace RPNCalculator.Common
             }
         }
 
-        //The way the operator works on the app he wants us to model is weird, I tried to imitate it with this goofy code
+        /*
+         * Author: Craig Price
+         * Description: This method determines what operator was pressed, and executes the correct code
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public void pressOperator(string op)
         {
-            //can't perform the operation if there isn't at least 1 value on the stack to add
-            //if there isn't, do nothing
-            //try
-            //{
                 if ((op == "π" || op == "pi") && !error)
                 {
                     hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
@@ -147,24 +172,10 @@ namespace RPNCalculator.Common
                 }
                 else if (nStack.Count() > 0 && nStack.Peek() != "" && nStack.Peek() != "." && !error)
                 {
+
                     hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
                     double operand1 = double.Parse(nStack.Pop());
-                    /*
-                     * 's' == sin()
-                     * 'c' == cos()
-                     * 't' == tan()
-                     * 'S' == arcsin()
-                     * 'C' == arccos()
-                     * 'T' == arctan()
-                     * '!' == x!
-                     * 'r' == sqrt(x)
-                     * 'R' == y root x
-                     * "LOG" == log
-                     * 'L' == ln
-                     * 'p' == pi
-                     * 'e' == e^x
-                     * 'E' == x^y
-                     */
+
                     if ((op == "+" || op == "-" || op == "x" || op == "/" || op == "x^y" || op == "y√x" || op == "yROOTx") &&
                         nStack.Count() > 0)
                     {
@@ -209,7 +220,7 @@ namespace RPNCalculator.Common
                             }
                         }
                     }
-                    //otherwise, the operation only takes one operand
+
                     else
                     {
                         switch (op)
@@ -309,14 +320,14 @@ namespace RPNCalculator.Common
                 updateDisplayString();
                 //setting enterPressed, so the next type on the calculator doesn't add to the current display, but creates a new value on the stack
                 enterPressed = 1;
-            //}
-            //catch (Exception error)
-            //{
-                //Console.WriteLine(error);
-            //}
         }
 
-        //This method will be called when clear is pressed -- deletes the current display string
+        /*
+         * Author: Craig Price
+         * Description: This method will be called when clear is pressed. Sets everything to its default value
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public void pressClear()
         {
             //update everything to default values
@@ -326,7 +337,13 @@ namespace RPNCalculator.Common
             enterPressed = 0;
             error = false;
         }
-        
+
+        /*
+         * Author: Craig Price
+         * Description: This method allows the user to create a userdefined function using the UDF class
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public void userDefinedFunction(string function)
         {
             hist.updateHistory(new CalcStatus(nStack, enterPressed, error));
@@ -338,6 +355,13 @@ namespace RPNCalculator.Common
                 enterPressed = 1;
             }
         }
+
+        /*
+         * Author: Craig Price
+         * Description: This performs factorial on an integer
+         * Responsibility: Backend work for the Calculator
+         * Certification: I certify that I wrote this code myself.
+         */
         public int Factorial(int f)
         {
                 if (f == 0)
