@@ -16,6 +16,10 @@ namespace RPNCalculator.Desktop
 
         public event PropertyChangedEventHandler PropertyChanged; // handles page changes
 
+        /**
+         *  Kolby Christiansen - certify code written myself
+         *  to get string to be displayed on caculator
+         */
         public string DisplayText
         {
             get { return calculator.DisplayString; }
@@ -26,7 +30,8 @@ namespace RPNCalculator.Desktop
             DataContext = this;
         }
 
-        // change text box to be new content as the class updates the display string
+        // Kolby Christiansen - certify that this code was written by myself
+        // Purpose - change text box to be new content as the class updates the display string along with updating stack values
         private void UpdateDisplay()
         {
             // Get the value of the stack and display it
@@ -60,6 +65,10 @@ namespace RPNCalculator.Desktop
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(DisplayText)));
         }
 
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - event listener for when a calc digit is clicked
+         */
         private void DigitButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -69,11 +78,14 @@ namespace RPNCalculator.Desktop
                 UpdateDisplay();
             }
         }
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - event listener for operator click
+         */
         private void OperatorButton_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
             string? cmd = button.Tag.ToString();
-            Console.WriteLine(cmd);
             if (cmd == null)
             {
                 Console.WriteLine("Invalid tag for input button: " + button.Tag);
@@ -82,23 +94,38 @@ namespace RPNCalculator.Desktop
             calculator.pressOperator(cmd); // add operator to calc
             UpdateDisplay();
         }
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - event listener for pressing enter to push value onto stack
+         */
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
             calculator.pressEnter();
             UpdateDisplay();
         }
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - event listener to clear out whole calculator
+         */
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             calculator.pressClear();
             UpdateDisplay();
         }
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - redirect to documentation page
+         */
         private void DocumentationButton_Click(object sender, RoutedEventArgs e)
         {
             var docsPage = new DocumentationWindow();
             docsPage.Show();
             this.Close();
         }
-
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - compile listener to compile and run input code
+         */
         private void CompileButton_Click(object sender, RoutedEventArgs e)
         {
             calculator.userDefinedFunction(FunctionTextbox.Text);
@@ -106,12 +133,20 @@ namespace RPNCalculator.Desktop
             UpdateDisplay();
         }
 
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - listener to show less numbers after decimal in display
+         */
         private void DecreaseFloatButton_Click(object sender, RoutedEventArgs e)
         {
             calculator.pressOperator("addFloat");
             UpdateDisplay();
         }
-
+        
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - listener to show more numbers after decimal in display
+         */
         private void IncreaseFloatButton_Click(object sender, RoutedEventArgs e)
         {
             calculator.pressOperator("removeFloat");
@@ -119,7 +154,8 @@ namespace RPNCalculator.Desktop
         }
 
         
-        // Handle input of operators, numpad, enter, etc...
+        // Kolby Christiansen - certify that this code was written by myself
+        // Purpose -  - Handle input of operators, numpad, enter, etc... for keyboard functionality
         protected override void OnKeyDown(KeyEventArgs e)
         {
             if (CalcButtonBorder.Visibility == Visibility.Collapsed) return; // don't capture input's if typing into user defined textbox
@@ -181,12 +217,19 @@ namespace RPNCalculator.Desktop
             }
             UpdateDisplay();
         }
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose -  - change to user functions
+         */
         private void ToggleViewButton_Checked(object sender, RoutedEventArgs e)
         {
             CalcButtonBorder.Visibility = Visibility.Collapsed;  // Hide the calculator
             UserFunctionBorder.Visibility = Visibility.Visible;     // Show the textbox
         }
-
+        /**
+         * Kolby Christiansen - certify that this code was written by myself
+         * Purpose - change to calc view
+         */
         private void ToggleViewButton_Unchecked(object sender, RoutedEventArgs e)
         {
             CalcButtonBorder.Visibility = Visibility.Visible;   // Show the calculator

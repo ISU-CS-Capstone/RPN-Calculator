@@ -2,6 +2,9 @@ namespace RPNCalculator.Common.Models;
 
 public class RpnStack
 {
+    /**
+     * kjc - class was deprecated and changed to use NumStack instead, keeping this incase needed in future
+     */
     private Stack<double> _stack;
     public RpnStack()
     {

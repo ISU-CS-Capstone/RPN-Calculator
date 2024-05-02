@@ -14,6 +14,9 @@ public partial class DocumentationWindow : Window
         LoadDocumentation();
     }
 
+    /**
+     * kjc - compile md file to html and set content of page
+     */
     private void LoadDocumentation()
     {
         var assembly = Assembly.GetAssembly(typeof(RPNCalculator.Common.Calculator));
@@ -56,7 +59,9 @@ public partial class DocumentationWindow : Window
         }
     }
 
-
+    /**
+     * kjc - submit button to test if input was valid RPN notation, was not implemented
+     */
     private void OnSubmitClicked(object sender, RoutedEventArgs e)
     {
         var userInput = InputBox.Text;
